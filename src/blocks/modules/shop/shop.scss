@@ -1,0 +1,262 @@
+.shop {
+    margin-bottom: 44px
+}
+
+.shop__container {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between
+}
+
+@media only screen and (max-width: 1000px) {
+    .shop__container {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column
+    }
+}
+
+.shop__filter {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: -webkit-calc(25% - 8px);
+    width: calc(25% - 8px);
+    background-color: #fdfdfd
+}
+
+@media only screen and (max-width: 1000px) {
+    .shop__filter {
+        width: 100%
+    }
+}
+
+.shop__content {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: -webkit-calc(75% - 8px);
+    width: calc(75% - 8px)
+}
+
+@media only screen and (max-width: 1000px) {
+    .shop__content {
+        width: 100%
+    }
+}
+
+.shop__content--search {
+    width: 100%
+}
+
+.shop__control {
+    margin-bottom: 34px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: flex-end;
+    justify-content: flex-end;
+}
+
+@media only screen and (max-width: 750px) {
+    .shop__control {
+        display: none
+    }
+}
+
+.shop__tags {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex
+}
+
+@media only screen and (max-width: 750px) {
+    .shop__tags {
+        margin-bottom: 18px
+    }
+}
+
+.shop__tag {
+    color: #fdfdfd;
+    font-size: 16px;
+    display: block;
+    margin-right: 2px;
+    line-height: 36px;
+    cursor: pointer;
+    font-weight: 400;
+    padding-left: 12px;
+    padding-right: 12px;
+    -webkit-transition: .3s all;
+    -o-transition: .3s all;
+    transition: .3s all
+}
+
+.shop__tag--gray {
+    background-color: #a1a1a1
+}
+
+.shop__tag--gray:hover {
+    background-color: #8e8e8e
+}
+
+.shop__tag--red {
+    background-color: #ff4747
+}
+
+.shop__tag--red:hover {
+    background-color: #ff1616
+}
+
+.shop__tag--green {
+    background-color: #006a44
+}
+
+.shop__tag--green:hover {
+    background-color: #007842
+}
+
+.shop__tag--orange {
+    background-color: #f78222
+}
+
+.shop__tag--orange:hover {
+    background-color: #ff6e00
+}
+
+.shop__counter {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    font-size: 16px;
+    line-height: 18px
+}
+
+.shop__counter-text {
+    margin-right: 4px
+}
+
+.shop__counter-btn {
+    position: relative;
+    padding-left: 15px;
+    padding-right: 15px;
+    cursor: pointer;
+    -webkit-transition: .3s all;
+    -o-transition: .3s all;
+    transition: .3s all
+}
+
+.shop__counter-btn:after {
+    display: block;
+    width: 1px;
+    height: 100%;
+    content: "";
+    background-color: #a1a1a1;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    border: 0
+}
+
+.shop__counter-btn:last-child {
+    padding-right: 0
+}
+
+.shop__counter-btn:last-child:after {
+    display: none
+}
+
+.shop__counter-btn:hover {
+    color: #f78222
+}
+
+.shop__counter-btn—active {
+    color: #f78222
+}
+
+.shop__items {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between
+}
+
+.shop__toolbar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.shop__btn {
+    width: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 34px;
+    width: 220px;
+    background: none;
+    font-family: "Fira Sans", sans-serif;
+    border: 1px solid #a1a1a1;
+    transition: 0.3s all;
+    cursor: pointer;
+    &:hover {
+        color: #fdfdfd;
+        background-color: #a1a1a1;
+    }
+}
+
+.shop__nav {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+    -ms-flex-pack: end;
+    justify-content: flex-end
+}
+
+@media only screen and (max-width: 1000px) {
+    .shop__nav {
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center
+    }
+}
+
+.shop .m-load {
+    position: relative
+}
+
+.shop .m-load::after {
+    position: absolute;
+    top: -10px;
+    bottom: 0;
+    left: 0;
+    right: -10px;
+    z-index: 3;
+    content: "";
+    background-image: url(https://kerasfera.ru/bitrix/templates/new/img/loader.gif);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: rgba(253, 253, 253, .75)
+}

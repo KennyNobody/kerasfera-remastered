@@ -1,0 +1,13 @@
+.bordered-block {
+	display: block;
+	padding-left: 20px;
+	&--orange {
+		border-left: 3px solid $orange;
+	}
+	&--green {
+		border-left: 3px solid $green;
+	}
+	&--gray {
+		border-left: 3px solid #BDBDBD;
+	}
+}

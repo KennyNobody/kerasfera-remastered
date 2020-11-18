@@ -1,0 +1,15 @@
+.product-info {
+	column-count: 2;
+	column-gap: 16px;
+	&--full {
+		column-count: 1;
+	}
+	&__item {
+		font-size: 14px;
+		page-break-inside: avoid;
+		strong {
+			display: block;
+			color: #A1A1A1;
+		}
+	}
+}

@@ -1,0 +1,35 @@
+.product-slider {
+	&__top-slider {
+
+	}
+	&__top-wrapper {
+
+	}
+	&__top-slide {
+		margin-bottom: 16px;
+		transition: 0.3s all;
+		display: block;
+		cursor: default;
+		img {
+			display: block;
+		}
+	}
+	&__bottom-slider {
+
+	}
+	&__bottom-wrapper {
+
+	}
+	&__bottom-slide {
+		height: 107px;
+		transition: 0.3s all;
+		opacity: 0.5;
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+		cursor: pointer;
+		&--active {
+			opacity: 1;
+		}
+	}
+}

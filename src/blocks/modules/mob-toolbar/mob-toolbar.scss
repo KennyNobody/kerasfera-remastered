@@ -1,0 +1,65 @@
+.mob-toolbar {
+	background-color: #ffffff;
+	box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	z-index: 3;
+	display: none;
+	@include r(1160) {
+		display: block;
+	}
+	&__container {
+		display: flex;
+		justify-content: space-between;
+	}
+	&__link {
+		display: block;
+		text-align: center;
+		padding-top: 11px;
+		padding-bottom: 7px;
+		text-decoration: none;
+		color: #636468;
+		width: 25%;
+		font-size: 14px;
+		&--active {
+			color: #006a44;
+			svg {
+				fill: #006a44 !important;
+			}
+		}
+	}
+	&__icon {
+		width: 22px;
+		height: 22px;
+		margin-left: auto;
+		margin-bottom: 8px;
+		margin-right: auto;
+		position: relative;
+		svg {
+			display: block;
+			fill: #636468;
+			width: 100%;
+			height: 100%;
+		}
+	}
+	&__counter {
+		background-color: #f78222;
+		border-radius: 20px;
+		display: block;
+		position: absolute;
+		top: -7px;
+		right: -11px;
+		width: 20px;
+		height: 20px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 12px;
+		color: #ffffff;
+	}
+	&__link-text {
+		line-height: 1.2;
+	}
+}

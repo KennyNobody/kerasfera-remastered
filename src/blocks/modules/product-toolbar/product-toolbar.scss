@@ -1,0 +1,13 @@
+.product-toolbar {
+	&__none {
+		font-size: 26px;
+		font-weight: 700;
+	}
+	&__control {
+		display: flex;
+		justify-content: space-between;
+		.button {
+			width: calc(50% - 8px);
+		}
+	}
+}

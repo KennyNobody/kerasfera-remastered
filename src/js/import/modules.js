@@ -1,0 +1,1 @@
+import "%modules%/product-slider/product-slider";

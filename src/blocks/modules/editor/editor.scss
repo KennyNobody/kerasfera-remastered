@@ -1,0 +1,40 @@
+.editor {
+	font-size: 14px;
+	& :last-child {
+		margin-bottom: 0;
+	}
+	h1, h2, h3, h4, h5 {
+		font-weight: 700;
+		margin-bottom: 1rem;
+	}
+	h1 {
+
+	}
+	h2 {
+		font-size: 26px;
+	}
+	h3{
+
+	}
+	h4 {
+
+	}
+	h5 {
+		font-size: 16px;
+	}
+	h6 {
+
+	}
+	p {
+		margin-bottom: 1rem;
+	}
+	b, strong {
+		font-size: 18px;
+	}
+	a {
+		color: $green;
+		&:hover {
+			text-decoration: none;
+		}
+	}
+}

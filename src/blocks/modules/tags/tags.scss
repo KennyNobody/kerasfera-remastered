@@ -1,0 +1,21 @@
+.tags {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	&__tag {
+		background-color: #F7F7F7;
+		color: #636467;
+		padding: 2px 12px;
+		font-size: 16px;
+		font-weight: 700;
+		margin-right: 16px;
+		margin-bottom: 16px;
+		text-decoration: none;
+	}
+}
+
+a.tags__tag {
+	&:hover {
+		opacity: 0.7;
+	}
+}

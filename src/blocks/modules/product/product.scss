@@ -1,0 +1,170 @@
+@include r(1200) {
+
+}
+
+.product {
+    padding-bottom: 60px;
+    &__wrapper {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 45px;
+        @include r(880) {
+            flex-direction: column;
+        }
+    }
+    &__slider {
+        display: block;
+        width: calc(50% - 8px);
+        margin: 0;
+        @include r(880) {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .swiper-container {
+            width: 100%;
+            height: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .swiper-slide {
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover
+            }
+        }
+        .gallery-top {
+            height: 360px;
+            width: 100%;
+            position: relative;
+            @include r(470) {
+                height: 210px;
+            }
+            .swiper-slide {
+                &:after {
+                    content: "";
+                    position: absolute;
+                    top: 0px;
+                    background-image: url('https://kerasfera.ru/local/templates/new/img/poisk.svg');
+                    background-image: url('https://dev.kerasfera.ru/local/templates/new/img/poisk.svg');
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: 20%;
+                    bottom: 0px;
+                    left: 0px;
+                    right: 0px;
+                    background-color: rgba(34, 35, 36, 0.45);
+                    transition: 0.3s all;
+                    opacity: 0;
+                }
+                &:hover {
+                    &:after {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+        .gallery-thumbs {
+            height: 95px;
+            box-sizing: border-box;
+            padding: 10px 0;
+            .swiper-slide {
+                height: 100%;
+                transition: .3s all;
+                opacity: .4;
+                cursor: pointer
+            }
+            .swiper-slide-active {
+                opacity: 1;
+                cursor: auto
+            }
+        }
+        .swiper-button-prev {
+            height: 100%;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: 47px;
+            background-size: 35%;
+            margin-top: 0;
+            outline: 0;
+            transition: .3s all;
+            background-color: rgba(0, 0, 0, .2)
+        }
+        .swiper-button-prev:hover {
+            background-color: rgba(0, 0, 0, .6);
+        }
+        .swiper-button-next {
+            height: 100%;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            width: 47px;
+            background-size: 35%;
+            margin-top: 0;
+            outline: 0;
+            transition: .3s all;
+            background-color: rgba(0, 0, 0, .2);
+            &:hover {
+                background-color: rgba(0, 0, 0, .5);
+            }
+        }
+        .item__tag {
+            top: 0;
+            left: 0;
+            right: 0
+        }
+    }
+    &__info {
+        display: block;
+        width: calc(50% - 8px);
+        @include r(880) {
+            width: 100%;
+        }
+    }
+    &__title {
+        color: #006a44;
+        font-weight: 700;
+        font-size: 30px;
+        border-left: 3px solid #006a44;
+        line-height: 1.4;
+        padding-left: 10px;
+        margin-bottom: 17px;
+    }
+    &__text {
+        border-left: 3px solid #f78222;
+        padding-left: 10px;
+        margin-bottom: 40px;
+    }
+    &__text-line {
+        margin-bottom: 10px;
+        color: #f78222;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.65;
+        span {
+            color: #222324;
+            font-weight: 400;
+            display: block;
+        }
+    }
+    &__columns {
+        column-count: 2;
+        column-gap: 20px;
+    }
+
+    &__discript {
+        p {
+            color: #222324;
+            font-style: italic;
+            font-size:  14px;
+            margin-bottom: 16px;
+            &:last-of-type {
+                margin-bottom: 0px;
+            }
+        }
+    }
+}

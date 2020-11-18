@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Каталог</title>
+    <meta name="theme-color" content="#fff">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="shortcut icon" href="img/favicons/favicon.ico" type="image/x-icon">
+    <link rel="icon" sizes="16x16" href="img/favicons/favicon-16x16.png" type="image/png">
+    <link rel="icon" sizes="32x32" href="img/favicons/favicon-32x32.png" type="image/png">
+    <link rel="apple-touch-icon-precomposed" href="img/favicons/apple-touch-icon-precomposed.png">
+    <link rel="apple-touch-icon" href="img/favicons/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="img/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="img/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="img/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="img/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="img/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="img/favicons/apple-touch-icon-167x167.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicons/apple-touch-icon-180x180.png">
+    <link rel="apple-touch-icon" sizes="1024x1024" href="img/favicons/apple-touch-icon-1024x1024.png">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body class="body">
+    <div id="page">
+        @@include("../blocks/modules/header/header.html")
+
+        <main class="content">
+
+            <section class="breadcrumbs">
+                <div class="container">
+                    @@include("../blocks/modules/breadcrumbs-nav/breadcrumbs-nav.html")
+                </div>
+            </section>
+            <section class="shop">
+                <div class="shop__container container">
+                    <div class="shop__filter">
+                        @@include("../blocks/modules/filter/filter.html")
+                    </div>
+                    <div class="shop__content">
+                        <div class="shop__control">
+                            @@include("../blocks/modules/toolbar/toolbar.html")
+                        </div>
+                        <!-- Для отдельных товаров -->
+                        <div class="shop__items">
+
+                            @@include("../blocks/modules/item-card/item-card.html")
+                            @@include("../blocks/modules/item-card/item-card.html")
+                            @@include("../blocks/modules/item-card/item-card.html")
+                            @@include("../blocks/modules/item-card/item-card.html")
+
+                            <div class="item-card item-card--33 item-card--clear"></div>
+                            <div class="item-card item-card--33 item-card--clear"></div>
+                        </div>
+                        <!-- Для коллекций -->
+                        <div class="shop__items">
+
+                            @@include("../blocks/modules/item/item.html")
+                            @@include("../blocks/modules/item/item.html")
+                            @@include("../blocks/modules/item/item.html")
+                            @@include("../blocks/modules/item/item.html")
+
+                            <div class="item-card item-card--33 item-card--clear"></div>
+                            <div class="item-card item-card--33 item-card--clear"></div>
+                        </div>
+                        <div class="shop__toolbar">
+                            <button class="shop__btn">
+                                Загрузить еще
+                            </button>
+                        </div>
+                        <div class="page_nav page_nav--shop">
+                            <span rel="1" class="active">1</span>
+                            <a href="?page=2" date-name="arrow" rel="2" class="right">вперед</a>
+                            <a href="?page=41" date-name="arrow" rel="41" class="last">41</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Модалка -->
+
+        <div class="container">
+            <div class="call" id="item-popup-1">
+                <div class="call__info">
+                    <h3 class="call__name">
+                        Пунто серый светлый микс 30x30 плитка                                        
+                    </h3>
+                    <div class="call__thumb">
+                        <img src="https://kerasfera.ru/upload/iblock/677/67792402f5ca56fd23fce9bfbf4afc06.jpg" alt="">
+                    </div>
+                </div>
+                <form action="" class="call__content">
+                    <p class="call__title">
+                        Коллекция Пунто                                        
+                    </p>
+                    <div class="call__columns">
+                        <p>
+                            <span>Назначение</span> Для наружных работ, Для пола                                                    
+                        </p>
+                        <p>
+                            <span>Размер</span> 30x30                                                    
+                        </p>
+                        <p>
+                            <span>Толщина</span> 8 мм                                                   
+                        </p>
+                        <p>
+                            <span>Поверхность</span> Матовая                                                
+                        </p>
+                        <p>
+                            <span>Стиль</span> Мрамор                                                  
+                        </p>
+                        <p>
+                            <span>Цвет</span> Серый                                                   
+                        </p>
+                        <p>
+                            <span>Группа</span> Напольный керамогранит                                             
+                        </p>
+                        <p>
+                            <span>Производитель</span> Kerama Marazzi                                               
+                        </p>
+                        <p>
+                            <span>Страна</span> Россия                                                   
+                        </p>
+                        <p>
+                            <span>Единица измерения</span> кв. м.                                                  
+                        </p>
+                        <p>
+                            <span>Обрезная</span> да                                                  
+                        </p>
+                        <p>
+                            <span>Морозостойкость</span> да                                                  
+                        </p>
+                    </div>
+
+                    <div class="call__toolbar">
+                        <div class="call__direct">
+                            <!-- Если под заказ, то вместо вот этого вот -->
+                            <p class="call__price">
+                                1 140 ₽/м²
+                            </p>
+                            <div class="call__counter">
+                                <div class="counter">
+                                    <div class="counter__btn counter__btn--minus">
+                                        <svg class="icon-svg">
+                                            <use xlink:href="/img/symbol_sprite.svg#icon-svg-minus"></use>
+                                        </svg>
+                                    </div>
+                                    <input class="counter__input" max="5" type="text" name="q" value="1">
+                                    <div class="counter__btn counter__btn--plus">
+                                        <svg class="icon-svg">
+                                            <use xlink:href="/img/symbol_sprite.svg#icon-svg-plus"></use>
+                                        </svg>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <input type="submit" name="" class="call__control-btn" value="В корзину">
+                            <!--  -->
+
+                            <!-- Вставляй это -->
+                            <!-- <button type="submit" class="call__control-btn">Под заказ</button> -->
+                            <!--  -->
+                        </div>
+
+                        <div class="call__footer">
+                            <div class="call__old">
+                                <p class="call__old-title">
+                                    Старая цена
+                                </p>
+                                <p class="call__old-text">
+                                    1900
+                                </p>
+                            </div>
+                            <a href="" title="" class="call__collection-btn">Вся коллекция</a>
+                        </div>
+                    </div>
+                    
+
+                </form>
+                <div class="call__close">
+                    <svg class="icon-svg">
+                        <use xlink:href="/img/symbol_sprite.svg#icon-svg-close"></use>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="call" id="item-popup-2">
+                <div class="call__info">
+                    <h3 class="call__name">
+                        Merano-R Pulido 79.3x179.3 плитка                                        
+                    </h3>
+                    <div class="call__thumb">
+                        <img src="https://kerasfera.ru/upload/iblock/0bc/0bce278ee0cfc365a55323ce39884ef2.jpg" alt="">
+                    </div>
+                </div>
+                <form action="/shop/detail.php?k=Marblelous&amp;p=Vives" class="call__content">
+                    <p class="call__title">
+                        Оставить заявку на звонок
+                    </p>
+                    <input name="Prop[0]" type="hidden" value="Merano-R Pulido 79.3x179.3 плитка">
+                    <div class="call__form">
+                        <label class="call__label">
+                            <p class="call__discript">
+                                Ваше имя
+                            </p>
+                            <input name="Prop[1]" type="text" required="">
+                        </label>
+                        <label class="call__label">
+                            <p class="call__discript">
+                                Телефон
+                            </p>
+                            <input name="Prop[2]" type="text" required="">
+                        </label>
+                        <label class="call__label">
+                            <p class="call__discript">
+                                Email
+                            </p>
+                            <input name="Prop[3]" type="text">
+                        </label>
+                        <label class="call__question">
+                            <input type="checkbox" checked="">
+                            <div class="call__checkbox"></div>
+                            <p class="call__check-text">
+                                Я согласен с <a href="">условиями обработки <br>
+                                персональных данных.</a>
+                            </p>
+                        </label>
+                    </div>
+                    <div class="call__control">
+                        <p class="call__control-text">
+                            Товар поставляется под заказ
+                        </p>
+                        <div class="call__footer">
+                            <button type="submit" class="call__control-btn"> Отправить
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+                <div class="call__close">
+                    <svg class="icon-svg">
+                        <use xlink:href="/img/symbol_sprite.svg#icon-svg-close"></use>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        @@include("../blocks/modules/footer/footer.html")
+        @@include("../blocks/modules/temp/temp.html")
+        <script src="https://kerasfera.ru/local/templates/new/js/scripts.min.js?9"></script>
+        <script src="js/filter_new.js"></script>
+        <script src="js/main.js"></script>
+        <!-- <script src="js/vendor.js"></script> -->
+    </div>
+</body>
+</html>

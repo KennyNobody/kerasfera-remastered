@@ -1,0 +1,28 @@
+.toolbar {
+	display: flex;
+	align-items: center;
+	&__section {
+		display: flex;
+		align-items: center;
+		margin-right: 28px;
+		&:last-of-type {
+			margin-right: 0px;
+		}
+	}
+	&__title {
+		font-size: 14px;
+		margin-right: 20px;
+	}
+	&__select {
+		box-sizing: border-box;
+		height: 40px;
+		border-color: #e2e1e1;
+		color: #9b9b9b;
+		font-family: "Fira Sans", sans-serif;
+		padding-left: 18px;
+		padding-right: 18px;
+		// -webkit-appearance: none;
+		// -moz-appearance: none;
+		// -o-appearance: none;
+	}
+}
