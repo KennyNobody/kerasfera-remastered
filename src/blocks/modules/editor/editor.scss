@@ -8,16 +8,16 @@
 		margin-bottom: 1rem;
 	}
 	h1 {
-
+		font-size: 30px;
 	}
 	h2 {
 		font-size: 26px;
 	}
 	h3{
-
+		font-size: 20px;
 	}
 	h4 {
-
+		font-size: 18px;
 	}
 	h5 {
 		font-size: 16px;
@@ -25,16 +25,31 @@
 	h6 {
 
 	}
+	ul,ol {
+		margin-bottom: 1rem;
+	}
 	p {
 		margin-bottom: 1rem;
 	}
 	b, strong {
-		font-size: 18px;
+		// font-size: 18px;
+	}
+	b {
+		font-weight: 700;
 	}
 	a {
 		color: $green;
 		&:hover {
 			text-decoration: none;
 		}
+	}
+	img {
+		display: block;
+		margin-bottom: 1.5rem;
+		max-width: 100%;
+		height: auto;
+	}
+	.columns {
+		margin-bottom: 1rem;
 	}
 }

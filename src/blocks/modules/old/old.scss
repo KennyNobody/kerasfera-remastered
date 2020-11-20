@@ -1749,17 +1749,6 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 
 @import "../breadcrumbs-nav/breadcrumbs-nav";
 
-.breadcrumbs {
-    margin-bottom: 21px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
-@media only screen and (max-width: 736px) {
-    .breadcrumbs {
-        display: none
-    }
-}
 
 .cart {
     padding-bottom: 120px

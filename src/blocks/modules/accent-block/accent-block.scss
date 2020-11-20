@@ -4,4 +4,11 @@
 	&--small {
 		padding: 9px 16px;
 	}
+	&--question {
+		min-height: 40px;
+		background-image: url('../img/question-bg.svg');
+		padding-left: 52px;
+		background-repeat: no-repeat;
+		background-position: 10px center;
+	}
 }

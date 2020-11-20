@@ -1,0 +1,13 @@
+.editor-file {
+	margin-bottom: 1rem;
+	display: flex;
+	align-items: center;
+	&__btn {
+
+	}
+	&__text {
+		margin-left: 10px;
+		font-size: 14px;
+		display: inline-block;
+	}
+}

@@ -1,0 +1,29 @@
+.table {
+	font-size: 14px;
+	width: 100%;
+	text-align: left;
+	&__th {
+		font-weight: 700;
+		padding: 6px 13px;
+		&--8 {
+			width: calc(100% / 12 * 8);
+		}
+		&--4 {
+			width: calc(100% / 12 * 4);
+		}
+		&--right {
+			text-align: right;
+		}
+	}
+	&__tr {
+		&:nth-child(2n + 1) {
+			background-color: #F7F7F7;
+		}
+	}
+	&__td {
+		padding: 6px 13px;
+		&--right {
+			text-align: right;
+		}
+	}
+}

@@ -1,0 +1,20 @@
+.textarea {
+	width: 100%;
+	display: block;
+	&__field {
+		width: 100%;
+		display: block;
+		border: 1px solid #EAEAEA;
+		background-color: $light;
+		resize: none;
+		padding: 23px 16px;
+		font-size: 14px;
+		&::placeholder {
+			color: #A1A1A1;
+			font-family: $font-main;
+		}
+		&--cart {
+			height: 215px;
+		}
+	}
+}

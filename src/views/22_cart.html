@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Оформление</title>
+    <meta name="theme-color" content="#fff">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="shortcut icon" href="img/favicons/favicon.ico" type="image/x-icon">
+    <link rel="icon" sizes="16x16" href="img/favicons/favicon-16x16.png" type="image/png">
+    <link rel="icon" sizes="32x32" href="img/favicons/favicon-32x32.png" type="image/png">
+    <link rel="apple-touch-icon-precomposed" href="img/favicons/apple-touch-icon-precomposed.png">
+    <link rel="apple-touch-icon" href="img/favicons/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="img/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="img/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="img/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="img/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="img/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="img/favicons/apple-touch-icon-167x167.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicons/apple-touch-icon-180x180.png">
+    <link rel="apple-touch-icon" sizes="1024x1024" href="img/favicons/apple-touch-icon-1024x1024.png">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body class="body">
+    <div id="page">
+        @@include("../blocks/modules/header/header.html")
+
+        <main class="content">
+            <div class="container">
+                @@include("../blocks/modules/breadcrumbs-nav/breadcrumbs-nav.html")
+                <div class="editor mb-9">
+                    <h1>
+                        Как купить
+                    </h1>
+                </div>
+                <div class="accent-block accent-block--small mb-16">
+                    <div class="editor">
+                        <h5>
+                            1. Тип плательщика
+                        </h5>
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="columns__column columns__column--4 mb-16">
+                        <label class="checkbox-block">
+                            <input type="radio" name="type-1" checked class="checkbox-block__input">
+                            <div class="checkbox-block__container">
+                                <svg class="checkbox-block__icon">
+                                    <use xlink:href="/img/sprites/sprite.svg#icon-svg-profile"></use>
+                                </svg>
+                                <div class="checkbox-block__column">
+                                    <p class="checkbox-block__title">
+                                        Физическое лицо
+                                    </p>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="columns__column columns__column--4 mb-16">
+                        <label class="checkbox-block">
+                            <input type="radio" name="type-1" class="checkbox-block__input">
+                            <div class="checkbox-block__container">
+                                <svg class="checkbox-block__icon">
+                                    <use xlink:href="/img/sprites/sprite.svg#icon-svg-agreement"></use>
+                                </svg>
+                                <div class="checkbox-block__column">
+                                    <p class="checkbox-block__title">
+                                        Юридическое лицо
+                                    </p>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="columns__column columns__column--4 columns__column--clear mob-hidden"></div>
+                </div>
+                <div class="editor mb-20">
+                    <p>
+                        Профиль покупателя: <a href="">Павел Веселый</a>
+                    </p>
+                </div>
+                <div class="accent-block accent-block--small mb-16">
+                    <div class="editor">
+                        <h5>
+                            2. Платежная система
+                        </h5>
+                    </div>
+                </div>
+                <div class="columns mb-32">
+                    <div class="columns__column columns__column--6 mb-16">
+                        <label class="checkbox-block">
+                            <input type="radio" name="type-2" checked class="checkbox-block__input">
+                            <div class="checkbox-block__container">
+                                <svg class="checkbox-block__icon">
+                                    <use xlink:href="/img/sprites/sprite.svg#icon-svg-funds"></use>
+                                </svg>
+                                <div class="checkbox-block__column">
+                                    <p class="checkbox-block__title">
+                                        Наличными курьеру
+                                    </p>
+                                    <p class="checkbox-block__text">
+                                        Оплата наличными курьеру при получении заказа.
+                                    </p>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="columns__column columns__column--6 mb-16">
+                        <label class="checkbox-block">
+                            <input type="radio" name="type-2" class="checkbox-block__input">
+                            <div class="checkbox-block__container">
+                                <svg class="checkbox-block__icon">
+                                    <use xlink:href="/img/sprites/sprite.svg#icon-svg-payment"></use>
+                                </svg>
+                                <div class="checkbox-block__column">
+                                    <p class="checkbox-block__title">
+                                        Оплата в магазине
+                                    </p>
+                                    <p class="checkbox-block__text">
+                                        Вы можете оплатить свой заказ наличными или банковской картой.
+                                        В любом магазине нашей сети.
+                                    </p>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="columns__column columns__column--6 mb-16">
+                        <label class="checkbox-block">
+                            <input type="radio" name="type-2" class="checkbox-block__input">
+                            <div class="checkbox-block__container">
+                                <svg class="checkbox-block__icon">
+                                    <use xlink:href="/img/sprites/sprite.svg#icon-svg-cards"></use>
+                                </svg>
+                                <div class="checkbox-block__column">
+                                    <p class="checkbox-block__title">
+                                        Он-лайн с карты
+                                    </p>
+                                    <p class="checkbox-block__text">
+                                        Для оплаты покупки Вы будете перенаправлены на платежный шлюз ПАО "Сбербанк России" для ввода реквизитов Вашей карты.
+                                        Пожалуйста, приготовьте Вашу пластиковую карту заранее.
+                                    </p>
+                                </div>
+                                
+                            </div>
+                        </label>
+                    </div>
+                    <div class="columns__column columns__column--6 mb-16">
+                        <label class="checkbox-block">
+                            <input type="radio" name="type-2" class="checkbox-block__input">
+                            <div class="checkbox-block__container">
+                                <svg class="checkbox-block__icon">
+                                    <use xlink:href="/img/sprites/sprite.svg#icon-svg-sber"></use>
+                                </svg>
+                                <div class="checkbox-block__column">
+                                    <p class="checkbox-block__title">
+                                        Через Сбер
+                                    </p>
+                                    <p class="checkbox-block__text">
+                                        Вы можете оплатить заказ в любом отделении Сбербанка. <br>
+                                        За услугу по переводу денег с Вас возьмут от 3 до 7% от стоимости заказа, в зависимости от региона. Перечисление денег займет порядка 10 дней.
+                                    </p>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <div class="accent-block accent-block--small mb-16">
+                    <div class="editor">
+                        <h5>
+                            3. Служба доставки
+                        </h5>
+                    </div>
+                </div>
+                <div class="columns mb-32">
+                    <div class="columns__column columns__column--6 mb-16">
+                        <label class="checkbox-block">
+                            <input type="radio" name="type-3" checked class="checkbox-block__input">
+                            <div class="checkbox-block__container">
+                                <svg class="checkbox-block__icon">
+                                    <use xlink:href="/img/sprites/sprite.svg#icon-svg-truck"></use>
+                                </svg>
+                                <div class="checkbox-block__column">
+                                    <p class="checkbox-block__title">
+                                        Доставка курьером по Калининграду
+                                        и Калининградской обл.
+                                    </p>
+                                    <p class="checkbox-block__text">
+                                        После обработки заказа, наш менеджер свяжется с вами для уточнения деталей.
+                                    </p>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="columns__column columns__column--6 mb-16">
+                        <label class="checkbox-block">
+                            <input type="radio" name="type-3" class="checkbox-block__input">
+                            <div class="checkbox-block__container">
+                                <svg class="checkbox-block__icon">
+                                    <use xlink:href="/img/sprites/sprite.svg#icon-svg-pickup"></use>
+                                </svg>
+                                <div class="checkbox-block__column">
+                                    <p class="checkbox-block__title">
+                                        Самовывоз
+                                    </p>
+                                    <p class="checkbox-block__text">
+                                        Вы можете самостоятельно забрать заказ с нашего склада.
+                                    </p>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <div class="accent-block accent-block--small mb-16">
+                    <div class="editor">
+                        <h5>
+                            4. Товары в заказе
+                        </h5>
+                    </div>
+                </div>
+                <div class="accent-block accent-block--small mb-16">
+                    <div class="editor">
+                        <h5>
+                            5. Комментарии к заказу
+                        </h5>
+                    </div>
+                </div>
+                <label class="textarea mb-32">
+                    <textarea class="textarea__field textarea__field--cart" placeholder="Здесь вы можете оставить какой-то текст"></textarea>
+                </label>
+            </div>
+        </main>
+
+        @@include("../blocks/modules/footer/footer.html")
+        @@include("../blocks/modules/temp/temp.html")
+        <script src="https://kerasfera.ru/local/templates/new/js/scripts.min.js"></script>
+        <script src="js/vendor.js"></script>
+        <script src="js/main.js"></script>
+    </div>
+</body>
+</html>

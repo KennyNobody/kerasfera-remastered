@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>3D-визуализация</title>
+    <meta name="theme-color" content="#fff">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="shortcut icon" href="img/favicons/favicon.ico" type="image/x-icon">
+    <link rel="icon" sizes="16x16" href="img/favicons/favicon-16x16.png" type="image/png">
+    <link rel="icon" sizes="32x32" href="img/favicons/favicon-32x32.png" type="image/png">
+    <link rel="apple-touch-icon-precomposed" href="img/favicons/apple-touch-icon-precomposed.png">
+    <link rel="apple-touch-icon" href="img/favicons/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="img/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="img/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="img/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="img/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="img/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="img/favicons/apple-touch-icon-167x167.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicons/apple-touch-icon-180x180.png">
+    <link rel="apple-touch-icon" sizes="1024x1024" href="img/favicons/apple-touch-icon-1024x1024.png">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body class="body">
+    <div id="page">
+        @@include("../blocks/modules/header/header.html")
+
+        <main class="content">
+            <section class="breadcrumbs">
+                <div class="container">
+                    @@include("../blocks/modules/breadcrumbs-nav/breadcrumbs-nav.html")
+                </div>
+            </section>
+            <div class="container">
+                <div class="columns mb-80">
+                    <div class="columns__column columns__column--3 mob-hidden">
+                        @@include("../blocks/modules/sidebar/sidebar.html")
+                    </div>
+                    <div class="columns__column columns__column--9 mob-full">
+                        <div class="editor mb-26">
+                            <h1>
+                                3D-визуализация в подарок!
+                            </h1>
+                            <p>
+                                - срок выполнения дизайн-проекта 2-3 рабочих дня; <br>
+                                - на один заказ услуга предоставляется единожды (дизайн-проект выполняется только на две коллекции облицовочного материала); <br>
+                                - используемые в дизайн-проекте элементы интерьера (сантехника, полотенцесушители, бытовая техника и др.) обозначаются условно; <br>
+                                - услуга «Дизайн-проект в подарок» не распространяется на сантехническую продукцию.
+                            </p>
+                            <p>
+                                Для записи на дизайн проект <br>
+                                свяжитесь с нами через: <br>
+                                <a href="tel:+74012310500">(4012) 310-500</a> <br>
+                                <a href="mailto:i.magazin@kerasfera.ru">i.magazin@kerasfera.ru</a>
+                            </p>
+                            <p>
+                                или
+                            </p>
+                            <a href="" class="button button--orange">
+                                <span>
+                                    Записаться
+                                </span>
+                            </a>
+                        </div>
+                        <div class="accent-block accent-block--small mb-20">
+                            <div class="editor">
+                                <h5>
+                                    Галерея
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="columns">
+                            <div class="columns__column columns__column--4">
+                                @@include("../blocks/modules/item-visual/item-visual.html")
+                            </div>
+                            <div class="columns__column columns__column--4">
+                                @@include("../blocks/modules/item-visual/item-visual.html")
+                            </div>
+                            <div class="columns__column columns__column--4">
+                                @@include("../blocks/modules/item-visual/item-visual.html")
+                            </div>
+                            <div class="columns__column columns__column--4">
+                                @@include("../blocks/modules/item-visual/item-visual.html")
+                            </div>
+                            <div class="columns__column columns__column--4">
+                                @@include("../blocks/modules/item-visual/item-visual.html")
+                            </div>
+                            <div class="columns__column columns__column--4">
+                                @@include("../blocks/modules/item-visual/item-visual.html")
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        @@include("../blocks/modules/footer/footer.html")
+        @@include("../blocks/modules/temp/temp.html")
+        <script src="https://kerasfera.ru/local/templates/new/js/scripts.min.js"></script>
+        <script src="js/vendor.js"></script>
+        <script src="js/main.js"></script>
+    </div>
+</body>
+</html>

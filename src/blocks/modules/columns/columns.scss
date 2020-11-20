@@ -3,6 +3,7 @@
 	justify-content: space-between;
 	flex-wrap: wrap;
 	&__column {
+		width: 100%;
 		&--1 {
 			width: calc(100% / 12 - 8px);
 		}

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Оплата</title>
+    <meta name="theme-color" content="#fff">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="shortcut icon" href="img/favicons/favicon.ico" type="image/x-icon">
+    <link rel="icon" sizes="16x16" href="img/favicons/favicon-16x16.png" type="image/png">
+    <link rel="icon" sizes="32x32" href="img/favicons/favicon-32x32.png" type="image/png">
+    <link rel="apple-touch-icon-precomposed" href="img/favicons/apple-touch-icon-precomposed.png">
+    <link rel="apple-touch-icon" href="img/favicons/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="img/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="img/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="img/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="img/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="img/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="img/favicons/apple-touch-icon-167x167.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicons/apple-touch-icon-180x180.png">
+    <link rel="apple-touch-icon" sizes="1024x1024" href="img/favicons/apple-touch-icon-1024x1024.png">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body class="body">
+    <div id="page">
+        @@include("../blocks/modules/header/header.html")
+
+        <main class="content">
+            <section class="breadcrumbs">
+                <div class="container">
+                    @@include("../blocks/modules/breadcrumbs-nav/breadcrumbs-nav.html")
+                </div>
+            </section>
+            <div class="container">
+                <div class="columns mb-80">
+                    <div class="columns__column columns__column--3 mob-hidden">
+                        @@include("../blocks/modules/sidebar/sidebar.html")
+                    </div>
+                    <div class="columns__column columns__column--9 mob-full">
+                        <div class="editor mb-9">
+                            <h1>
+                                Оплата
+                            </h1>
+                            <p>
+                                Оплата банковскими картами осуществляется после подтверждения заказа менеджером. К оплате принимаются все виды платежных карточек Visa, за исключением Visa Electron. В большинстве случаев карта Visa Electron не применима для оплаты через интернет, за исключением карт, выпущенных отдельными банками. О возможность оплаты картой Visa Electron вам нужно выяснять у банка-эмитента вашей карты.
+                                На сайте к оплате принимаются все виды MasterCard, за исключением Maestro.
+                            </p>
+                            <p>
+                                Банковскими картами при получении заказа курьеру (для оплаты принимаются все виды платежных карточек VISA и MasterCard. Для осуществления платежа Плательщика потребуется документ, удостоверяющий личность)
+                            </p>
+                            <h4>
+                                Интернет-магазин принимает следующие виды оплаты:
+                            </h4>
+                        </div>
+                        <div class="accent-block accent-block--small mb-6">
+                            <div class="editor">
+                                <h5>
+                                    Оплата наличными курьеру при получении заказа.
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="accent-block accent-block--small mb-6">
+                            <div class="editor">
+                                <h5>
+                                    Оплата в салонах по адресам:
+                                </h5>
+                            </div>
+                        </div>                    
+                        <div class="editor mb-20">
+                            <p>
+                                - ул. Маточкина 2а <br>
+                                - ул. Е. Ковальчук, 3-9 <br>
+                                - Габайдулина, 39. <br>
+                                (Вы можете оплатить свой заказ наличными или банковской картой)
+                            </p>
+                        </div>
+                        <div class="accent-block accent-block--small mb-16">
+                            <div class="editor">
+                                <h5>
+                                    Оплата платежными картами на сайте.
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="editor mb-20">
+                            <p>
+                                <b>
+                                    Описание процесса платежа. 
+                                </b>
+                                <br>
+                                Оплата происходит через авторизационный сервер Процессингового центра Банка с использованием Банковских кредитных карт следующих платежных систем: 
+                                - VISA International
+                                - MasterCard World Wide
+                            </p>
+                            <p>
+                                <b>
+                                    Текст описания процесса передачи данных. 
+                                </b>
+                                <br>
+                                Для оплаты покупки Вы будете перенаправлены на платежный шлюз ОАО "Сбербанк России" для ввода реквизитов Вашей карты. Пожалуйста, приготовьте Вашу пластиковую карту заранее. Соединение с платежным шлюзом и передача информации осуществляется в защищенном режиме с использованием протокола шифрования SSL.
+                                В случае если Ваш банк поддерживает технологию безопасного проведения интернет-платежей Verified By Visa или MasterCard Secure Code для проведения платежа также может потребоваться ввод специального пароля. Способы и возможность получения паролей для совершения интернет-платежей Вы можете уточнить в банке, выпустившем карту.
+                                Настоящий сайт поддерживает 256-битное шифрование. Конфиденциальность сообщаемой персональной информации обеспечивается ОАО "Сбербанк России". Введенная информация не будет предоставлена третьим лицам за исключением случаев, предусмотренных законодательством РФ. Проведение платежей по банковским картам осуществляется в строгом соответствии с требованиями платежных систем Visa Int. и MasterCard Europe Sprl.
+                            </p>
+                            <p>
+                                <b>Текст, сопровождающий процесс оплаты.</b>
+                                <br>
+                                При выборе формы оплаты “Банковские карты” проведение платежа по заказу производится непосредственно после его оформления. После завершения оформления заказа в нашем магазине, Вы должны будете нажать на кнопку «Оформить заказ», при этом система переключит Вас на страницу авторизационного сервера, где Вам будет предложено ввести данные пластиковой карты, инициировать ее авторизацию, после чего вернуться в наш магазин кнопкой "Вернуться в магазин". После того, как Вы возвращаетесь в наш магазин, система уведомит Вас о результатах авторизации. В случае подтверждения авторизации Ваш заказ будет автоматически выполняться в соответствии с заданными Вами условиями. В случае отказа в авторизации карты Вы сможете повторить процедуру оплаты. После подтверждения заказа, с вами свяжется оператор для подтверждения наличия , после  можно оплатить в течение 5 дней.
+                            </p>
+                            <p>
+                                <b>
+                                    Оплата банковским переводом.
+                                </b>
+                                <br>
+                                Оплата заказов через СБЕРБАНК осуществляется после проверки заказа менеджером интернет-магазина. Чтобы оплатить заказ, необходимо распечатать квитанцию об оплате с сайта магазина. 
+                                В случае отсутствия возможности осуществить платёж с помощью электронных систем, нашим клиентам, мы всегда рады предложить воспользоваться способом прямой оплаты через банки РФ. При использовании данного вида платежа менеджер интернет-магазина подготавливает платёжный документ по форме ПД-4, который действителен в любом банке Российской Федерации.
+                                <br>
+                                <b>
+                                    Внимание! Срок проведения прямых перечислений через банк длится 2-3 банковских дня. При оплате взымается комиссия 3-7% от суммы платежа.
+                                </b>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        @@include("../blocks/modules/footer/footer.html")
+        @@include("../blocks/modules/temp/temp.html")
+        <script src="https://kerasfera.ru/local/templates/new/js/scripts.min.js"></script>
+        <script src="js/vendor.js"></script>
+        <script src="js/main.js"></script>
+    </div>
+</body>
+</html>
