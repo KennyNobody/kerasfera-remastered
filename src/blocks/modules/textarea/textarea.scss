@@ -9,6 +9,8 @@
 		resize: none;
 		padding: 23px 16px;
 		font-size: 14px;
+		box-sizing: border-box;
+		display: block;
 		&::placeholder {
 			color: #A1A1A1;
 			font-family: $font-main;

@@ -15,7 +15,9 @@
 		}
 	}
 	&__bottom-slider {
-
+		&--hidden {
+			display: none;
+		}
 	}
 	&__bottom-wrapper {
 

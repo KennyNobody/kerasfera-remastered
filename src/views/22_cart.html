@@ -32,204 +32,349 @@
         <main class="content">
             <div class="container">
                 @@include("../blocks/modules/breadcrumbs-nav/breadcrumbs-nav.html")
-                <div class="editor mb-9">
-                    <h1>
-                        Как купить
-                    </h1>
-                </div>
-                <div class="accent-block accent-block--small mb-16">
-                    <div class="editor">
-                        <h5>
-                            1. Тип плательщика
-                        </h5>
+                <form action="" class="form-order">
+                    <div class="editor mb-9">
+                        <h1>
+                            Как купить
+                        </h1>
                     </div>
-                </div>
-                <div class="columns">
-                    <div class="columns__column columns__column--4 mb-16">
-                        <label class="checkbox-block">
-                            <input type="radio" name="type-1" checked class="checkbox-block__input">
-                            <div class="checkbox-block__container">
-                                <svg class="checkbox-block__icon">
-                                    <use xlink:href="/img/sprites/sprite.svg#icon-svg-profile"></use>
-                                </svg>
-                                <div class="checkbox-block__column">
-                                    <p class="checkbox-block__title">
-                                        Физическое лицо
-                                    </p>
+                    <div class="accent-block accent-block--small mb-16">
+                        <div class="editor">
+                            <h5>
+                                1. Тип плательщика
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="columns">
+                        <div class="columns__column columns__column--4 mb-16">
+                            <label class="checkbox-block">
+                                <input type="radio" name="type-1" checked class="checkbox-block__input">
+                                <div class="checkbox-block__container">
+                                    <svg class="checkbox-block__icon">
+                                        <use xlink:href="/img/sprites/sprite.svg#icon-svg-profile"></use>
+                                    </svg>
+                                    <div class="checkbox-block__column">
+                                        <p class="checkbox-block__title">
+                                            Физическое лицо
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                        </label>
-                    </div>
-                    <div class="columns__column columns__column--4 mb-16">
-                        <label class="checkbox-block">
-                            <input type="radio" name="type-1" class="checkbox-block__input">
-                            <div class="checkbox-block__container">
-                                <svg class="checkbox-block__icon">
-                                    <use xlink:href="/img/sprites/sprite.svg#icon-svg-agreement"></use>
-                                </svg>
-                                <div class="checkbox-block__column">
-                                    <p class="checkbox-block__title">
-                                        Юридическое лицо
-                                    </p>
+                            </label>
+                        </div>
+                        <div class="columns__column columns__column--4 mb-16">
+                            <label class="checkbox-block">
+                                <input type="radio" name="type-1" class="checkbox-block__input">
+                                <div class="checkbox-block__container">
+                                    <svg class="checkbox-block__icon">
+                                        <use xlink:href="/img/sprites/sprite.svg#icon-svg-agreement"></use>
+                                    </svg>
+                                    <div class="checkbox-block__column">
+                                        <p class="checkbox-block__title">
+                                            Юридическое лицо
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                        </label>
+                            </label>
+                        </div>
+                        <div class="columns__column columns__column--4 columns__column--clear mob-hidden"></div>
                     </div>
-                    <div class="columns__column columns__column--4 columns__column--clear mob-hidden"></div>
-                </div>
-                <div class="editor mb-20">
-                    <p>
-                        Профиль покупателя: <a href="">Павел Веселый</a>
-                    </p>
-                </div>
-                <div class="accent-block accent-block--small mb-16">
-                    <div class="editor">
-                        <h5>
-                            2. Платежная система
-                        </h5>
+                    <div class="editor mb-20">
+                        <p>
+                            Профиль покупателя: <a href="">Павел Веселый</a>
+                        </p>
                     </div>
-                </div>
-                <div class="columns mb-32">
-                    <div class="columns__column columns__column--6 mb-16">
-                        <label class="checkbox-block">
-                            <input type="radio" name="type-2" checked class="checkbox-block__input">
-                            <div class="checkbox-block__container">
-                                <svg class="checkbox-block__icon">
-                                    <use xlink:href="/img/sprites/sprite.svg#icon-svg-funds"></use>
-                                </svg>
-                                <div class="checkbox-block__column">
-                                    <p class="checkbox-block__title">
-                                        Наличными курьеру
-                                    </p>
-                                    <p class="checkbox-block__text">
-                                        Оплата наличными курьеру при получении заказа.
-                                    </p>
+                    <div class="accent-block accent-block--small mb-16">
+                        <div class="editor">
+                            <h5>
+                                2. Платежная система
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="columns mb-32">
+                        <div class="columns__column columns__column--6 mb-16">
+                            <label class="checkbox-block">
+                                <input type="radio" name="type-2" checked class="checkbox-block__input">
+                                <div class="checkbox-block__container">
+                                    <svg class="checkbox-block__icon">
+                                        <use xlink:href="/img/sprites/sprite.svg#icon-svg-funds"></use>
+                                    </svg>
+                                    <div class="checkbox-block__column">
+                                        <p class="checkbox-block__title">
+                                            Наличными курьеру
+                                        </p>
+                                        <p class="checkbox-block__text">
+                                            Оплата наличными курьеру при получении заказа.
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                        </label>
-                    </div>
-                    <div class="columns__column columns__column--6 mb-16">
-                        <label class="checkbox-block">
-                            <input type="radio" name="type-2" class="checkbox-block__input">
-                            <div class="checkbox-block__container">
-                                <svg class="checkbox-block__icon">
-                                    <use xlink:href="/img/sprites/sprite.svg#icon-svg-payment"></use>
-                                </svg>
-                                <div class="checkbox-block__column">
-                                    <p class="checkbox-block__title">
-                                        Оплата в магазине
-                                    </p>
-                                    <p class="checkbox-block__text">
-                                        Вы можете оплатить свой заказ наличными или банковской картой.
-                                        В любом магазине нашей сети.
-                                    </p>
+                            </label>
+                        </div>
+                        <div class="columns__column columns__column--6 mb-16">
+                            <label class="checkbox-block">
+                                <input type="radio" name="type-2" class="checkbox-block__input">
+                                <div class="checkbox-block__container">
+                                    <svg class="checkbox-block__icon">
+                                        <use xlink:href="/img/sprites/sprite.svg#icon-svg-payment"></use>
+                                    </svg>
+                                    <div class="checkbox-block__column">
+                                        <p class="checkbox-block__title">
+                                            Оплата в магазине
+                                        </p>
+                                        <p class="checkbox-block__text">
+                                            Вы можете оплатить свой заказ наличными или банковской картой.
+                                            В любом магазине нашей сети.
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                        </label>
-                    </div>
-                    <div class="columns__column columns__column--6 mb-16">
-                        <label class="checkbox-block">
-                            <input type="radio" name="type-2" class="checkbox-block__input">
-                            <div class="checkbox-block__container">
-                                <svg class="checkbox-block__icon">
-                                    <use xlink:href="/img/sprites/sprite.svg#icon-svg-cards"></use>
-                                </svg>
-                                <div class="checkbox-block__column">
-                                    <p class="checkbox-block__title">
-                                        Он-лайн с карты
-                                    </p>
-                                    <p class="checkbox-block__text">
-                                        Для оплаты покупки Вы будете перенаправлены на платежный шлюз ПАО "Сбербанк России" для ввода реквизитов Вашей карты.
-                                        Пожалуйста, приготовьте Вашу пластиковую карту заранее.
-                                    </p>
+                            </label>
+                        </div>
+                        <div class="columns__column columns__column--6 mb-16">
+                            <label class="checkbox-block">
+                                <input type="radio" name="type-2" class="checkbox-block__input">
+                                <div class="checkbox-block__container">
+                                    <svg class="checkbox-block__icon">
+                                        <use xlink:href="/img/sprites/sprite.svg#icon-svg-cards"></use>
+                                    </svg>
+                                    <div class="checkbox-block__column">
+                                        <p class="checkbox-block__title">
+                                            Он-лайн с карты
+                                        </p>
+                                        <p class="checkbox-block__text">
+                                            Для оплаты покупки Вы будете перенаправлены на платежный шлюз ПАО "Сбербанк России" для ввода реквизитов Вашей карты.
+                                            Пожалуйста, приготовьте Вашу пластиковую карту заранее.
+                                        </p>
+                                    </div>
+
                                 </div>
-                                
-                            </div>
-                        </label>
-                    </div>
-                    <div class="columns__column columns__column--6 mb-16">
-                        <label class="checkbox-block">
-                            <input type="radio" name="type-2" class="checkbox-block__input">
-                            <div class="checkbox-block__container">
-                                <svg class="checkbox-block__icon">
-                                    <use xlink:href="/img/sprites/sprite.svg#icon-svg-sber"></use>
-                                </svg>
-                                <div class="checkbox-block__column">
-                                    <p class="checkbox-block__title">
-                                        Через Сбер
-                                    </p>
-                                    <p class="checkbox-block__text">
-                                        Вы можете оплатить заказ в любом отделении Сбербанка. <br>
-                                        За услугу по переводу денег с Вас возьмут от 3 до 7% от стоимости заказа, в зависимости от региона. Перечисление денег займет порядка 10 дней.
-                                    </p>
+                            </label>
+                        </div>
+                        <div class="columns__column columns__column--6 mb-16">
+                            <label class="checkbox-block">
+                                <input type="radio" name="type-2" class="checkbox-block__input">
+                                <div class="checkbox-block__container">
+                                    <svg class="checkbox-block__icon">
+                                        <use xlink:href="/img/sprites/sprite.svg#icon-svg-sber"></use>
+                                    </svg>
+                                    <div class="checkbox-block__column">
+                                        <p class="checkbox-block__title">
+                                            Через Сбер
+                                        </p>
+                                        <p class="checkbox-block__text">
+                                            Вы можете оплатить заказ в любом отделении Сбербанка. <br>
+                                            За услугу по переводу денег с Вас возьмут от 3 до 7% от стоимости заказа, в зависимости от региона. Перечисление денег займет порядка 10 дней.
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                        </label>
+                            </label>
+                        </div>
                     </div>
-                </div>
-                <div class="accent-block accent-block--small mb-16">
-                    <div class="editor">
-                        <h5>
-                            3. Служба доставки
-                        </h5>
+                    <div class="accent-block accent-block--small mb-16">
+                        <div class="editor">
+                            <h5>
+                                3. Служба доставки
+                            </h5>
+                        </div>
                     </div>
-                </div>
-                <div class="columns mb-32">
-                    <div class="columns__column columns__column--6 mb-16">
-                        <label class="checkbox-block">
-                            <input type="radio" name="type-3" checked class="checkbox-block__input">
-                            <div class="checkbox-block__container">
-                                <svg class="checkbox-block__icon">
-                                    <use xlink:href="/img/sprites/sprite.svg#icon-svg-truck"></use>
-                                </svg>
-                                <div class="checkbox-block__column">
-                                    <p class="checkbox-block__title">
-                                        Доставка курьером по Калининграду
-                                        и Калининградской обл.
-                                    </p>
-                                    <p class="checkbox-block__text">
-                                        После обработки заказа, наш менеджер свяжется с вами для уточнения деталей.
-                                    </p>
+                    <div class="columns mb-32">
+                        <div class="columns__column columns__column--6 mb-16">
+                            <label class="checkbox-block">
+                                <input type="radio" name="type-3" checked class="checkbox-block__input">
+                                <div class="checkbox-block__container">
+                                    <svg class="checkbox-block__icon">
+                                        <use xlink:href="/img/sprites/sprite.svg#icon-svg-truck"></use>
+                                    </svg>
+                                    <div class="checkbox-block__column">
+                                        <p class="checkbox-block__title">
+                                            Доставка курьером по Калининграду
+                                            и Калининградской обл.
+                                        </p>
+                                        <p class="checkbox-block__text">
+                                            После обработки заказа, наш менеджер свяжется с вами для уточнения деталей.
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                        </label>
-                    </div>
-                    <div class="columns__column columns__column--6 mb-16">
-                        <label class="checkbox-block">
-                            <input type="radio" name="type-3" class="checkbox-block__input">
-                            <div class="checkbox-block__container">
-                                <svg class="checkbox-block__icon">
-                                    <use xlink:href="/img/sprites/sprite.svg#icon-svg-pickup"></use>
-                                </svg>
-                                <div class="checkbox-block__column">
-                                    <p class="checkbox-block__title">
-                                        Самовывоз
-                                    </p>
-                                    <p class="checkbox-block__text">
-                                        Вы можете самостоятельно забрать заказ с нашего склада.
-                                    </p>
+                            </label>
+                        </div>
+                        <div class="columns__column columns__column--6 mb-16">
+                            <label class="checkbox-block">
+                                <input type="radio" name="type-3" class="checkbox-block__input">
+                                <div class="checkbox-block__container">
+                                    <svg class="checkbox-block__icon">
+                                        <use xlink:href="/img/sprites/sprite.svg#icon-svg-pickup"></use>
+                                    </svg>
+                                    <div class="checkbox-block__column">
+                                        <p class="checkbox-block__title">
+                                            Самовывоз
+                                        </p>
+                                        <p class="checkbox-block__text">
+                                            Вы можете самостоятельно забрать заказ с нашего склада.
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                        </label>
+                            </label>
+                        </div>
                     </div>
-                </div>
-                <div class="accent-block accent-block--small mb-16">
-                    <div class="editor">
-                        <h5>
-                            4. Товары в заказе
-                        </h5>
+                    <div class="accent-block accent-block--small">
+                        <div class="editor">
+                            <h5>
+                                4. Товары в заказе
+                            </h5>
+                        </div>
                     </div>
-                </div>
-                <div class="accent-block accent-block--small mb-16">
-                    <div class="editor">
-                        <h5>
-                            5. Комментарии к заказу
-                        </h5>
+                    <table class="table table--orders mb-32">
+                        <tr class="table__tr">
+                            <th class="table__th table__th--5">
+                                <p class="table__discript">
+                                    Наименование
+                                </p>
+                                <p class="table__text">
+                                    Спига белый структура 15х40 плитка
+                                </p>
+                            </th>
+                            <th class="table__th table__th--1">
+                                <p class="table__discript">
+                                    Вес
+                                </p>
+                                <p class="table__text">
+                                    14,3 кг
+                                </p>
+                            </th>
+                            <th class="table__th table__th--1">
+                                <p class="table__discript">
+                                    Цена
+                                </p>
+                                <p class="table__text">
+                                    1050 руб.
+                                </p>
+                            </th>
+                            <th class="table__th table__th--1">
+                                <p class="table__discript">
+                                    Кол-во
+                                </p>
+                                <p class="table__text">
+                                    4 кв.м.
+                                </p>
+                            </th>
+                            <th class="table__th table__th--1">
+                                <p class="table__discript">
+                                    Скидка
+                                </p>
+                                <p class="table__text">
+                                    6%
+                                </p>
+                            </th>
+                            <th class="table__th table__th--right table__th--2">
+                                <p class="table__discript">
+                                    Сумма
+                                </p>
+                                <p class="table__oldprice">
+                                    9 200 руб.
+                                </p>
+                                <strong class="table__price">
+                                    8 400 руб.
+                                </strong>
+                            </th>
+                        </tr>
+                        <tr class="table__tr">
+                            <th class="table__th table__th--5">
+                                <p class="table__discript">
+                                    Наименование
+                                </p>
+                                <p class="table__text">
+                                    Спига белый структура 15х40 плитка
+                                </p>
+                            </th>
+                            <th class="table__th table__th--1">
+                                <p class="table__discript">
+                                    Вес
+                                </p>
+                                <p class="table__text">
+                                    14,3 кг
+                                </p>
+                            </th>
+                            <th class="table__th table__th--1">
+                                <p class="table__discript">
+                                    Цена
+                                </p>
+                                <p class="table__text">
+                                    1050 руб.
+                                </p>
+                            </th>
+                            <th class="table__th table__th--1">
+                                <p class="table__discript">
+                                    Кол-во
+                                </p>
+                                <p class="table__text">
+                                    4 кв.м.
+                                </p>
+                            </th>
+                            <th class="table__th table__th--1">
+                                <p class="table__discript">
+                                    Скидка
+                                </p>
+                                <p class="table__text">
+                                    6%
+                                </p>
+                            </th>
+                            <th class="table__th table__th--right table__th--2">
+                                <p class="table__discript">
+                                    Сумма
+                                </p>
+                                <p class="table__oldprice">
+                                    9 200 руб.
+                                </p>
+                                <strong class="table__price">
+                                    8 400 руб.
+                                </strong>
+                            </th>
+                        </tr>
+                        <tr class="table__tr">
+                            <th class="table__th table__th--4">
+                                <p class="table__text">
+                                    Итого:
+                                </p>
+                            </th>
+                            <th class="table__th table__th--1" colspan="4">
+                                <p class="table__discript">
+                                    Скидка
+                                </p>
+                                <p class="table__text">
+                                    6%
+                                </p>
+                            </th>
+                            <th class="table__th table__th--right table__th--2">
+                                <p class="table__discript">
+                                    Сумма
+                                </p>
+                                <strong class="table__price">
+                                    8 400 руб.
+                                </strong>                            
+                            </th>
+                        </tr>
+                    </table>
+                    <div class="accent-block accent-block--small mb-16">
+                        <div class="editor">
+                            <h5>
+                                5. Комментарии к заказу
+                            </h5>
+                        </div>
                     </div>
-                </div>
-                <label class="textarea mb-32">
-                    <textarea class="textarea__field textarea__field--cart" placeholder="Здесь вы можете оставить какой-то текст"></textarea>
-                </label>
+                    <label class="textarea mb-32">
+                        <textarea class="textarea__field textarea__field--cart" placeholder="Здесь вы можете оставить какой-то текст"></textarea>
+                    </label>
+                    <div class="form-order__toolbar">
+                        <a href="" class="button button--green">
+                            <span>
+                                Редактировать заказ
+                            </span>
+                        </a>
+                        <button class="button button--orange">
+                            <span>
+                                Оформить заказ
+                            </span>
+                        </button>
+                    </div>
+                </form>
             </div>
         </main>
 
