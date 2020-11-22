@@ -37,6 +37,10 @@
 		&--11 {
 			width: calc(100% / 12 * 11 - 8px);
 		}
+
+		&--20p {
+			width: calc(20% - 8px);
+		}
 		&--clear {
 			height: 0;
 			overflow: hidden;

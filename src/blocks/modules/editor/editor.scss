@@ -1,5 +1,6 @@
 .editor {
 	font-size: 14px;
+	line-height: 1.5;
 	& :last-child {
 		margin-bottom: 0;
 	}
@@ -89,5 +90,39 @@ ol.circles {
 		background: #A1A1A1;
 		border-radius: 40px;
 		top: 1px;
+	}
+}
+
+ul.ul-ok {
+	li {
+		padding-left: 28px;
+		position: relative;
+		&:before {
+			content: '';
+			display: block; 
+			width: 15px;
+			height: 15px;
+			position: absolute;
+			left: 0px;
+			top: 3px;
+			background: url('../img/ul-ok.svg');
+		}
+	}
+}
+
+ul.ul-warning {
+	li {
+		padding-left: 28px;
+		position: relative;
+		&:before {
+			content: '';
+			display: block; 
+			width: 15px;
+			height: 15px;
+			position: absolute;
+			left: 0px;
+			top: 3px;
+			background: url('../img/ul-warning.svg');
+		}
 	}
 }

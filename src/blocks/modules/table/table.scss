@@ -6,6 +6,9 @@
 		// font-weight: 700;
 		padding: 6px 13px;
 		flex-shrink: 0;
+		&--center {
+			text-align: center;
+		}
 		&--1 {
 			width: calc(100% / 12);
 		}
@@ -62,7 +65,10 @@
 		}
 	}
 	&__tr {
-
+		display: flex;
+		&--bg {
+			background-color: #F7F7F7;
+		}
 	}
 	&__td {
 		padding: 6px 13px;
@@ -86,5 +92,60 @@
 		display: block;
 		font-weight: bold;
 		font-size: 20px;
+	}
+	&__preview {
+		img {
+			display: block;
+			width: 100%;
+			height: auto;
+		}
+	}
+	&__counter {
+		display: flex;
+		justify-content: space-between;
+	}
+	&__counter-input {
+		min-width: 0px;
+		text-align: center;
+		font-family: $font-main;
+		border: none;
+		background: none;
+		font-size: 16px; 
+	}
+	&__counter-btn {
+		flex-shrink: 0;
+		width: 20px;
+		height: 20px;
+		border-radius: 20px;
+		background-color: $orange;
+		border: none;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		line-height: 1;
+		transition: 0.3s all;
+		cursor: pointer;
+		color: $light;
+		font-size: 18px;
+		&--disabled {
+			background-color: #A1A1A1;
+		}
+		&:hover {
+			opacity: 0.7;
+		}
+	}
+	&__remove {
+		color: #EB5757;
+		background: none;
+		border: none;
+		cursor: pointer;
+		font-family: $font-main;
+		text-decoration: underline;
+		font-size: 14px;
+		font-weight: 700;
+		transition: 0.3s all;
+		&:hover {
+			opacity: 0.7;
+		}
 	}
 }
