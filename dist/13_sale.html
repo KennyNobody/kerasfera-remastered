@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Карта скидок</title>
+    <meta name="theme-color" content="#fff">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="shortcut icon" href="img/favicons/favicon.ico" type="image/x-icon">
+    <link rel="icon" sizes="16x16" href="img/favicons/favicon-16x16.png" type="image/png">
+    <link rel="icon" sizes="32x32" href="img/favicons/favicon-32x32.png" type="image/png">
+    <link rel="apple-touch-icon-precomposed" href="img/favicons/apple-touch-icon-precomposed.png">
+    <link rel="apple-touch-icon" href="img/favicons/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="img/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="img/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="img/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="img/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="img/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="img/favicons/apple-touch-icon-167x167.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicons/apple-touch-icon-180x180.png">
+    <link rel="apple-touch-icon" sizes="1024x1024" href="img/favicons/apple-touch-icon-1024x1024.png">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body class="body">
+    <div id="page">
+        <header class="header">
+	<div class="decorline"></div>
+	<div class="container header__container">
+		<div class="header__columns">
+			<a href="/" class="header__logo">
+				<img src="https://kerasfera.ru/local/templates/new/img/logo.svg" alt="">
+			</a>
+			<div class="header__info-column">
+				<form action="/search/" class="header__search search" method="GET">
+					<input type="text" name="q" value="" class="" placeholder="Поиск">
+					<button type="submit">
+						<svg class="icon-svg">
+							<use xlink:href="/img/symbol_sprite.svg#icon-svg-search"></use>
+						</svg>
+					</button>
+				</form>
+				<div class="header__toolbar">
+					<a href="" class="header__mob-profile">
+						<svg class="icon-svg">
+							<use xlink:href="/img/symbol_sprite.svg#icon-svg-user"></use>
+						</svg>
+					</a>
+					<a href="#mob-menu" class="header__burger">
+						<svg class="icon-svg">
+							<use xlink:href="/img/symbol_sprite.svg#icon-svg-menu"></use>
+						</svg>
+					</a>
+				</div>
+				<h1 class="header__discript">
+					«Интернет-магазин плитки в Калининграде»
+				</h1>
+			</div>
+			<div class="header__links-column">
+				<div class="header__nav">
+					<p class="header__link link link--dark">
+						<svg class="icon-svg">
+							<use xlink:href="/img/symbol_sprite.svg#icon-svg-user"></use>
+						</svg>
+						<span><a href="/login/?backurl=%2F#login">Вход</a>/<a href="/login/?backurl=%2F#register">Регистрация</a></span>
+					</p>
+					<a href="/personal/favorites" class="header__link link link--dark">
+						<svg class="icon-svg">
+							<use xlink:href="/img/symbol_sprite.svg#icon-svg-heart"></use>
+						</svg>
+						<span>Избранное</span>
+					</a>
+					<a href="/personal/cart/" class="header__link link link--dark">
+						<svg class="icon-svg">
+							<use xlink:href="/img/symbol_sprite.svg#icon-svg-cart"></use>
+						</svg>
+						<div class="header__link-counter">32</div>
+					</a>
+				</div>
+				<div class="header__phone">
+					<a href="tel:+74012310500" class="header__link-phone">
+						<svg class="icon-svg">
+							<use xlink:href="/img/symbol_sprite.svg#icon-svg-phone"></use>
+						</svg>
+						(4012) 310-500
+					</a>
+					<p class="header__time">
+						(Пн-Пт 10-19; Сб, Вс 10-18)
+					</p>
+				</div>
+			</div>
+			<div class="header__buttons">
+				<a href="" class="header__custom-btn header__custom-btn--yellow">
+					<span>Написать нам</span>
+				</a>
+				<a href="https://rubitime.ru/api/get-project/2c29f1e400497f1d8667bf6975d302206f0cc8766f24f7300f7699d6258721f4" class="header__custom-btn header__custom-btn--red">
+					<span>Записаться на 3D проект</span>
+					<svg class="icon-svg">
+						<use xlink:href="/img/symbol_sprite.svg#icon-svg-3d"></use>
+					</svg>
+				</a>
+			</div>
+		</div>
+
+
+
+
+
+		<ul class="header__navigation">
+			<li><a href="/about/" class="root-item">О нас</a></li>
+			<li><a href="/shop/" class="root-item">Каталог</a></li>
+			<li><a href="/gallery/" class="root-item">Галерея</a></li>
+			<li><a href="/garantii-i-vozvrat/" class="root-item">Гарантии и Возврат</a></li>
+			<li><a href="/oplata-i-dostavka/" class="root-item">Оплата и доставка</a></li>
+			<li><a href="/blog/" class="root-item">Блоги</a></li>
+			<li><a href="/otzyvy/" class="root-item">Oтзывы</a></li>
+			<li><a href="/price-list/" class="root-item">Прайс-лист</a></li>
+			<li><a href="/contacts/" class="root-item">Контакты</a></li>
+		</ul>
+	</div>
+</header>
+
+        <main class="content">
+            <div class="container">
+                <div class="breadcrumbs-nav mb-40">
+	<a href="" class="breadcrumbs-nav__link breadcrumbs-nav__link--home">
+		<svg class="icon-svg">
+			<use xlink:href="/img/symbol_sprite.svg#icon-svg-home"></use>
+		</svg>
+	</a>
+	<svg class="icon-svg breadcrumbs-nav__icon">
+		<use xlink:href="/img/symbol_sprite.svg#icon-svg-next"></use>
+	</svg>
+	<a href="" class="breadcrumbs-nav__link">
+		Каталог
+	</a>
+	<svg class="icon-svg breadcrumbs-nav__icon">
+		<use xlink:href="/img/symbol_sprite.svg#icon-svg-next"></use>
+	</svg>
+	<span class="breadcrumbs-nav__link breadcrumbs-nav__link--static">
+		Текущая страница
+	</span>
+</div>
+                <div class="columns mb-80">
+                    <div class="columns__column columns__column--3 mob-hidden">
+                        <sidebar class="sidebar">
+	<h5 class="sidebar__title">
+		О нас
+	</h5>
+	<nav class="sidebar__block">
+		<a href="" class="sidebar__link sidebar__link--active">
+			<span>О компании</span>
+		</a>
+		<a href="" class="sidebar__link">
+			<span>Наши преимущества</span>
+		</a>
+		<a href="" class="sidebar__link">
+			<span>Дизайн-проект</span>
+		</a>
+		<a href="" class="sidebar__link">
+			<span>Как купить</span>
+		</a>
+		<a href="" class="sidebar__link">
+			<span>Предложение  дизайнерам и архитекторам</span>
+		</a>
+		<a href="" class="sidebar__link">
+			<span>Вакансии</span>
+		</a>
+		<a href="" class="sidebar__link">
+			<span>FAQ</span>
+		</a>
+		<a href="" class="sidebar__link">
+			<span>Карта скидок</span>
+		</a>
+	</nav>
+	<h5 class="sidebar__title">
+		Гарантии и возврат
+	</h5>
+	<nav class="sidebar__block">
+		<a href="" class="sidebar__link">
+			<span>Гарантия</span>
+		</a>
+		<a href="" class="sidebar__link">
+			<span>Возврат</span>
+		</a>
+	</nav>
+	<h5 class="sidebar__title">
+		Оплата и доставка
+	</h5>
+	<nav class="sidebar__block">
+		<a href="" class="sidebar__link">
+			<span>Оплата</span>
+		</a>
+		<a href="" class="sidebar__link">
+			<span>Тарифы на доставку</span>
+		</a>
+	</nav>
+	<h5 class="sidebar__title">
+		Документы
+	</h5>
+	<nav class="sidebar__block">
+		<a href="" class="sidebar__link">
+			<span>Договор оферты</span>
+		</a>
+		<a href="" class="sidebar__link">
+			<span>Конфиденциальность</span>
+		</a>
+	</nav>
+</sidebar>
+                    </div>
+                    <div class="columns__column columns__column--9 mob-full">
+                        <div class="editor">
+                            <h1>
+                                Условия возврата товара
+                            </h1>
+                            <p>
+                                Уважаемые покупатели! <br>
+                                Карту скидок можно приобрести в наших салонах. <br>
+                                Стоимость карты составляет 200 рублей. Скидка при первой покупке 5%. <br>
+                                Скидка не распространяется на акционный и на товар, который находится на распродаже. 
+                            </p>
+                            <img src="img/designer.png" alt="Картинка">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <section class="mob-toolbar">
+	<div class="container mob-toolbar__container">
+		<a href="" class="mob-toolbar__link mob-toolbar__link--active">
+			<div class="mob-toolbar__icon">
+				<svg class="icon-svg">
+					<use xlink:href="/img/symbol_sprite.svg#icon-svg-home"></use>
+				</svg>
+			</div>
+			<p class="mob-toolbar__link-text">
+				Главная
+			</p>
+		</a>
+		<a href="" class="mob-toolbar__link">
+			<div class="mob-toolbar__icon">
+				<svg class="icon-svg">
+					<use xlink:href="/img/symbol_sprite.svg#icon-svg-catalog"></use>
+				</svg>
+			</div>
+			<p class="mob-toolbar__link-text">
+				Каталог
+			</p>
+		</a>
+		<a href="" class="mob-toolbar__link">
+			<div class="mob-toolbar__icon">
+				<svg class="icon-svg">
+					<use xlink:href="/img/symbol_sprite.svg#icon-svg-heart"></use>
+				</svg>
+			</div>
+			<p class="mob-toolbar__link-text">
+				Избранное
+			</p>
+		</a>
+		<a href="" class="mob-toolbar__link">
+			<div class="mob-toolbar__icon">
+				<svg class="icon-svg">
+					<use xlink:href="/img/symbol_sprite.svg#icon-svg-cart"></use>
+				</svg>
+				<div class="mob-toolbar__counter">
+					12
+				</div>
+			</div>
+			<p class="mob-toolbar__link-text">
+				Корзина
+			</p>
+		</a>
+	</div>
+</section>
+        <div class="container">
+    <div class="temp" style="padding: 15px; column-count:3;">
+        <a href="index.html" class="">
+            1.Главная
+        </a>
+        <br>
+        <a href="./2_catalog.html">
+            2.Каталог
+        </a>
+        <br>
+        <a href="./3_single.html">
+            3.Одиночная (под заказ)
+        </a>
+        <br>
+        <a href="./4_single.html">
+            4.Одиночная (в наличии)
+        </a>
+        <br>
+        <a href="./5_collection.html">
+            5.Одиночная (коллекция)
+        </a>
+        <br>
+        <a href="./6_about.html">
+            6.О нас
+        </a>
+        <br>
+        <a href="./7_profits.html">
+            7.Преимущества
+        </a>
+        <br>
+        <a href="./8_design.html">
+            8.Дизайн-проект
+        </a>
+        <br>
+        <a href="./9_how.html">
+            9.Как купить
+        </a>
+        <br>
+        <a href="./10_for-designers.html">
+            10.Дизайнерам
+        </a>
+        <br>
+        <a href="./11_vacancy.html">
+            11.Вакансии
+        </a>
+        <br>
+        <a href="./12_faq.html">
+            12.FAQ
+        </a>
+        <br>
+        <a href="./13_sale.html">
+            13.Карта скидок
+        </a>
+        <br>
+        <a href="./14_garant.html">
+            14.Гарантии
+        </a>
+        <br>
+        <a href="./15_return.html">
+            15.Возврат
+        </a>
+        <br>
+        <a href="./16_payment.html">
+            16.Оплата
+        </a>
+        <br>
+        <a href="./17_tariffs.html">
+            17.Тарифы
+        </a>
+        <br>
+        <a href="./18_blog.html">
+            18.Блог
+        </a>
+        <br>
+        <a href="./19_post.html">
+            19.Новость
+        </a>
+        <br>
+        <a href="./20_contacts.html">
+            20.Контакты
+        </a>
+        <br>
+        <a href="./21_cart.html">
+            21.Корзина
+        </a>
+        <br>
+        <a href="./22_cart.html">
+            22.Оформление
+        </a>
+        <br>
+    </div>
+</div>
+        <script src="https://kerasfera.ru/local/templates/new/js/scripts.min.js"></script>
+        <script src="js/vendor.js"></script>
+        <script src="js/main.js"></script>
+    </div>
+</body>
+</html>

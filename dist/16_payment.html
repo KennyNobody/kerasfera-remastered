@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Оплата</title>
+    <meta name="theme-color" content="#fff">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="shortcut icon" href="img/favicons/favicon.ico" type="image/x-icon">
+    <link rel="icon" sizes="16x16" href="img/favicons/favicon-16x16.png" type="image/png">
+    <link rel="icon" sizes="32x32" href="img/favicons/favicon-32x32.png" type="image/png">
+    <link rel="apple-touch-icon-precomposed" href="img/favicons/apple-touch-icon-precomposed.png">
+    <link rel="apple-touch-icon" href="img/favicons/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="img/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="img/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="img/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="img/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="img/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="img/favicons/apple-touch-icon-167x167.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicons/apple-touch-icon-180x180.png">
+    <link rel="apple-touch-icon" sizes="1024x1024" href="img/favicons/apple-touch-icon-1024x1024.png">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body class="body">
+    <div id="page">
+        <header class="header">
+	<div class="decorline"></div>
+	<div class="container header__container">
+		<div class="header__columns">
+			<a href="/" class="header__logo">
+				<img src="https://kerasfera.ru/local/templates/new/img/logo.svg" alt="">
+			</a>
+			<div class="header__info-column">
+				<form action="/search/" class="header__search search" method="GET">
+					<input type="text" name="q" value="" class="" placeholder="Поиск">
+					<button type="submit">
+						<svg class="icon-svg">
+							<use xlink:href="/img/symbol_sprite.svg#icon-svg-search"></use>
+						</svg>
+					</button>
+				</form>
+				<div class="header__toolbar">
+					<a href="" class="header__mob-profile">
+						<svg class="icon-svg">
+							<use xlink:href="/img/symbol_sprite.svg#icon-svg-user"></use>
+						</svg>
+					</a>
+					<a href="#mob-menu" class="header__burger">
+						<svg class="icon-svg">
+							<use xlink:href="/img/symbol_sprite.svg#icon-svg-menu"></use>
+						</svg>
+					</a>
+				</div>
+				<h1 class="header__discript">
+					«Интернет-магазин плитки в Калининграде»
+				</h1>
+			</div>
+			<div class="header__links-column">
+				<div class="header__nav">
+					<p class="header__link link link--dark">
+						<svg class="icon-svg">
+							<use xlink:href="/img/symbol_sprite.svg#icon-svg-user"></use>
+						</svg>
+						<span><a href="/login/?backurl=%2F#login">Вход</a>/<a href="/login/?backurl=%2F#register">Регистрация</a></span>
+					</p>
+					<a href="/personal/favorites" class="header__link link link--dark">
+						<svg class="icon-svg">
+							<use xlink:href="/img/symbol_sprite.svg#icon-svg-heart"></use>
+						</svg>
+						<span>Избранное</span>
+					</a>
+					<a href="/personal/cart/" class="header__link link link--dark">
+						<svg class="icon-svg">
+							<use xlink:href="/img/symbol_sprite.svg#icon-svg-cart"></use>
+						</svg>
+						<div class="header__link-counter">32</div>
+					</a>
+				</div>
+				<div class="header__phone">
+					<a href="tel:+74012310500" class="header__link-phone">
+						<svg class="icon-svg">
+							<use xlink:href="/img/symbol_sprite.svg#icon-svg-phone"></use>
+						</svg>
+						(4012) 310-500
+					</a>
+					<p class="header__time">
+						(Пн-Пт 10-19; Сб, Вс 10-18)
+					</p>
+				</div>
+			</div>
+			<div class="header__buttons">
+				<a href="" class="header__custom-btn header__custom-btn--yellow">
+					<span>Написать нам</span>
+				</a>
+				<a href="https://rubitime.ru/api/get-project/2c29f1e400497f1d8667bf6975d302206f0cc8766f24f7300f7699d6258721f4" class="header__custom-btn header__custom-btn--red">
+					<span>Записаться на 3D проект</span>
+					<svg class="icon-svg">
+						<use xlink:href="/img/symbol_sprite.svg#icon-svg-3d"></use>
+					</svg>
+				</a>
+			</div>
+		</div>
+
+
+
+
+
+		<ul class="header__navigation">
+			<li><a href="/about/" class="root-item">О нас</a></li>
+			<li><a href="/shop/" class="root-item">Каталог</a></li>
+			<li><a href="/gallery/" class="root-item">Галерея</a></li>
+			<li><a href="/garantii-i-vozvrat/" class="root-item">Гарантии и Возврат</a></li>
+			<li><a href="/oplata-i-dostavka/" class="root-item">Оплата и доставка</a></li>
+			<li><a href="/blog/" class="root-item">Блоги</a></li>
+			<li><a href="/otzyvy/" class="root-item">Oтзывы</a></li>
+			<li><a href="/price-list/" class="root-item">Прайс-лист</a></li>
+			<li><a href="/contacts/" class="root-item">Контакты</a></li>
+		</ul>
+	</div>
+</header>
+
+        <main class="content">
+            <div class="container">
+                <div class="breadcrumbs-nav mb-40">
+	<a href="" class="breadcrumbs-nav__link breadcrumbs-nav__link--home">
+		<svg class="icon-svg">
+			<use xlink:href="/img/symbol_sprite.svg#icon-svg-home"></use>
+		</svg>
+	</a>
+	<svg class="icon-svg breadcrumbs-nav__icon">
+		<use xlink:href="/img/symbol_sprite.svg#icon-svg-next"></use>
+	</svg>
+	<a href="" class="breadcrumbs-nav__link">
+		Каталог
+	</a>
+	<svg class="icon-svg breadcrumbs-nav__icon">
+		<use xlink:href="/img/symbol_sprite.svg#icon-svg-next"></use>
+	</svg>
+	<span class="breadcrumbs-nav__link breadcrumbs-nav__link--static">
+		Текущая страница
+	</span>
+</div>
+                <div class="columns mb-80">
+                    <div class="columns__column columns__column--3 mob-hidden">
+                        <sidebar class="sidebar">
+	<h5 class="sidebar__title">
+		О нас
+	</h5>
+	<nav class="sidebar__block">
+		<a href="" class="sidebar__link sidebar__link--active">
+			<span>О компании</span>
+		</a>
+		<a href="" class="sidebar__link">
+			<span>Наши преимущества</span>
+		</a>
+		<a href="" class="sidebar__link">
+			<span>Дизайн-проект</span>
+		</a>
+		<a href="" class="sidebar__link">
+			<span>Как купить</span>
+		</a>
+		<a href="" class="sidebar__link">
+			<span>Предложение  дизайнерам и архитекторам</span>
+		</a>
+		<a href="" class="sidebar__link">
+			<span>Вакансии</span>
+		</a>
+		<a href="" class="sidebar__link">
+			<span>FAQ</span>
+		</a>
+		<a href="" class="sidebar__link">
+			<span>Карта скидок</span>
+		</a>
+	</nav>
+	<h5 class="sidebar__title">
+		Гарантии и возврат
+	</h5>
+	<nav class="sidebar__block">
+		<a href="" class="sidebar__link">
+			<span>Гарантия</span>
+		</a>
+		<a href="" class="sidebar__link">
+			<span>Возврат</span>
+		</a>
+	</nav>
+	<h5 class="sidebar__title">
+		Оплата и доставка
+	</h5>
+	<nav class="sidebar__block">
+		<a href="" class="sidebar__link">
+			<span>Оплата</span>
+		</a>
+		<a href="" class="sidebar__link">
+			<span>Тарифы на доставку</span>
+		</a>
+	</nav>
+	<h5 class="sidebar__title">
+		Документы
+	</h5>
+	<nav class="sidebar__block">
+		<a href="" class="sidebar__link">
+			<span>Договор оферты</span>
+		</a>
+		<a href="" class="sidebar__link">
+			<span>Конфиденциальность</span>
+		</a>
+	</nav>
+</sidebar>
+                    </div>
+                    <div class="columns__column columns__column--9 mob-full">
+                        <div class="editor mb-9">
+                            <h1>
+                                Оплата
+                            </h1>
+                            <p>
+                                Оплата банковскими картами осуществляется после подтверждения заказа менеджером. К оплате принимаются все виды платежных карточек Visa, за исключением Visa Electron. В большинстве случаев карта Visa Electron не применима для оплаты через интернет, за исключением карт, выпущенных отдельными банками. О возможность оплаты картой Visa Electron вам нужно выяснять у банка-эмитента вашей карты.
+                                На сайте к оплате принимаются все виды MasterCard, за исключением Maestro.
+                            </p>
+                            <p>
+                                Банковскими картами при получении заказа курьеру (для оплаты принимаются все виды платежных карточек VISA и MasterCard. Для осуществления платежа Плательщика потребуется документ, удостоверяющий личность)
+                            </p>
+                            <h4>
+                                Интернет-магазин принимает следующие виды оплаты:
+                            </h4>
+                        </div>
+                        <div class="accent-block accent-block--small mb-6">
+                            <div class="editor">
+                                <h5>
+                                    Оплата наличными курьеру при получении заказа.
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="accent-block accent-block--small mb-6">
+                            <div class="editor">
+                                <h5>
+                                    Оплата в салонах по адресам:
+                                </h5>
+                            </div>
+                        </div>                    
+                        <div class="editor mb-20">
+                            <p>
+                                - ул. Маточкина 2а <br>
+                                - ул. Е. Ковальчук, 3-9 <br>
+                                - Габайдулина, 39. <br>
+                                (Вы можете оплатить свой заказ наличными или банковской картой)
+                            </p>
+                        </div>
+                        <div class="accent-block accent-block--small mb-16">
+                            <div class="editor">
+                                <h5>
+                                    Оплата платежными картами на сайте.
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="columns mb-32">
+                            <div class="columns__column columns__column--1 mob-hidden">
+                                <img class="img" src="img/visa-big.svg" alt="VISA">
+                            </div>
+                            <div class="columns__column columns__column--11">
+                                <div class="editor">
+                                    <p>
+                                        <b>
+                                            Оплата по банковским картам VISA
+                                        </b>
+                                        К оплате принимаются все виды платежных карточек VISA, за исключением Visa Electron. В большинстве случаев карта Visa Electron не применима для оплаты через интернет, за исключением карт, выпущенных отдельными банками. О возможность оплаты картой Visa Electron вам нужно выяснять у банка-эмитента вашей карты.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="columns mb-32">
+                            <div class="columns__column columns__column--1 mob-hidden">
+                                <img class="img" src="img/mastercard-big.svg" alt="VISA">
+                            </div>
+                            <div class="columns__column columns__column--11">
+                                <div class="editor">
+                                    <p>
+                                        <b>
+                                            Оплата по кредитным картам MasterCard
+                                        </b>
+                                        На сайте к оплате принимаются все виды MasterCard, за исключением Maestro.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accent-block mb-30">
+                            <div class="editor">
+                                <h5>
+                                    Что нужно знать:
+                                </h5>
+                                <div class="columns mb-32">
+                                    <div class="columns__column columns__column--6">
+                                        <img src="img/card-top.svg" alt="Карточка-перед" class="img">
+                                    </div>
+                                    <div class="columns__column columns__column--6">
+                                        <img src="img/card-bottom.svg" alt="Карточка-перед" class="img">
+                                    </div>
+                                </div>
+                                <div class="columns mb-32">
+                                    <div class="columns__column columns__column--6 mb-16">
+                                        <ol class="circles">
+                                            <li>
+                                                Номер вашей кредитной карты
+                                            </li>
+                                            <li>
+                                                Срок окончания действия вашей кредитной карты, месяц/год
+                                            </li>
+                                            <li>
+                                                CVV код для карт Visa / CVC код для Master Card (3 последние цифры на полосе для подписи на обороте карты)
+                                            </li>
+                                        </ol>
+                                    </div>
+                                    <div class="columns__column columns__column--6 mb-16">
+                                        <p>
+                                            <i>
+                                                Если на вашей карте код CVC / CVV отсутствует, то, возможно, карта не пригодна для CNP транзакций (т.е. таких транзакций, при которых сама карта не присутствует, а используются её реквизиты), и вам следует обратиться в банк для получения подробной информации. 
+                                            </i>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="editor mb-20">
+                            <p>
+                                <b>
+                                    Описание процесса платежа. 
+                                </b>
+                                <br>
+                                Оплата происходит через авторизационный сервер Процессингового центра Банка с использованием Банковских кредитных карт следующих платежных систем: 
+                                - VISA International
+                                - MasterCard World Wide
+                            </p>
+                            <p>
+                                <b>
+                                    Текст описания процесса передачи данных. 
+                                </b>
+                                <br>
+                                Для оплаты покупки Вы будете перенаправлены на платежный шлюз ОАО "Сбербанк России" для ввода реквизитов Вашей карты. Пожалуйста, приготовьте Вашу пластиковую карту заранее. Соединение с платежным шлюзом и передача информации осуществляется в защищенном режиме с использованием протокола шифрования SSL.
+                                В случае если Ваш банк поддерживает технологию безопасного проведения интернет-платежей Verified By Visa или MasterCard Secure Code для проведения платежа также может потребоваться ввод специального пароля. Способы и возможность получения паролей для совершения интернет-платежей Вы можете уточнить в банке, выпустившем карту.
+                                Настоящий сайт поддерживает 256-битное шифрование. Конфиденциальность сообщаемой персональной информации обеспечивается ОАО "Сбербанк России". Введенная информация не будет предоставлена третьим лицам за исключением случаев, предусмотренных законодательством РФ. Проведение платежей по банковским картам осуществляется в строгом соответствии с требованиями платежных систем Visa Int. и MasterCard Europe Sprl.
+                            </p>
+                            <p>
+                                <b>Текст, сопровождающий процесс оплаты.</b>
+                                <br>
+                                При выборе формы оплаты “Банковские карты” проведение платежа по заказу производится непосредственно после его оформления. После завершения оформления заказа в нашем магазине, Вы должны будете нажать на кнопку «Оформить заказ», при этом система переключит Вас на страницу авторизационного сервера, где Вам будет предложено ввести данные пластиковой карты, инициировать ее авторизацию, после чего вернуться в наш магазин кнопкой "Вернуться в магазин". После того, как Вы возвращаетесь в наш магазин, система уведомит Вас о результатах авторизации. В случае подтверждения авторизации Ваш заказ будет автоматически выполняться в соответствии с заданными Вами условиями. В случае отказа в авторизации карты Вы сможете повторить процедуру оплаты. После подтверждения заказа, с вами свяжется оператор для подтверждения наличия , после  можно оплатить в течение 5 дней.
+                            </p>
+                            <p>
+                                <b>
+                                    Оплата банковским переводом.
+                                </b>
+                                <br>
+                                Оплата заказов через СБЕРБАНК осуществляется после проверки заказа менеджером интернет-магазина. Чтобы оплатить заказ, необходимо распечатать квитанцию об оплате с сайта магазина. 
+                                В случае отсутствия возможности осуществить платёж с помощью электронных систем, нашим клиентам, мы всегда рады предложить воспользоваться способом прямой оплаты через банки РФ. При использовании данного вида платежа менеджер интернет-магазина подготавливает платёжный документ по форме ПД-4, который действителен в любом банке Российской Федерации.
+                                <br>
+                                <b>
+                                    Внимание! Срок проведения прямых перечислений через банк длится 2-3 банковских дня. При оплате взымается комиссия 3-7% от суммы платежа.
+                                </b>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <section class="mob-toolbar">
+	<div class="container mob-toolbar__container">
+		<a href="" class="mob-toolbar__link mob-toolbar__link--active">
+			<div class="mob-toolbar__icon">
+				<svg class="icon-svg">
+					<use xlink:href="/img/symbol_sprite.svg#icon-svg-home"></use>
+				</svg>
+			</div>
+			<p class="mob-toolbar__link-text">
+				Главная
+			</p>
+		</a>
+		<a href="" class="mob-toolbar__link">
+			<div class="mob-toolbar__icon">
+				<svg class="icon-svg">
+					<use xlink:href="/img/symbol_sprite.svg#icon-svg-catalog"></use>
+				</svg>
+			</div>
+			<p class="mob-toolbar__link-text">
+				Каталог
+			</p>
+		</a>
+		<a href="" class="mob-toolbar__link">
+			<div class="mob-toolbar__icon">
+				<svg class="icon-svg">
+					<use xlink:href="/img/symbol_sprite.svg#icon-svg-heart"></use>
+				</svg>
+			</div>
+			<p class="mob-toolbar__link-text">
+				Избранное
+			</p>
+		</a>
+		<a href="" class="mob-toolbar__link">
+			<div class="mob-toolbar__icon">
+				<svg class="icon-svg">
+					<use xlink:href="/img/symbol_sprite.svg#icon-svg-cart"></use>
+				</svg>
+				<div class="mob-toolbar__counter">
+					12
+				</div>
+			</div>
+			<p class="mob-toolbar__link-text">
+				Корзина
+			</p>
+		</a>
+	</div>
+</section>
+        <div class="container">
+    <div class="temp" style="padding: 15px; column-count:3;">
+        <a href="index.html" class="">
+            1.Главная
+        </a>
+        <br>
+        <a href="./2_catalog.html">
+            2.Каталог
+        </a>
+        <br>
+        <a href="./3_single.html">
+            3.Одиночная (под заказ)
+        </a>
+        <br>
+        <a href="./4_single.html">
+            4.Одиночная (в наличии)
+        </a>
+        <br>
+        <a href="./5_collection.html">
+            5.Одиночная (коллекция)
+        </a>
+        <br>
+        <a href="./6_about.html">
+            6.О нас
+        </a>
+        <br>
+        <a href="./7_profits.html">
+            7.Преимущества
+        </a>
+        <br>
+        <a href="./8_design.html">
+            8.Дизайн-проект
+        </a>
+        <br>
+        <a href="./9_how.html">
+            9.Как купить
+        </a>
+        <br>
+        <a href="./10_for-designers.html">
+            10.Дизайнерам
+        </a>
+        <br>
+        <a href="./11_vacancy.html">
+            11.Вакансии
+        </a>
+        <br>
+        <a href="./12_faq.html">
+            12.FAQ
+        </a>
+        <br>
+        <a href="./13_sale.html">
+            13.Карта скидок
+        </a>
+        <br>
+        <a href="./14_garant.html">
+            14.Гарантии
+        </a>
+        <br>
+        <a href="./15_return.html">
+            15.Возврат
+        </a>
+        <br>
+        <a href="./16_payment.html">
+            16.Оплата
+        </a>
+        <br>
+        <a href="./17_tariffs.html">
+            17.Тарифы
+        </a>
+        <br>
+        <a href="./18_blog.html">
+            18.Блог
+        </a>
+        <br>
+        <a href="./19_post.html">
+            19.Новость
+        </a>
+        <br>
+        <a href="./20_contacts.html">
+            20.Контакты
+        </a>
+        <br>
+        <a href="./21_cart.html">
+            21.Корзина
+        </a>
+        <br>
+        <a href="./22_cart.html">
+            22.Оформление
+        </a>
+        <br>
+    </div>
+</div>
+        <script src="https://kerasfera.ru/local/templates/new/js/scripts.min.js"></script>
+        <script src="js/vendor.js"></script>
+        <script src="js/main.js"></script>
+    </div>
+</body>
+</html>

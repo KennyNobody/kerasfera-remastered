@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Каталог</title>
+    <meta name="theme-color" content="#fff">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="shortcut icon" href="img/favicons/favicon.ico" type="image/x-icon">
+    <link rel="icon" sizes="16x16" href="img/favicons/favicon-16x16.png" type="image/png">
+    <link rel="icon" sizes="32x32" href="img/favicons/favicon-32x32.png" type="image/png">
+    <link rel="apple-touch-icon-precomposed" href="img/favicons/apple-touch-icon-precomposed.png">
+    <link rel="apple-touch-icon" href="img/favicons/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="img/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="img/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="img/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="img/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="img/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="img/favicons/apple-touch-icon-167x167.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicons/apple-touch-icon-180x180.png">
+    <link rel="apple-touch-icon" sizes="1024x1024" href="img/favicons/apple-touch-icon-1024x1024.png">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body class="body">
+    <div id="page">
+        <header class="header">
+	<div class="decorline"></div>
+	<div class="container header__container">
+		<div class="header__columns">
+			<a href="/" class="header__logo">
+				<img src="https://kerasfera.ru/local/templates/new/img/logo.svg" alt="">
+			</a>
+			<div class="header__info-column">
+				<form action="/search/" class="header__search search" method="GET">
+					<input type="text" name="q" value="" class="" placeholder="Поиск">
+					<button type="submit">
+						<svg class="icon-svg">
+							<use xlink:href="/img/symbol_sprite.svg#icon-svg-search"></use>
+						</svg>
+					</button>
+				</form>
+				<div class="header__toolbar">
+					<a href="" class="header__mob-profile">
+						<svg class="icon-svg">
+							<use xlink:href="/img/symbol_sprite.svg#icon-svg-user"></use>
+						</svg>
+					</a>
+					<a href="#mob-menu" class="header__burger">
+						<svg class="icon-svg">
+							<use xlink:href="/img/symbol_sprite.svg#icon-svg-menu"></use>
+						</svg>
+					</a>
+				</div>
+				<h1 class="header__discript">
+					«Интернет-магазин плитки в Калининграде»
+				</h1>
+			</div>
+			<div class="header__links-column">
+				<div class="header__nav">
+					<p class="header__link link link--dark">
+						<svg class="icon-svg">
+							<use xlink:href="/img/symbol_sprite.svg#icon-svg-user"></use>
+						</svg>
+						<span><a href="/login/?backurl=%2F#login">Вход</a>/<a href="/login/?backurl=%2F#register">Регистрация</a></span>
+					</p>
+					<a href="/personal/favorites" class="header__link link link--dark">
+						<svg class="icon-svg">
+							<use xlink:href="/img/symbol_sprite.svg#icon-svg-heart"></use>
+						</svg>
+						<span>Избранное</span>
+					</a>
+					<a href="/personal/cart/" class="header__link link link--dark">
+						<svg class="icon-svg">
+							<use xlink:href="/img/symbol_sprite.svg#icon-svg-cart"></use>
+						</svg>
+						<div class="header__link-counter">32</div>
+					</a>
+				</div>
+				<div class="header__phone">
+					<a href="tel:+74012310500" class="header__link-phone">
+						<svg class="icon-svg">
+							<use xlink:href="/img/symbol_sprite.svg#icon-svg-phone"></use>
+						</svg>
+						(4012) 310-500
+					</a>
+					<p class="header__time">
+						(Пн-Пт 10-19; Сб, Вс 10-18)
+					</p>
+				</div>
+			</div>
+			<div class="header__buttons">
+				<a href="" class="header__custom-btn header__custom-btn--yellow">
+					<span>Написать нам</span>
+				</a>
+				<a href="https://rubitime.ru/api/get-project/2c29f1e400497f1d8667bf6975d302206f0cc8766f24f7300f7699d6258721f4" class="header__custom-btn header__custom-btn--red">
+					<span>Записаться на 3D проект</span>
+					<svg class="icon-svg">
+						<use xlink:href="/img/symbol_sprite.svg#icon-svg-3d"></use>
+					</svg>
+				</a>
+			</div>
+		</div>
+
+
+
+
+
+		<ul class="header__navigation">
+			<li><a href="/about/" class="root-item">О нас</a></li>
+			<li><a href="/shop/" class="root-item">Каталог</a></li>
+			<li><a href="/gallery/" class="root-item">Галерея</a></li>
+			<li><a href="/garantii-i-vozvrat/" class="root-item">Гарантии и Возврат</a></li>
+			<li><a href="/oplata-i-dostavka/" class="root-item">Оплата и доставка</a></li>
+			<li><a href="/blog/" class="root-item">Блоги</a></li>
+			<li><a href="/otzyvy/" class="root-item">Oтзывы</a></li>
+			<li><a href="/price-list/" class="root-item">Прайс-лист</a></li>
+			<li><a href="/contacts/" class="root-item">Контакты</a></li>
+		</ul>
+	</div>
+</header>
+
+        <main class="content">
+
+            <section class="breadcrumbs">
+                <div class="container">
+                    <div class="breadcrumbs-nav mb-40">
+	<a href="" class="breadcrumbs-nav__link breadcrumbs-nav__link--home">
+		<svg class="icon-svg">
+			<use xlink:href="/img/symbol_sprite.svg#icon-svg-home"></use>
+		</svg>
+	</a>
+	<svg class="icon-svg breadcrumbs-nav__icon">
+		<use xlink:href="/img/symbol_sprite.svg#icon-svg-next"></use>
+	</svg>
+	<a href="" class="breadcrumbs-nav__link">
+		Каталог
+	</a>
+	<svg class="icon-svg breadcrumbs-nav__icon">
+		<use xlink:href="/img/symbol_sprite.svg#icon-svg-next"></use>
+	</svg>
+	<span class="breadcrumbs-nav__link breadcrumbs-nav__link--static">
+		Текущая страница
+	</span>
+</div>
+                </div>
+            </section>
+            <section class="shop">
+                <div class="shop__container container">
+                    <div class="shop__filter">
+                        <div class="filter">
+	<div class="filter__overlay"></div>
+	<div class="filter__mob-title">
+		<span>Фильтр коллекций</span>
+		<svg class="icon-svg">
+			<use xlink:href="./img/symbol_sprite.svg#icon-svg-menu"></use>
+		</svg>
+	</div>
+	<div class="filter__wrapper">
+		<div class="filter__toogle">
+			<div class="filter__toogle-item">
+				Коллекции
+			</div>
+			<div class="filter__toogle-item">
+				Товары
+			</div>
+		</div>
+		<!-- Отсюда -->
+		<p class="filter__name filter__name--sort">
+			Сортировка
+		</p>
+		<div class="filter__type">
+			<select class="filter__type-select">
+				<option value="1">
+					Все
+				</option>
+				<option value="Новинки" name="new">
+					Новинки
+				</option>
+				<option value="Акции" name="actions">
+					Акции
+				</option>
+				<option value="Распродажа" name="sale">
+					Распродажа
+				</option>
+			</select>
+		</div>
+		<!-- До этого момента -->
+		<div class="price">
+			<div class="filter__name filter__name--price">Цена, руб.</div>
+			<div class="filter__inputs">
+				<input type="text" name="min" id="input-with-keypress-0" value="0" />
+				-
+				<input type="text" name="max" id="input-with-keypress-1" value="10000" />
+			</div>
+			<div class="filter__range" id="filter__range"></div>
+		</div>
+		<ul>
+			<li class="filter__block filter__block--NOMENKLATURNAYA_GRUPPA">
+				<div class="filter__name filter__name--drop">
+					<svg class="icon-svg"><use xlink:href="./img/symbol_sprite.svg#icon-svg-drop"></use></svg> <span>Вид</span>
+				</div>
+				<ul>
+					<li>
+						<label>
+							<input type="checkbox" name="NOMENKLATURNAYA_GRUPPA" value="0" /> <span>Настенная плитка</span>
+							<div class="checkmark"></div>
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type="checkbox" name="NOMENKLATURNAYA_GRUPPA" value="0" /> <span>Настенная плитка</span>
+							<div class="checkmark"></div>
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type="checkbox" name="NOMENKLATURNAYA_GRUPPA" value="0" /> <span>Настенная плитка</span>
+							<div class="checkmark"></div>
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type="checkbox" name="NOMENKLATURNAYA_GRUPPA" value="0" /> <span>Настенная плитка</span>
+							<div class="checkmark"></div>
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type="checkbox" name="NOMENKLATURNAYA_GRUPPA" value="0" /> <span>Настенная плитка</span>
+							<div class="checkmark"></div>
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type="checkbox" name="NOMENKLATURNAYA_GRUPPA" value="0" /> <span>Настенная плитка</span>
+							<div class="checkmark"></div>
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type="checkbox" name="NOMENKLATURNAYA_GRUPPA" value="0" /> <span>Настенная плитка</span>
+							<div class="checkmark"></div>
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type="checkbox" name="NOMENKLATURNAYA_GRUPPA" value="1" /> <span>Напольная плитка</span>
+							<div class="checkmark"></div>
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type="checkbox" name="NOMENKLATURNAYA_GRUPPA" value="2" /> <span>Керамогранит</span>
+							<div class="checkmark"></div>
+						</label>
+					</li> 
+				</ul>
+			</li>
+			<li class="filter__block filter__block--FORMA">
+				<div class="filter__name filter__name--drop">
+					<svg class="icon-svg"><use xlink:href="./img/symbol_sprite.svg#icon-svg-drop"></use></svg> <span>Форма</span>
+				</div>
+				<ul>
+					<li>
+						<label>
+							<input type="checkbox" name="FORMA" value="3079" /> <span>Восьмигранник</span>
+							<div class="checkmark"></div>
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type="checkbox" name="FORMA" value="3080" /> <span>Другие</span>
+							<div class="checkmark"></div>
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type="checkbox" name="FORMA" value="3077" /> <span>Квадрат</span>
+							<div class="checkmark"></div>
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type="checkbox" name="FORMA" value="3075" /> <span>Прямоугольник</span>
+							<div class="checkmark"></div>
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type="checkbox" name="FORMA" value="3076" /> <span>Ромб</span>
+							<div class="checkmark"></div>
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type="checkbox" name="FORMA" value="3078" /> <span>Шестигранник</span>
+							<div class="checkmark"></div>
+						</label>
+					</li>
+				</ul>
+			</li>
+			<li class="filter__block filter__block--TIP_NAZNACHENIE">
+				<div class="filter__name filter__name--drop">
+					<svg class="icon-svg"><use xlink:href="./img/symbol_sprite.svg#icon-svg-drop"></use></svg> <span>Назначение</span>
+				</div>
+				<ul>
+					<li>
+						<label>
+							<input type="checkbox" name="TIP_NAZNACHENIE" value="0" /> <span>Для бассейна</span>
+							<div class="checkmark"></div>
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type="checkbox" name="TIP_NAZNACHENIE" value="1" /> <span>Для ванной</span>
+							<div class="checkmark"></div>
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type="checkbox" name="TIP_NAZNACHENIE" value="2" /> <span>Для кухни</span>
+							<div class="checkmark"></div>
+						</label>
+					</li>
+				</ul>
+			</li>
+			<li class="filter__block filter__block--KOLLEKTSIYA">
+				<div class="filter__name filter__name--drop">
+					<svg class="icon-svg"><use xlink:href="./img/symbol_sprite.svg#icon-svg-drop"></use></svg> <span>Коллекция</span>
+				</div>
+				<ul>
+					<li>
+						<label>
+							<input type="checkbox" name="KOLLEKTSIYA" value="19" /> <span>Adra</span>
+							<div class="checkmark"></div>
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type="checkbox" name="KOLLEKTSIYA" value="20" /> <span>Aged</span>
+							<div class="checkmark"></div>
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type="checkbox" name="KOLLEKTSIYA" value="21" /> <span>Alberta</span>
+							<div class="checkmark"></div>
+						</label>
+					</li>
+				</ul>
+			</li>
+			<li class="filter__block filter__block--PROIZVODITEL">
+				<div class="filter__name filter__name--drop">
+					<svg class="icon-svg"><use xlink:href="./img/symbol_sprite.svg#icon-svg-drop"></use></svg> <span>Производитель</span>
+				</div>
+				<ul>
+					<li>
+						<label>
+							<input type="checkbox" name="PROIZVODITEL" value="2568" /> <span>Alaplana</span>
+							<div class="checkmark"></div>
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type="checkbox" name="PROIZVODITEL" value="2812" /> <span>Aparici</span>
+							<div class="checkmark"></div>
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type="checkbox" name="PROIZVODITEL" value="1927" /> <span>APE</span>
+							<div class="checkmark"></div>
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type="checkbox" name="PROIZVODITEL" value="1989" /> <span>Argenta</span>
+							<div class="checkmark"></div>
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type="checkbox" name="PROIZVODITEL" value="2592" /> <span>Azteca</span>
+							<div class="checkmark"></div>
+						</label>
+					</li>
+				</ul>
+			</li>
+			<li class="filter__block filter__block--STIL">
+				<div class="filter__name filter__name--drop">
+					<svg class="icon-svg"><use xlink:href="./img/symbol_sprite.svg#icon-svg-drop"></use></svg> <span>Стиль</span>
+				</div>
+				<ul>
+					<li>
+						<label>
+							<input type="checkbox" name="STIL" value="0" /> <span>Бетон</span>
+							<div class="checkmark"></div>
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type="checkbox" name="STIL" value="1" /> <span>Биселадо</span>
+							<div class="checkmark"></div>
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type="checkbox" name="STIL" value="2" /> <span>Винтаж</span>
+							<div class="checkmark"></div>
+						</label>
+					</li>
+				</ul>
+			</li>
+			<li class="filter__block filter__block--POVERKHNOST">
+				<div class="filter__name filter__name--drop">
+					<svg class="icon-svg"><use xlink:href="./img/symbol_sprite.svg#icon-svg-drop"></use></svg> <span>Поверхность</span>
+				</div>
+				<ul>
+					<li>
+						<label>
+							<input type="checkbox" name="POVERKHNOST" value="1386" /> <span>Глянцевая</span>
+							<div class="checkmark"></div>
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type="checkbox" name="POVERKHNOST" value="1764" /> <span>Матовая</span>
+							<div class="checkmark"></div>
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type="checkbox" name="POVERKHNOST" value="1947" /> <span>Полированная</span>
+							<div class="checkmark"></div>
+						</label>
+					</li>
+				</ul>
+			</li>
+			<li class="filter__block filter__block--RAZMER">
+				<div class="filter__name filter__name--drop">
+					<svg class="icon-svg"><use xlink:href="./img/symbol_sprite.svg#icon-svg-drop"></use></svg> <span>Размер</span>
+				</div>
+				<ul>
+					<li>
+						<div class="price">
+							<div class="title filter__name filter__name--price">Ширина, см.</div>
+							<div class="filter__inputs"><input type="text" name="wmin" id="input-with-keypress-2" value="0" /> - <input type="text" name="wmax" id="input-with-keypress-3" value="300" /></div>
+							<div class="filter__range" id="filter__range1"></div>
+						</div>
+						<div class="price">
+							<div class="title filter__name filter__name--price">Длина, см.</div>
+							<div class="filter__inputs">
+								<input type="text" name="hmin" id="input-with-keypress-4" value="0" /> - <input type="text" name="hmax" id="input-with-keypress-5" value="300" />
+							</div>
+							<div class="filter__range" id="filter__range2"></div>
+						</div>
+					</li>
+				</ul>
+			</li>
+			<li class="filter__block filter__block--TSVET">
+				<div class="filter__name filter__name--drop">
+					<svg class="icon-svg"><use xlink:href="./img/symbol_sprite.svg#icon-svg-drop"></use></svg> <span>Цвет</span>
+				</div>
+				<ul>
+					<li>
+						<label>
+							<input type="checkbox" name="TSVET" value="2993" /> <span>Антрацит</span>
+							<div class="checkmark"></div>
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type="checkbox" name="TSVET" value="1749" /> <span>Бежевый</span>
+							<div class="checkmark"></div>
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type="checkbox" name="TSVET" value="1846" /> <span>Белый</span>
+							<div class="checkmark"></div>
+						</label>
+					</li>
+				</ul>
+			</li>
+			<li class="filter__block filter__block--STRANA">
+				<div class="filter__name filter__name--drop">
+					<svg class="icon-svg"><use xlink:href="./img/symbol_sprite.svg#icon-svg-drop"></use></svg> <span>Страна</span>
+				</div>
+				<ul>
+					<li>
+						<label>
+							<input type="checkbox" name="STRANA" value="3104" /> <span>Бразилия</span>
+							<div class="checkmark"></div>
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type="checkbox" name="STRANA" value="2605" /> <span>Германия</span>
+							<div class="checkmark"></div>
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type="checkbox" name="STRANA" value="3205" /> <span>Индия</span>
+							<div class="checkmark"></div>
+						</label>
+					</li>
+				</ul>
+			</li>
+		</ul>
+		<div class="buttons filter__buttons">
+			<div class="reset filter__reset">Сбросить</div>
+		</div>
+	</div>
+</div>
+
+                    </div>
+                    <div class="shop__content">
+                        <div class="shop__control">
+                            <div class="toolbar">
+	<div class="toolbar__section">
+		<p class="toolbar__title">
+			Сортировать
+		</p>
+		<select class="toolbar__select">
+			<option value="1">
+				Все
+			</option>
+			<option value="2">
+				Новинки
+			</option>
+			<option value="3">
+				Акции
+			</option>
+			<option value="4">
+				Распродажа
+			</option>
+		</select>
+	</div>
+	<div class="toolbar__section">
+		<p class="toolbar__title">
+			Вид
+		</p>
+		<select class="toolbar__select">
+			<option value="15">
+				15
+			</option>
+			<option value="30">
+				30
+			</option>
+			<option value="45">
+				45
+			</option>
+		</select>
+	</div>
+</div>
+                        </div>
+                        <!-- Для отдельных товаров -->
+                        <div class="shop__items">
+
+                            <form class="item-card item-card--33">
+	<div class="item-card__tags">
+		<div class="item-card__tag item-card__tag--favorite">
+			<svg class="icon-svg">
+				<use xlink:href="/img/symbol_sprite.svg#icon-svg-heart"></use>
+			</svg>
+			<svg class="icon-svg">
+				<use xlink:href="/img/symbol_sprite.svg#icon-svg-heart-full"></use>
+			</svg>
+		</div>
+		<div class="item-card__tag item-card__tag--orange">
+			<svg class="icon-svg">
+				<use xlink:href="/img/symbol_sprite.svg#icon-svg-percent"></use>
+			</svg>
+		</div>
+		<div class="item-card__tag item-card__tag--green">
+			<svg class="icon-svg">
+				<use xlink:href="/img/symbol_sprite.svg#icon-svg-brilliant"></use>
+			</svg>
+		</div>
+		<div class="item-card__tag item-card__tag--red">
+			<svg class="icon-svg">
+				<use xlink:href="/img/symbol_sprite.svg#icon-svg-fire"></use>
+			</svg>
+		</div>
+	</div>
+	<a href="" class="item-card__thumb">
+		<img src="https://kerasfera.ru/upload/resize_cache/iblock/b5b/223_212_2/b5ba70ea138146f36d697eb17632ea99.jpg" alt="">
+	</a>
+	<a href="" class="item-card__title">
+		Мозаика Bijou White 31.5x31.5
+	</a>
+	<div class="item-card__line">
+		<p class="item-card__line-title">
+			Размер
+		</p>
+		<p class="item-card__line-text">
+			60x60
+		</p>
+	</div>
+	<div class="item-card__line">
+		<p class="item-card__line-title">
+			Ед. измерения
+		</p>
+		<p class="item-card__line-text">
+			кв.м.
+		</p>
+	</div>
+	<div class="item-card__line item-card__line--bottom">
+		<p class="item-card__line-title">
+			Розничная цена
+		</p>
+		<div class="item-card__line-block">
+			<p class="item-card__line-price-old">
+				1 250
+			</p>
+			<p class="item-card__line-price-now">
+				<strong>813</strong> ₽/м²
+			</p>
+		</div>
+	</div>
+	<div class="item-card__toolbar">
+		<div class="item-card__counter">
+			<div class="item-card__btn item-card__btn--minus" tabindex="0">
+				<svg class="icon-svg">
+					<use xlink:href="/img/symbol_sprite.svg#icon-svg-minus"></use>
+				</svg>
+			</div>
+			<input class="item-card__input" type="number" name="q" value="1">
+			<div class="item-card__btn item-card__btn--plus" tabindex="0">
+				<svg class="icon-svg">
+					<use xlink:href="/img/symbol_sprite.svg#icon-svg-plus"></use>
+				</svg>
+			</div>
+		</div>
+		<button class="item-card__submit">
+			В корзину
+		</button>
+	</div>
+</form>
+                            <form class="item-card item-card--33">
+	<div class="item-card__tags">
+		<div class="item-card__tag item-card__tag--favorite">
+			<svg class="icon-svg">
+				<use xlink:href="/img/symbol_sprite.svg#icon-svg-heart"></use>
+			</svg>
+			<svg class="icon-svg">
+				<use xlink:href="/img/symbol_sprite.svg#icon-svg-heart-full"></use>
+			</svg>
+		</div>
+		<div class="item-card__tag item-card__tag--orange">
+			<svg class="icon-svg">
+				<use xlink:href="/img/symbol_sprite.svg#icon-svg-percent"></use>
+			</svg>
+		</div>
+		<div class="item-card__tag item-card__tag--green">
+			<svg class="icon-svg">
+				<use xlink:href="/img/symbol_sprite.svg#icon-svg-brilliant"></use>
+			</svg>
+		</div>
+		<div class="item-card__tag item-card__tag--red">
+			<svg class="icon-svg">
+				<use xlink:href="/img/symbol_sprite.svg#icon-svg-fire"></use>
+			</svg>
+		</div>
+	</div>
+	<a href="" class="item-card__thumb">
+		<img src="https://kerasfera.ru/upload/resize_cache/iblock/b5b/223_212_2/b5ba70ea138146f36d697eb17632ea99.jpg" alt="">
+	</a>
+	<a href="" class="item-card__title">
+		Мозаика Bijou White 31.5x31.5
+	</a>
+	<div class="item-card__line">
+		<p class="item-card__line-title">
+			Размер
+		</p>
+		<p class="item-card__line-text">
+			60x60
+		</p>
+	</div>
+	<div class="item-card__line">
+		<p class="item-card__line-title">
+			Ед. измерения
+		</p>
+		<p class="item-card__line-text">
+			кв.м.
+		</p>
+	</div>
+	<div class="item-card__line item-card__line--bottom">
+		<p class="item-card__line-title">
+			Розничная цена
+		</p>
+		<div class="item-card__line-block">
+			<p class="item-card__line-price-old">
+				1 250
+			</p>
+			<p class="item-card__line-price-now">
+				<strong>813</strong> ₽/м²
+			</p>
+		</div>
+	</div>
+	<div class="item-card__toolbar">
+		<div class="item-card__counter">
+			<div class="item-card__btn item-card__btn--minus" tabindex="0">
+				<svg class="icon-svg">
+					<use xlink:href="/img/symbol_sprite.svg#icon-svg-minus"></use>
+				</svg>
+			</div>
+			<input class="item-card__input" type="number" name="q" value="1">
+			<div class="item-card__btn item-card__btn--plus" tabindex="0">
+				<svg class="icon-svg">
+					<use xlink:href="/img/symbol_sprite.svg#icon-svg-plus"></use>
+				</svg>
+			</div>
+		</div>
+		<button class="item-card__submit">
+			В корзину
+		</button>
+	</div>
+</form>
+                            <form class="item-card item-card--33">
+	<div class="item-card__tags">
+		<div class="item-card__tag item-card__tag--favorite">
+			<svg class="icon-svg">
+				<use xlink:href="/img/symbol_sprite.svg#icon-svg-heart"></use>
+			</svg>
+			<svg class="icon-svg">
+				<use xlink:href="/img/symbol_sprite.svg#icon-svg-heart-full"></use>
+			</svg>
+		</div>
+		<div class="item-card__tag item-card__tag--orange">
+			<svg class="icon-svg">
+				<use xlink:href="/img/symbol_sprite.svg#icon-svg-percent"></use>
+			</svg>
+		</div>
+		<div class="item-card__tag item-card__tag--green">
+			<svg class="icon-svg">
+				<use xlink:href="/img/symbol_sprite.svg#icon-svg-brilliant"></use>
+			</svg>
+		</div>
+		<div class="item-card__tag item-card__tag--red">
+			<svg class="icon-svg">
+				<use xlink:href="/img/symbol_sprite.svg#icon-svg-fire"></use>
+			</svg>
+		</div>
+	</div>
+	<a href="" class="item-card__thumb">
+		<img src="https://kerasfera.ru/upload/resize_cache/iblock/b5b/223_212_2/b5ba70ea138146f36d697eb17632ea99.jpg" alt="">
+	</a>
+	<a href="" class="item-card__title">
+		Мозаика Bijou White 31.5x31.5
+	</a>
+	<div class="item-card__line">
+		<p class="item-card__line-title">
+			Размер
+		</p>
+		<p class="item-card__line-text">
+			60x60
+		</p>
+	</div>
+	<div class="item-card__line">
+		<p class="item-card__line-title">
+			Ед. измерения
+		</p>
+		<p class="item-card__line-text">
+			кв.м.
+		</p>
+	</div>
+	<div class="item-card__line item-card__line--bottom">
+		<p class="item-card__line-title">
+			Розничная цена
+		</p>
+		<div class="item-card__line-block">
+			<p class="item-card__line-price-old">
+				1 250
+			</p>
+			<p class="item-card__line-price-now">
+				<strong>813</strong> ₽/м²
+			</p>
+		</div>
+	</div>
+	<div class="item-card__toolbar">
+		<div class="item-card__counter">
+			<div class="item-card__btn item-card__btn--minus" tabindex="0">
+				<svg class="icon-svg">
+					<use xlink:href="/img/symbol_sprite.svg#icon-svg-minus"></use>
+				</svg>
+			</div>
+			<input class="item-card__input" type="number" name="q" value="1">
+			<div class="item-card__btn item-card__btn--plus" tabindex="0">
+				<svg class="icon-svg">
+					<use xlink:href="/img/symbol_sprite.svg#icon-svg-plus"></use>
+				</svg>
+			</div>
+		</div>
+		<button class="item-card__submit">
+			В корзину
+		</button>
+	</div>
+</form>
+                            <form class="item-card item-card--33">
+	<div class="item-card__tags">
+		<div class="item-card__tag item-card__tag--favorite">
+			<svg class="icon-svg">
+				<use xlink:href="/img/symbol_sprite.svg#icon-svg-heart"></use>
+			</svg>
+			<svg class="icon-svg">
+				<use xlink:href="/img/symbol_sprite.svg#icon-svg-heart-full"></use>
+			</svg>
+		</div>
+		<div class="item-card__tag item-card__tag--orange">
+			<svg class="icon-svg">
+				<use xlink:href="/img/symbol_sprite.svg#icon-svg-percent"></use>
+			</svg>
+		</div>
+		<div class="item-card__tag item-card__tag--green">
+			<svg class="icon-svg">
+				<use xlink:href="/img/symbol_sprite.svg#icon-svg-brilliant"></use>
+			</svg>
+		</div>
+		<div class="item-card__tag item-card__tag--red">
+			<svg class="icon-svg">
+				<use xlink:href="/img/symbol_sprite.svg#icon-svg-fire"></use>
+			</svg>
+		</div>
+	</div>
+	<a href="" class="item-card__thumb">
+		<img src="https://kerasfera.ru/upload/resize_cache/iblock/b5b/223_212_2/b5ba70ea138146f36d697eb17632ea99.jpg" alt="">
+	</a>
+	<a href="" class="item-card__title">
+		Мозаика Bijou White 31.5x31.5
+	</a>
+	<div class="item-card__line">
+		<p class="item-card__line-title">
+			Размер
+		</p>
+		<p class="item-card__line-text">
+			60x60
+		</p>
+	</div>
+	<div class="item-card__line">
+		<p class="item-card__line-title">
+			Ед. измерения
+		</p>
+		<p class="item-card__line-text">
+			кв.м.
+		</p>
+	</div>
+	<div class="item-card__line item-card__line--bottom">
+		<p class="item-card__line-title">
+			Розничная цена
+		</p>
+		<div class="item-card__line-block">
+			<p class="item-card__line-price-old">
+				1 250
+			</p>
+			<p class="item-card__line-price-now">
+				<strong>813</strong> ₽/м²
+			</p>
+		</div>
+	</div>
+	<div class="item-card__toolbar">
+		<div class="item-card__counter">
+			<div class="item-card__btn item-card__btn--minus" tabindex="0">
+				<svg class="icon-svg">
+					<use xlink:href="/img/symbol_sprite.svg#icon-svg-minus"></use>
+				</svg>
+			</div>
+			<input class="item-card__input" type="number" name="q" value="1">
+			<div class="item-card__btn item-card__btn--plus" tabindex="0">
+				<svg class="icon-svg">
+					<use xlink:href="/img/symbol_sprite.svg#icon-svg-plus"></use>
+				</svg>
+			</div>
+		</div>
+		<button class="item-card__submit">
+			В корзину
+		</button>
+	</div>
+</form>
+
+                            <div class="item-card item-card--33 item-card--clear"></div>
+                            <div class="item-card item-card--33 item-card--clear"></div>
+                        </div>
+                        <!-- Для коллекций -->
+                        <div class="shop__items">
+
+                            <a href="" class="item">
+	<div class="item__img">
+		<img src="http://dev.kerasfera.ru/upload/resize_cache/iblock/2c9/223_212_2/2c9992e03efdc7221faedfbd2a789015.jpg" alt="">
+		<div class="item__tags">
+			<div class="item__tag item__tag--orange">
+				<svg class="icon-svg">
+					<use xlink:href="/img/symbol_sprite.svg#icon-svg-percent"></use>
+				</svg>
+			</div>
+			<div class="item__tag item__tag--green">
+				<svg class="icon-svg">
+					<use xlink:href="/img/symbol_sprite.svg#icon-svg-brilliant"></use>
+				</svg>
+			</div>
+			<div class="item__tag item__tag--red">
+				<svg class="icon-svg">
+					<use xlink:href="/img/symbol_sprite.svg#icon-svg-fire"></use>
+				</svg>
+			</div>
+		</div>
+	</div>
+	<div class="item__title">
+		Danae
+	</div>
+</a>
+                            <a href="" class="item">
+	<div class="item__img">
+		<img src="http://dev.kerasfera.ru/upload/resize_cache/iblock/2c9/223_212_2/2c9992e03efdc7221faedfbd2a789015.jpg" alt="">
+		<div class="item__tags">
+			<div class="item__tag item__tag--orange">
+				<svg class="icon-svg">
+					<use xlink:href="/img/symbol_sprite.svg#icon-svg-percent"></use>
+				</svg>
+			</div>
+			<div class="item__tag item__tag--green">
+				<svg class="icon-svg">
+					<use xlink:href="/img/symbol_sprite.svg#icon-svg-brilliant"></use>
+				</svg>
+			</div>
+			<div class="item__tag item__tag--red">
+				<svg class="icon-svg">
+					<use xlink:href="/img/symbol_sprite.svg#icon-svg-fire"></use>
+				</svg>
+			</div>
+		</div>
+	</div>
+	<div class="item__title">
+		Danae
+	</div>
+</a>
+                            <a href="" class="item">
+	<div class="item__img">
+		<img src="http://dev.kerasfera.ru/upload/resize_cache/iblock/2c9/223_212_2/2c9992e03efdc7221faedfbd2a789015.jpg" alt="">
+		<div class="item__tags">
+			<div class="item__tag item__tag--orange">
+				<svg class="icon-svg">
+					<use xlink:href="/img/symbol_sprite.svg#icon-svg-percent"></use>
+				</svg>
+			</div>
+			<div class="item__tag item__tag--green">
+				<svg class="icon-svg">
+					<use xlink:href="/img/symbol_sprite.svg#icon-svg-brilliant"></use>
+				</svg>
+			</div>
+			<div class="item__tag item__tag--red">
+				<svg class="icon-svg">
+					<use xlink:href="/img/symbol_sprite.svg#icon-svg-fire"></use>
+				</svg>
+			</div>
+		</div>
+	</div>
+	<div class="item__title">
+		Danae
+	</div>
+</a>
+                            <a href="" class="item">
+	<div class="item__img">
+		<img src="http://dev.kerasfera.ru/upload/resize_cache/iblock/2c9/223_212_2/2c9992e03efdc7221faedfbd2a789015.jpg" alt="">
+		<div class="item__tags">
+			<div class="item__tag item__tag--orange">
+				<svg class="icon-svg">
+					<use xlink:href="/img/symbol_sprite.svg#icon-svg-percent"></use>
+				</svg>
+			</div>
+			<div class="item__tag item__tag--green">
+				<svg class="icon-svg">
+					<use xlink:href="/img/symbol_sprite.svg#icon-svg-brilliant"></use>
+				</svg>
+			</div>
+			<div class="item__tag item__tag--red">
+				<svg class="icon-svg">
+					<use xlink:href="/img/symbol_sprite.svg#icon-svg-fire"></use>
+				</svg>
+			</div>
+		</div>
+	</div>
+	<div class="item__title">
+		Danae
+	</div>
+</a>
+
+                            <div class="item-card item-card--33 item-card--clear"></div>
+                            <div class="item-card item-card--33 item-card--clear"></div>
+                        </div>
+                        <div class="shop__toolbar">
+                            <button class="shop__btn">
+                                Загрузить еще
+                            </button>
+                        </div>
+                        <div class="page_nav page_nav--shop">
+                            <span rel="1" class="active">1</span>
+                            <a href="?page=2" date-name="arrow" rel="2" class="right">вперед</a>
+                            <a href="?page=41" date-name="arrow" rel="41" class="last">41</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Модалка -->
+
+        <div class="container">
+            <div class="call" id="item-popup-1">
+                <div class="call__info">
+                    <h3 class="call__name">
+                        Пунто серый светлый микс 30x30 плитка                                        
+                    </h3>
+                    <div class="call__thumb">
+                        <img src="https://kerasfera.ru/upload/iblock/677/67792402f5ca56fd23fce9bfbf4afc06.jpg" alt="">
+                    </div>
+                </div>
+                <form action="" class="call__content">
+                    <p class="call__title">
+                        Коллекция Пунто                                        
+                    </p>
+                    <div class="call__columns">
+                        <p>
+                            <span>Назначение</span> Для наружных работ, Для пола                                                    
+                        </p>
+                        <p>
+                            <span>Размер</span> 30x30                                                    
+                        </p>
+                        <p>
+                            <span>Толщина</span> 8 мм                                                   
+                        </p>
+                        <p>
+                            <span>Поверхность</span> Матовая                                                
+                        </p>
+                        <p>
+                            <span>Стиль</span> Мрамор                                                  
+                        </p>
+                        <p>
+                            <span>Цвет</span> Серый                                                   
+                        </p>
+                        <p>
+                            <span>Группа</span> Напольный керамогранит                                             
+                        </p>
+                        <p>
+                            <span>Производитель</span> Kerama Marazzi                                               
+                        </p>
+                        <p>
+                            <span>Страна</span> Россия                                                   
+                        </p>
+                        <p>
+                            <span>Единица измерения</span> кв. м.                                                  
+                        </p>
+                        <p>
+                            <span>Обрезная</span> да                                                  
+                        </p>
+                        <p>
+                            <span>Морозостойкость</span> да                                                  
+                        </p>
+                    </div>
+
+                    <div class="call__toolbar">
+                        <div class="call__direct">
+                            <!-- Если под заказ, то вместо вот этого вот -->
+                            <p class="call__price">
+                                1 140 ₽/м²
+                            </p>
+                            <div class="call__counter">
+                                <div class="counter">
+                                    <div class="counter__btn counter__btn--minus">
+                                        <svg class="icon-svg">
+                                            <use xlink:href="/img/symbol_sprite.svg#icon-svg-minus"></use>
+                                        </svg>
+                                    </div>
+                                    <input class="counter__input" max="5" type="text" name="q" value="1">
+                                    <div class="counter__btn counter__btn--plus">
+                                        <svg class="icon-svg">
+                                            <use xlink:href="/img/symbol_sprite.svg#icon-svg-plus"></use>
+                                        </svg>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <input type="submit" name="" class="call__control-btn" value="В корзину">
+                            <!--  -->
+
+                            <!-- Вставляй это -->
+                            <!-- <button type="submit" class="call__control-btn">Под заказ</button> -->
+                            <!--  -->
+                        </div>
+
+                        <div class="call__footer">
+                            <div class="call__old">
+                                <p class="call__old-title">
+                                    Старая цена
+                                </p>
+                                <p class="call__old-text">
+                                    1900
+                                </p>
+                            </div>
+                            <a href="" title="" class="call__collection-btn">Вся коллекция</a>
+                        </div>
+                    </div>
+                    
+
+                </form>
+                <div class="call__close">
+                    <svg class="icon-svg">
+                        <use xlink:href="/img/symbol_sprite.svg#icon-svg-close"></use>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="call" id="item-popup-2">
+                <div class="call__info">
+                    <h3 class="call__name">
+                        Merano-R Pulido 79.3x179.3 плитка                                        
+                    </h3>
+                    <div class="call__thumb">
+                        <img src="https://kerasfera.ru/upload/iblock/0bc/0bce278ee0cfc365a55323ce39884ef2.jpg" alt="">
+                    </div>
+                </div>
+                <form action="/shop/detail.php?k=Marblelous&amp;p=Vives" class="call__content">
+                    <p class="call__title">
+                        Оставить заявку на звонок
+                    </p>
+                    <input name="Prop[0]" type="hidden" value="Merano-R Pulido 79.3x179.3 плитка">
+                    <div class="call__form">
+                        <label class="call__label">
+                            <p class="call__discript">
+                                Ваше имя
+                            </p>
+                            <input name="Prop[1]" type="text" required="">
+                        </label>
+                        <label class="call__label">
+                            <p class="call__discript">
+                                Телефон
+                            </p>
+                            <input name="Prop[2]" type="text" required="">
+                        </label>
+                        <label class="call__label">
+                            <p class="call__discript">
+                                Email
+                            </p>
+                            <input name="Prop[3]" type="text">
+                        </label>
+                        <label class="call__question">
+                            <input type="checkbox" checked="">
+                            <div class="call__checkbox"></div>
+                            <p class="call__check-text">
+                                Я согласен с <a href="">условиями обработки <br>
+                                персональных данных.</a>
+                            </p>
+                        </label>
+                    </div>
+                    <div class="call__control">
+                        <p class="call__control-text">
+                            Товар поставляется под заказ
+                        </p>
+                        <div class="call__footer">
+                            <button type="submit" class="call__control-btn"> Отправить
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+                <div class="call__close">
+                    <svg class="icon-svg">
+                        <use xlink:href="/img/symbol_sprite.svg#icon-svg-close"></use>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <section class="mob-toolbar">
+	<div class="container mob-toolbar__container">
+		<a href="" class="mob-toolbar__link mob-toolbar__link--active">
+			<div class="mob-toolbar__icon">
+				<svg class="icon-svg">
+					<use xlink:href="/img/symbol_sprite.svg#icon-svg-home"></use>
+				</svg>
+			</div>
+			<p class="mob-toolbar__link-text">
+				Главная
+			</p>
+		</a>
+		<a href="" class="mob-toolbar__link">
+			<div class="mob-toolbar__icon">
+				<svg class="icon-svg">
+					<use xlink:href="/img/symbol_sprite.svg#icon-svg-catalog"></use>
+				</svg>
+			</div>
+			<p class="mob-toolbar__link-text">
+				Каталог
+			</p>
+		</a>
+		<a href="" class="mob-toolbar__link">
+			<div class="mob-toolbar__icon">
+				<svg class="icon-svg">
+					<use xlink:href="/img/symbol_sprite.svg#icon-svg-heart"></use>
+				</svg>
+			</div>
+			<p class="mob-toolbar__link-text">
+				Избранное
+			</p>
+		</a>
+		<a href="" class="mob-toolbar__link">
+			<div class="mob-toolbar__icon">
+				<svg class="icon-svg">
+					<use xlink:href="/img/symbol_sprite.svg#icon-svg-cart"></use>
+				</svg>
+				<div class="mob-toolbar__counter">
+					12
+				</div>
+			</div>
+			<p class="mob-toolbar__link-text">
+				Корзина
+			</p>
+		</a>
+	</div>
+</section>
+        <div class="container">
+    <div class="temp" style="padding: 15px; column-count:3;">
+        <a href="index.html" class="">
+            1.Главная
+        </a>
+        <br>
+        <a href="./2_catalog.html">
+            2.Каталог
+        </a>
+        <br>
+        <a href="./3_single.html">
+            3.Одиночная (под заказ)
+        </a>
+        <br>
+        <a href="./4_single.html">
+            4.Одиночная (в наличии)
+        </a>
+        <br>
+        <a href="./5_collection.html">
+            5.Одиночная (коллекция)
+        </a>
+        <br>
+        <a href="./6_about.html">
+            6.О нас
+        </a>
+        <br>
+        <a href="./7_profits.html">
+            7.Преимущества
+        </a>
+        <br>
+        <a href="./8_design.html">
+            8.Дизайн-проект
+        </a>
+        <br>
+        <a href="./9_how.html">
+            9.Как купить
+        </a>
+        <br>
+        <a href="./10_for-designers.html">
+            10.Дизайнерам
+        </a>
+        <br>
+        <a href="./11_vacancy.html">
+            11.Вакансии
+        </a>
+        <br>
+        <a href="./12_faq.html">
+            12.FAQ
+        </a>
+        <br>
+        <a href="./13_sale.html">
+            13.Карта скидок
+        </a>
+        <br>
+        <a href="./14_garant.html">
+            14.Гарантии
+        </a>
+        <br>
+        <a href="./15_return.html">
+            15.Возврат
+        </a>
+        <br>
+        <a href="./16_payment.html">
+            16.Оплата
+        </a>
+        <br>
+        <a href="./17_tariffs.html">
+            17.Тарифы
+        </a>
+        <br>
+        <a href="./18_blog.html">
+            18.Блог
+        </a>
+        <br>
+        <a href="./19_post.html">
+            19.Новость
+        </a>
+        <br>
+        <a href="./20_contacts.html">
+            20.Контакты
+        </a>
+        <br>
+        <a href="./21_cart.html">
+            21.Корзина
+        </a>
+        <br>
+        <a href="./22_cart.html">
+            22.Оформление
+        </a>
+        <br>
+    </div>
+</div>
+        <script src="https://kerasfera.ru/local/templates/new/js/scripts.min.js?9"></script>
+        <script src="js/filter_new.js"></script>
+        <script src="js/main.js"></script>
+        <!-- <script src="js/vendor.js"></script> -->
+    </div>
+</body>
+</html>
