@@ -8,6 +8,9 @@
 	&-10 {
 		margin-bottom: 10px;
 	}
+	&-15 {
+		margin-bottom: 15px;
+	}
 	&-16 {
 		margin-bottom: 16px;
 	}
@@ -35,9 +38,13 @@
 }
 
 .mob-hidden {
-
+	@include r(1100) {
+		display: none;
+	}
 }
 
 .mob-full {
-
+	@include r(1100) {
+		width: 100%;
+	}
 }

@@ -2,12 +2,23 @@
 	&__none {
 		font-size: 26px;
 		font-weight: 700;
+		line-height: 1.3;
+		@include r(600) {
+			font-size: 22px;
+		}
 	}
 	&__control {
 		display: flex;
 		justify-content: space-between;
+		@include r(600) {
+			display: block;
+		}
 		.button {
 			width: calc(50% - 8px);
+			@include r(600) {
+				width: 100%;
+				margin-bottom: 16px;
+			}
 		}
 	}
 }

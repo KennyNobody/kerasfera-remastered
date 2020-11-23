@@ -1,6 +1,9 @@
 .product-info {
 	column-count: 2;
 	column-gap: 16px;
+	@include r(600) {
+		column-count: 1;
+	}
 	&--full {
 		column-count: 1;
 	}

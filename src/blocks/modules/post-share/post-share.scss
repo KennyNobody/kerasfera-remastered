@@ -2,5 +2,8 @@
 	&__title {
 		font-weight: 700;
 		margin-bottom: 2px;
+		@include r(1100) {
+			font-weight: normal;
+		}
 	}
 }

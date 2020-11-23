@@ -30,35 +30,18 @@
         @@include("../blocks/modules/header/header.html")
 
         <main class="content">
-            <section class="breadcrumbs">
-                <div class="container">
-                    @@include("../blocks/modules/breadcrumbs-nav/breadcrumbs-nav.html")
-                </div>
-            </section>
             <div class="container">
+                @@include("../blocks/modules/breadcrumbs-nav/breadcrumbs-nav.html")
                 <h2 class="title mb-6">
                     Leiden Gris 60x60 плитка
                 </h2>
                 @@include("../blocks/modules/tags/tags.html")
-                <div class="columns mb-30">
-                    <div class="columns__column columns__column--6">
+                <div class="columns">
+                    <div class="columns__column columns__column--6 mb-32">
                         @@include("../blocks/modules/product-slider/product-slider.html")
                     </div>
-                    <div class="columns__column columns__column--6">
+                    <div class="columns__column columns__column--6 mb-32">
                         <div class="bordered-block bordered-block--orange mb-16">
-                            <!-- <div class="product-toolbar">
-                                <h3 class="product-toolbar__none mb-10">
-                                    Товар поставляется под заказ
-                                </h3>
-                                <div class="product-toolbar__control">
-                                    <a href="" class="button button--orange">
-                                        Оставить заявку
-                                    </a>
-                                    <a href="" class="button button--green">
-                                        Вся коллекция
-                                    </a>
-                                </div>
-                            </div> -->
                             @@include("../blocks/modules/product-form/product-form.html")
                         </div>
                         <div class="bordered-block bordered-block--green mb-16">

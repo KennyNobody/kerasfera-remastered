@@ -11,6 +11,13 @@
 		margin-right: 16px;
 		margin-bottom: 16px;
 		text-decoration: none;
+		@include r(1100) {
+			font-weight: normal;
+			padding: 2px 7px;
+			margin-right: 8px;
+			margin-bottom: 12px;
+			font-size: 12px;
+		}
 	}
 }
 

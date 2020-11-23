@@ -30,12 +30,8 @@
         @@include("../blocks/modules/header/header.html")
 
         <main class="content">
-            <section class="breadcrumbs">
-                <div class="container">
-                    @@include("../blocks/modules/breadcrumbs-nav/breadcrumbs-nav.html")
-                </div>
-            </section>
             <div class="container">
+                @@include("../blocks/modules/breadcrumbs-nav/breadcrumbs-nav.html")
                 <div class="columns mb-80">
                     <div class="columns__column columns__column--3 mob-hidden">
                         @@include("../blocks/modules/sidebar/sidebar.html")
@@ -86,7 +82,7 @@
                             </div>
                         </div>
                         <div class="columns mb-32">
-                            <div class="columns__column columns__column--1">
+                            <div class="columns__column columns__column--1 mob-hidden">
                                 <img class="img" src="img/visa-big.svg" alt="VISA">
                             </div>
                             <div class="columns__column columns__column--11">
@@ -101,7 +97,7 @@
                             </div>
                         </div>
                         <div class="columns mb-32">
-                            <div class="columns__column columns__column--1">
+                            <div class="columns__column columns__column--1 mob-hidden">
                                 <img class="img" src="img/mastercard-big.svg" alt="VISA">
                             </div>
                             <div class="columns__column columns__column--11">
@@ -129,7 +125,7 @@
                                     </div>
                                 </div>
                                 <div class="columns mb-32">
-                                    <div class="columns__column columns__column--6">
+                                    <div class="columns__column columns__column--6 mb-16">
                                         <ol class="circles">
                                             <li>
                                                 Номер вашей кредитной карты
@@ -142,7 +138,7 @@
                                             </li>
                                         </ol>
                                     </div>
-                                    <div class="columns__column columns__column--6">
+                                    <div class="columns__column columns__column--6 mb-16">
                                         <p>
                                             <i>
                                                 Если на вашей карте код CVC / CVV отсутствует, то, возможно, карта не пригодна для CNP транзакций (т.е. таких транзакций, при которых сама карта не присутствует, а используются её реквизиты), и вам следует обратиться в банк для получения подробной информации. 

@@ -1,0 +1,39 @@
+.agreement {
+	transition: 0.3s all;
+	cursor: pointer;
+	display: flex;
+	&:hover {
+		opacity: 0.7;
+	}
+	&__field {
+		display: none;
+		&:checked {
+			& + .agreement__icon {
+				svg {
+					opacity: 1;
+				}
+			}
+		}
+	}
+	&__icon {
+		margin-right: 8px;
+		width: 20px;
+		height: 20px;
+		display: block;
+		flex-shrink: 0;
+		border: 1px solid #EAEAEA;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-shrink: 0;
+		svg {
+			fill: $orange;
+			opacity: 0;
+			transition: 0.3s all;
+		}
+	}
+	&__text {
+		font-size: 16px;
+		line-height: 1.3;
+	}
+}

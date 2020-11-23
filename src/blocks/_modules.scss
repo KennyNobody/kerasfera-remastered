@@ -10,19 +10,20 @@
 // @import "modules/footer/footer";
 
 // NEW 14.11.2020
+@import "modules/container/container";
 @import "modules/title/title";
-@import "modules/form-order/form-order";
+/* */ @import "modules/form-order/form-order";
 @import "modules/content/content";
-@import "modules/single-product/single-product";
 @import "modules/tags/tags";
 @import "modules/accent-block/accent-block";
 @import "modules/button/button";
-@import "modules/editor/editor";
+/* */ @import "modules/editor/editor";
 @import "modules/sidebar/sidebar";
 @import "modules/post-share/post-share";
 @import "modules/meta/meta";
 @import "modules/img/img";
-@import "modules/table/table";
+@import "modules/agreement/agreement";
+/* */ @import "modules/table/table";
 @import "modules/textarea/textarea";
 @import "modules/post-preview/post-preview";
 @import "modules/product-slider/product-slider";
@@ -32,8 +33,14 @@
 @import "modules/item-feature/item-feature";
 @import "modules/item-garant/item-garant";
 @import "modules/editor-file/editor-file";
-@import "modules/item-visual/item-visual";
+/* */ @import "modules/item-visual/item-visual";
 @import "modules/item-post/item-post";
-@import "modules/item-contact/item-contact";
+/* */ @import "modules/item-contact/item-contact";
 @import "modules/product-form/product-form";
 @import "modules/checkbox-block/checkbox-block";
+@import "modules/promocode/promocode";
+@import "modules/scroll-parent/scroll-parent";
+
+@include r(1100) {
+
+}

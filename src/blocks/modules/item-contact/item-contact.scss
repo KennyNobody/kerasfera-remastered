@@ -3,9 +3,15 @@
 	justify-content: space-between;
 	&__slider {
 		width: calc(50% - 8px);
+		@include r(1100) {
+			display: none;
+		}
 	}
 	&__content {
 		width: calc(50% - 8px);
+		@include r(1100) {
+			width: 100%;
+		}
 	}
 	&__title {
 		margin-bottom: 22px;

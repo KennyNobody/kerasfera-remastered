@@ -10,11 +10,19 @@
 		transition: 0.3s all;
 		display: block;
 		cursor: default;
+		@include r(1100) {
+			margin-bottom: 0px;
+		}
 		img {
 			display: block;
+			width: 100%;
+			height: auto;
 		}
 	}
 	&__bottom-slider {
+		@include r(1100) {
+			display: none;
+		}
 		&--hidden {
 			display: none;
 		}

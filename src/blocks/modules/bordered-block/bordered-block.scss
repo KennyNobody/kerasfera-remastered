@@ -1,6 +1,9 @@
 .bordered-block {
 	display: block;
 	padding-left: 20px;
+	@include r(1100) {
+		padding-left: 12px;
+	}
 	&--orange {
 		border-left: 3px solid $orange;
 	}
