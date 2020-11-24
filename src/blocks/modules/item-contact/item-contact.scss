@@ -2,13 +2,14 @@
 	display: flex;
 	justify-content: space-between;
 	&__slider {
-		width: calc(50% - 8px);
+		width: calc(50% - 16px);
+		margin-left: 0;
 		@include r(1100) {
 			display: none;
 		}
 	}
 	&__content {
-		width: calc(50% - 8px);
+		width: calc(50% - 16px);
 		@include r(1100) {
 			width: 100%;
 		}
@@ -76,8 +77,9 @@
 		align-items: center;
 		background-color: rgba(34, 35, 36, 0.5);
 		border: none;
+		opacity: 0.7;
 		&:hover {
-			opacity: 0.7;
+			opacity: 1;
 		}
 		svg {
 			display: block;
@@ -85,7 +87,10 @@
 			height: 36px;
 		}
 		&--disabled {
-			opacity: 0.4;
+			opacity: 0;
+			&:hover {
+				opacity: 0;
+			}
 		}
 	}
 }

@@ -12,7 +12,7 @@
 // NEW 14.11.2020
 @import "modules/container/container";
 @import "modules/title/title";
-/* */ @import "modules/form-order/form-order";
+@import "modules/form-order/form-order";
 @import "modules/content/content";
 @import "modules/tags/tags";
 @import "modules/accent-block/accent-block";
@@ -22,8 +22,11 @@
 @import "modules/post-share/post-share";
 @import "modules/meta/meta";
 @import "modules/img/img";
+@import "modules/input/input";
+@import "modules/dropdown/dropdown";
 @import "modules/agreement/agreement";
-/* */ @import "modules/table/table";
+@import "modules/table/table";
+@import "modules/decorline/decorline";
 @import "modules/textarea/textarea";
 @import "modules/post-preview/post-preview";
 @import "modules/product-slider/product-slider";
@@ -39,7 +42,7 @@
 @import "modules/product-form/product-form";
 @import "modules/checkbox-block/checkbox-block";
 @import "modules/promocode/promocode";
-@import "modules/scroll-parent/scroll-parent";
+@import "modules/modal/modal";
 
 @include r(1100) {
 

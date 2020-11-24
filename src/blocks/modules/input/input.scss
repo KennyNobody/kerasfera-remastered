@@ -1,0 +1,17 @@
+.input {
+	display: block;
+	width: 100%;
+	&__field {
+		background: none;
+		border: none;
+		border-bottom: 1px solid #828282;
+		font-size: 16px;
+		padding-bottom: 10px;
+		padding-top: 10px;
+		display: block;
+		width: 100%;
+		&::placeholder {
+			font-family: $font-main;
+		}
+	}
+}

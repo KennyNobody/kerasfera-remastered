@@ -1,4 +1,4 @@
-modules.define('scroll-parent', ['i-bem-dom'], function(provide, bemDom) {
+modules.define('input', ['i-bem-dom'], function(provide, bemDom) {
 
 provide(bemDom.declBlock(this.name, {
     onSetMod: {

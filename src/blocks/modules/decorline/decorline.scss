@@ -1,0 +1,12 @@
+.decorline {
+	height: 9px;
+	display: block;
+	background-image: url(../img/decorline.svg);
+	background-position: center;
+	&--top {
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		right: 0px;
+	}
+}

@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		let btnPlus = item.querySelector('.table__counter-btn--next');
 		let input = item.querySelector('.table__counter-input');
 
-
+		checkDisabled(btnMinus, input.value);
 
 		btnMinus.addEventListener('click', function(e) {
 			e.preventDefault();

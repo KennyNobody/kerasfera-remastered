@@ -1,0 +1,39 @@
+.modal {
+	position: relative;
+	padding: 66px 72px;
+	box-sizing: border-box;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    @include r(1100) {
+		padding: 30px 16px;
+	}
+	&--half {
+		width: 100%;
+		max-width: 552px;
+	}
+	&__close {
+		position: absolute;
+		right: 0px;
+		top: 0px;
+		width: 40px;
+		height: 40px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		transition: 0.3s all;
+		top: 24px;
+		right: 15px;
+		background: none;
+		cursor: pointer;
+		border: none;
+		&:hover {
+			opacity: 0.7;
+		}
+		svg {
+			width: 18px;
+			height: 18px;
+			display: block;
+		}
+	}
+}

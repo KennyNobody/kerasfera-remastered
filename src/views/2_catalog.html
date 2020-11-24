@@ -85,6 +85,7 @@
         <!-- Модалка -->
 
         <div class="container">
+
             <div class="call" id="item-popup-1">
                 <div class="call__info">
                     <h3 class="call__name">
@@ -188,9 +189,7 @@
                     </svg>
                 </div>
             </div>
-        </div>
 
-        <div class="container">
             <div class="call" id="item-popup-2">
                 <div class="call__info">
                     <h3 class="call__name">
@@ -250,7 +249,52 @@
                     </svg>
                 </div>
             </div>
+
+            <div class="modal modal--half" id="modal-call">
+                <div class="decorline decorline--top"></div>
+                <button class="modal__close">
+                    <svg>
+                        <use xlink:href="/img/sprites/sprite.svg#icon-svg-modal-close"></use>
+                    </svg>
+                </button>
+                <form action="" class="modal__form">
+                    <h2 class="title mb-40">
+                        Оставить заявку <br> на звонок
+                    </h2>
+                    <label class="input mb-20">
+                        <input type="text" class="input__field" placeholder="Ваше имя">
+                    </label>
+                    <label class="input mb-20">
+                        <input type="text" class="input__field" placeholder="Номер телефона">
+                    </label>
+                    <label class="input mb-20">
+                        <input type="text" class="input__field" placeholder="E-mail">
+                    </label>
+                    <label class="input mb-20">
+                        <input type="text" class="input__field" placeholder="Кол-во упаковок">
+                    </label>
+                    <label class="agreement mb-32">
+                        <input type="checkbox" class="agreement__field">
+                        <div class="agreement__icon">
+                            <svg>
+                                <use xlink:href="/img/sprites/sprite.svg#icon-svg-check"></use>
+                            </svg>
+                        </div>
+                        <p class="agreement__text">
+                            Я соглашаюсь с условиями обработки
+                            персональных данных.
+                        </p>
+                    </label>
+                    <button class="button button--orange button--full">
+                        <span>
+                            Оставить заявку
+                        </span>
+                    </button>
+                </form>
+            </div>
         </div>
+
+
 
         @@include("../blocks/modules/footer/footer.html")
         @@include("../blocks/modules/temp/temp.html")
