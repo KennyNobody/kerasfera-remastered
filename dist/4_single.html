@@ -206,6 +206,7 @@
 		</p>
 	</div>
 	<div class="product-form__block mb-10">
+		<input type="hidden" class="product-form__input-hidden mb-10">
 		<div class="product-form__counter">
 			<div class="product-form__counter-button product-form__counter-button--minus" tabindex="0">
 				-
@@ -218,20 +219,22 @@
 	</div>
 	<div class="product-form__block mb-16">
 		<div class="product-form__toolbar">
+			<!-- В value указываем, сколько м2 одна плитка, data-count - сколько находится в упаковке -->
 			<label class="product-form__tab">
-				<input type="radio" name="type" value="1.2" id="product-type-s" checked class="product-form__input">
+				<input type="radio" name="type" data-type="square" value="1.2" data-count="16" id="product-type-s" checked class="product-form__input">
 				<p class="product-form__input-block">
 					м2
 				</p>
 			</label>
 			<label class="product-form__tab">
-				<input type="radio" name="type" value="10" id="product-type-count" class="product-form__input">
+				<!-- В value указываем, сколько штук находится в упаковке -->
+				<input type="radio" name="type" data-type="quantity" value="10" id="product-type-count" class="product-form__input">
 				<p class="product-form__input-block">
 					штуки
 				</p>
 			</label>
 			<label class="product-form__tab">
-				<input type="radio" value="1" name="type" id="product-type-pack" class="product-form__input">
+				<input type="radio" value="1" name="type" data-type="packs" id="product-type-pack" class="product-form__input">
 				<p class="product-form__input-block">
 					упаковки
 				</p>
