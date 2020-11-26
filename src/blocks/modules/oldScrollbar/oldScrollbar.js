@@ -35,7 +35,6 @@
     };
 
     var DIRS_VERTICAL = {
-//		axis: 'y',
         dim: 'height',
         Dim: 'Height',
         dir: 'top',
@@ -46,7 +45,6 @@
         suffix: '-y'
     };
     var DIRS_HORIZONTAL = {
-//		axis: 'x',
         dim: 'width',
         Dim: 'Width',
         dir: 'left',
@@ -89,8 +87,6 @@
 
         $container.addClass(options.prefix + 'container');
 
-
-        // scroll dimensions in case of hidden element
         var tmp = $('<div class="' + options.prefix + 'inner" />').width(100).height(100).appendTo('body').css({overflow: 'scroll'})[0];
         var scrollWidth = tmp.offsetWidth - tmp.clientWidth;
         var scrollHeight = tmp.offsetHeight - tmp.clientHeight;
@@ -98,10 +94,8 @@
 
         if (options.vertical) {
             $inner.css({
-                /* save the padding */
                 paddingLeft: $container.css('paddingLeft'),
                 paddingRight: $container.css('paddingRight'),
-                /* hide scrolls */
                 marginRight: -scrollWidth + 'px'
 
             });
@@ -114,7 +108,6 @@
         }
         if (options.horizontal) {
             $inner.css({
-                /* hide scrolls */
                 marginBottom: -scrollHeight + 'px',
                 paddingBottom: scrollHeight + 'px'
             });
@@ -126,7 +119,6 @@
             $inner.css({overflowX: 'hidden'})
         }
 
-        /* in case of max-height */
         var maxHeight = $container.css('maxHeight');
         if (parseInt(maxHeight)) {
             $container.css('maxHeight', 'none');
@@ -175,8 +167,6 @@
         }
 
         function initBar(dirKey, dir) {
-//			console.log('initBar', dirKey, dir)
-//			var dir = DIRS[dirKey];
             $container['scroll' + dir.Dir](0);
 
             var cls = options.prefix + 'bar' + dir.suffix;
@@ -204,7 +194,6 @@
         }
 
         function getDims(dirKey, dir) {
-//			console.log('getDims', dirKey, dir)
             var total = $inner.prop('scroll' + dir.Dim) | 0;
             var dim = $container['inner' + dir.Dim]();
             var inner = $inner['inner' + dir.Dim]();
@@ -213,7 +202,6 @@
 
             var bar = Math.max((scroll * dim / total) | 0, options['barMin' + dir.Dim]);
             var ratio = (scroll - bar) / (total - inner);
-//			if (dirKey == 'y' && $container.is('#example-hard')) console.log('dim', dim, inner, scroll, total, bar, ratio)
 
             return {
                 ratio: ratio,
@@ -229,7 +217,6 @@
         }
 
         function updateBar(dirKey, dir) {
-//			var dir = DIRS[dirKey];
             var dims = getDims(dirKey, dir);
             if (!dims.total) return;
 
@@ -238,8 +225,8 @@
                 lastDims[dirKey].scrollPos === scrollPos &&
                 lastDims[dirKey].scroll === dims.scroll &&
                 lastDims[dirKey].total === dims.total
-            ) return;
-            lastDims[dirKey] = dims;
+                ) return;
+                lastDims[dirKey] = dims;
             lastDims[dirKey].scrollPos = scrollPos;
 
 
@@ -249,12 +236,10 @@
                 isBarHidden[dirKey] = isHide;
             }
             var barPos = scrollPos * dims.ratio;
-//			console.log('upd', scrollPos, dims.ratio, barPos)
-            //if (dirKey === 'y') console.log(barPos, dims.scroll, dims.bar, dims)
             if (barPos < 0) barPos = 0;
             if (barPos > dims.scroll - dims.bar) barPos = dims.scroll - dims.bar;
             $bars[dirKey][dir.dim](dims.bar)
-                .css(dir.dir, options['offset' + dir.Dir] + barPos);
+            .css(dir.dir, options['offset' + dir.Dir] + barPos);
         }
 
         function destroy() {
@@ -262,11 +247,37 @@
                 $bars[key].remove();
             });
             $container
-                .removeClass(options.prefix + 'container')
-                .removeData('custom-scroll')
-                .css({padding: '', maxHeight: ''});
+            .removeClass(options.prefix + 'container')
+            .removeData('custom-scroll')
+            .css({padding: '', maxHeight: ''});
             $inner.contents().appendTo($container);
             $inner.remove();
         }
     }
 })(jQuery);
+
+document.addEventListener('DOMContentLoaded', function() {
+    function reWidth() {
+        if ($(document).width() < 1000) {
+            $('.filter__wrapper').customScroll({
+                vertical: true,
+                horizontal: false
+            });
+        } else {
+            $('.filter__block ul').customScroll({
+                vertical: true,
+                horizontal: false
+            });
+        }
+    };
+
+    reWidth();
+
+    $(window).on('resize', function(){
+        setTimeout(reWidth, 300);
+    });
+
+    $(".filter__block").click(function() {
+        setTimeout(reWidth, 300);
+    });
+});
