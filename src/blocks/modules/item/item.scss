@@ -1,17 +1,19 @@
 .item {
-    width: calc(33% - 11px);
+    // width: calc(33% - 11px);
     box-sizing: border-box;
     margin-bottom: 25px;
     position: relative;
-    @include r(1000) {
-        width: calc(50% - 11px);
-    }
-    @include r(750) {
-        max-width: 100%;
-        width: 400px;
-        margin-left: auto;
-        margin-right: auto
-    }
+    display: block;
+    width: 100%;
+    // @include r(1000) {
+    //     width: calc(50% - 11px);
+    // }
+    // @include r(750) {
+    //     max-width: 100%;
+    //     width: 400px;
+    //     margin-left: auto;
+    //     margin-right: auto
+    // }
     &:hover {
         img {
             opacity: 0.7;

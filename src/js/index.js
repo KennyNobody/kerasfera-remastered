@@ -3,17 +3,12 @@ import "./import/modules";
 
 document.addEventListener('DOMContentLoaded', function() {
 
-	function initAutoScroll() {
-		let btn = document.querySelector('.autoscroll');
+	$('.autoscroll').on('click', function(e){
+		$('html,body').stop().animate({ scrollTop: $(this.hash).offset().top }, 1000);
+		e.preventDefault();
+	});
 
-		if (btn) {
-			btn.addEventListener('click', function(event) {
-				event.preventDefault();
-				$("html, body").animate({ scrollTop: 0 }, 2000);
-			});
-		}
-
-	}
+	
 
 	$(window).on('load scroll', function(e) {
 		$('.autoscroll').toggleClass('autoscroll--hidden', $(this).scrollTop() > 600);
@@ -132,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 			if (t.hasClass("sending")) t.find(".call__columns").length && (window.location = "/personal/cart/");
 			else if (t.addClass("sending"),
-				$.post(t.find(".call__columns").length ? "/aktsii/add2basket.php" : "/ajax/under_order.php", t.serialize()), t.find(".call__columns").length) {
+				$.post(t.find(".call__columns").length ? "/ajax/add2basket.php" : "/ajax/under_order.php", t.serialize()), t.find(".call__columns").length) {
 				var a = $(".header__link-counter").text();
 			$(".header__link-counter").text(Number(a) + parseFloat($(this).find(".counter__input").val()));
 			$(".mob-toolbar__counter").text(Number(a) + parseFloat($(this).find(".counter__input").val()));

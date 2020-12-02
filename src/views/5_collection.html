@@ -410,7 +410,7 @@
                 </div>
             </div>
             <section class="product">
-                <div class="product__container container">
+                <div class="product__container container mb-32">
                     <div class="product__tabs tabs">
                         <div class="tabs__nav">
                             <div class="tabs__link tabs__link--active" id="a0">
@@ -464,6 +464,68 @@
                         </div>
                     </div>
                 </div>
+                <div class="container">
+                    <div class="accent-block accent-block--small mb-20">
+                        <div class="editor">
+                            <h5>
+                                Галерея
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="slider-line mb-32">
+                        <div class="slider-line__container swiper-container">
+                            <div class="swiper-wrapper slider-line__wrapper">
+                                <div class="swiper-slide slider-line__slide">
+                                    @@include("../blocks/modules/item-visual/item-visual.html")
+                                </div>
+                                <div class="swiper-slide slider-line__slide">
+                                    @@include("../blocks/modules/item-visual/item-visual.html")
+                                </div>
+                                <div class="swiper-slide slider-line__slide">
+                                    @@include("../blocks/modules/item-visual/item-visual.html")
+                                </div>
+                                <div class="swiper-slide slider-line__slide">
+                                    @@include("../blocks/modules/item-visual/item-visual.html")
+                                </div>
+                                <div class="swiper-slide slider-line__slide">
+                                    @@include("../blocks/modules/item-visual/item-visual.html")
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slider-line__btn slider-line__btn--left">
+                            <svg class="icon-svg">
+                                <use xlink:href="/img/sprites/sprite.svg#icon-slider-left"></use>
+                            </svg>
+                        </div>
+                        <div class="slider-line__btn slider-line__btn--right">
+                            <svg class="icon-svg">
+                                <use xlink:href="/img/sprites/sprite.svg#icon-slider-right"></use>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="accent-block accent-block--small mb-20">
+                        <div class="editor">
+                            <h5>
+                                Похожие коллекции
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="columns mb-32">
+                        <div class="columns__column columns__column--3">
+                            @@include("../blocks/modules/item/item.html")
+                        </div>
+                        <div class="columns__column columns__column--3">
+                            @@include("../blocks/modules/item/item.html")
+                        </div>
+                        <div class="columns__column columns__column--3">
+                            @@include("../blocks/modules/item/item.html")
+                        </div>
+                        <div class="columns__column columns__column--3">
+                            @@include("../blocks/modules/item/item.html")
+                        </div>
+                    </div>
+                </div>
+                
             </section>
 
 

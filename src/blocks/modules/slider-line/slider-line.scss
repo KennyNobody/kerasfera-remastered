@@ -1,0 +1,39 @@
+.slider-line {
+	position: relative;
+	&__wrapper {
+
+	}
+	&__btn {
+		position: absolute;
+		top: 80px;
+		z-index: 2;
+		cursor: pointer;
+		transition: 0.3s all;
+		svg {
+			height: 62px;
+			width: 35px;
+			display: block;
+		}
+		&--disable {
+			opacity: 0.5;
+		}
+		&--left {
+			right: calc(100% + 16px);
+		}
+		&--right {
+			left: calc(100% + 16px);
+		}
+		&:hover {
+			opacity: 0.7;
+		}
+	}
+	&__slide {
+		// visibility: hidden;
+		// opacity: 0;
+		// transition: 0.3s all;
+		// &--visible {
+		// 	visibility: visible;
+		// 	opacity: 1;
+		// }
+	}
+}

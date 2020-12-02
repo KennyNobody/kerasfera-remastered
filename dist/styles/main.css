@@ -9786,10 +9786,11 @@ label {
 }
 
 .item {
-  width: calc(33% - 11px);
   box-sizing: border-box;
   margin-bottom: 25px;
   position: relative;
+  display: block;
+  width: 100%;
 }
 
 .item:hover img {
@@ -11527,10 +11528,11 @@ label {
 }
 
 .item {
-  width: calc(33% - 11px);
   box-sizing: border-box;
   margin-bottom: 25px;
   position: relative;
+  display: block;
+  width: 100%;
 }
 
 .item:hover img {
@@ -14993,10 +14995,23 @@ ul.ul-warning li:before {
   display: flex;
   flex-direction: column;
   font-size: 14px;
+  position: relative;
 }
 
 .item-visual:hover {
   opacity: 0.7;
+}
+
+.item-visual__tag {
+  padding: 4px 19px;
+  color: #ffffff;
+  background-color: #F78222;
+  font-weight: 700;
+  font-size: 14px;
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  border-top-right-radius: 10px;
 }
 
 .item-visual__thumb {
@@ -15009,6 +15024,7 @@ ul.ul-warning li:before {
 .item-visual__title {
   font-size: 18px;
   margin-bottom: 8px;
+  line-height: 1.4;
 }
 
 .item-visual__subtitle {
@@ -15169,6 +15185,40 @@ ul.ul-warning li:before {
 
 .item-contact__button--disabled:hover {
   opacity: 0;
+}
+
+.slider-line {
+  position: relative;
+}
+
+.slider-line__btn {
+  position: absolute;
+  top: 80px;
+  z-index: 2;
+  cursor: pointer;
+  transition: 0.3s all;
+}
+
+.slider-line__btn svg {
+  height: 62px;
+  width: 35px;
+  display: block;
+}
+
+.slider-line__btn--disable {
+  opacity: 0.5;
+}
+
+.slider-line__btn--left {
+  right: calc(100% + 16px);
+}
+
+.slider-line__btn--right {
+  left: calc(100% + 16px);
+}
+
+.slider-line__btn:hover {
+  opacity: 0.7;
 }
 
 .product-form {
@@ -16494,10 +16544,6 @@ ul.ul-warning li:before {
     justify-content: center;
   }
 
-  .item {
-    width: calc(50% - 11px);
-  }
-
   .page_nav .active {
     margin-left: 0;
     margin-right: 0;
@@ -16593,10 +16639,6 @@ ul.ul-warning li:before {
   }
 
   .item-card {
-    width: calc(50% - 11px);
-  }
-
-  .item {
     width: calc(50% - 11px);
   }
 
@@ -16990,21 +17032,7 @@ ul.ul-warning li:before {
     margin-bottom: 18px;
   }
 
-  .item {
-    max-width: 100%;
-    width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
   .item-card {
-    max-width: 100%;
-    width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .item {
     max-width: 100%;
     width: 400px;
     margin-left: auto;

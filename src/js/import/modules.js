@@ -1,4 +1,5 @@
 import "%modules%/oldMagnificPopup/oldMagnificPopup";
+import "%modules%/oldFrontGrid/oldFrontGrid";
 import "%modules%/oldMmenu/oldMmenu";
 import "%modules%/oldSliders/oldSliders";
 import "%modules%/oldScrollbar/oldScrollbar";
@@ -9,7 +10,9 @@ import "%modules%/oldCookie/oldCookie";
 
 import "%modules%/product-slider/product-slider";
 import "%modules%/item-card/item-card";
+import "%modules%/slider-line/slider-line";
 import "%modules%/tabs/tabs";
+import "%modules%/sidebar/sidebar";
 import "%modules%/subtabs/subtabs";
 import "%modules%/item-contact/item-contact";
 import "%modules%/product-form/product-form";
