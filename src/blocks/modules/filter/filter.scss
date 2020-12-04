@@ -374,6 +374,10 @@
     margin-right: auto;
     width: fit-content;
     color: #ffffff;
+    border: none;
+    font-family: $font-main;
+    transition: 0.3s all;
+    cursor: pointer;
 }
 
 .filter__reset:hover {
@@ -389,14 +393,26 @@
     height: 180px;
 }
 
-.filter__toogle {
+.filter__toggle {
     display: flex;
     justify-content: space-between;
     margin-bottom: 24px;
     border-bottom: 1px solid #e2e1e1;
+    &-input {
+        display: none;
+        &:checked + .filter__toggle-name {
+            background-color: $green;
+            color: #ffffff;
+        }
+    }
     &-item {
-        font-size: 14px;
+        background-color: #ffffff;
+        color: #949494;
         width: 50%;
+    }
+    &-name {
+        transition: 0.3s all;
+        font-size: 14px;
         text-align: center;
         height: 40px;
         display: flex;
@@ -404,24 +420,8 @@
         align-items: center;
         cursor: pointer;
         color: #949494;
-        &:nth-child(1) {
-            background-color: #006a44;
-            border-color: #006a44;
-            color: #ffffff;
-        }
-    }
-    &--active {
-        .filter__toogle-item:nth-child(1) {
-            background-color: #ffffff;
-            color: #949494;
-        }
-        .filter__toogle-item:nth-child(2) {
-            background-color: #006a44;
-            color: #ffffff;
-        }
     }
 }
 
-.custom-scroll_inner {
-    padding-left: 0px !important;
-}
+// Стилизация ползунков
+

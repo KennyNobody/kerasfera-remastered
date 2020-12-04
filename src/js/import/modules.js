@@ -4,7 +4,6 @@ import "%modules%/oldMmenu/oldMmenu";
 import "%modules%/oldSliders/oldSliders";
 import "%modules%/oldScrollbar/oldScrollbar";
 import "%modules%/oldRating/oldRating";
-import "%modules%/oldFilter/oldFilter";
 import "%modules%/oldFavorites/oldFavorites";
 import "%modules%/oldCookie/oldCookie";
 
@@ -18,3 +17,4 @@ import "%modules%/item-contact/item-contact";
 import "%modules%/product-form/product-form";
 import "%modules%/counter/counter";
 import "%modules%/table/table";
+import "%modules%/filter/filter";

@@ -1,4 +1,4 @@
-<div class="filter">
+<form class="filter">
 	<div class="filter__overlay"></div>
 	<div class="filter__mob-title">
 		<span>Фильтр коллекций</span>
@@ -7,15 +7,20 @@
 		</svg>
 	</div>
 	<div class="filter__wrapper">
-		<div class="filter__toogle">
-			<div class="filter__toogle-item">
-				Коллекции
-			</div>
-			<div class="filter__toogle-item">
-				Товары
-			</div>
+		<div class="filter__toggle">
+			<label class="filter__toggle-item">
+				<input type="radio" checked name="filter-type" class="filter__toggle-input" value="collection">
+				<span class="filter__toggle-name">
+					Коллекции
+				</span>
+			</label>
+			<label class="filter__toggle-item">
+				<input type="radio" name="filter-type" class="filter__toggle-input" value="goods">
+				<span class="filter__toggle-name">
+					Товары
+				</span>
+			</label>
 		</div>
-		<!-- Отсюда -->
 		<p class="filter__name filter__name--sort">
 			Сортировка
 		</p>
@@ -35,324 +40,328 @@
 				</option>
 			</select>
 		</div>
-		<!-- До этого момента -->
 		<div class="price">
 			<div class="filter__name filter__name--price">Цена, руб.</div>
 			<div class="filter__inputs">
 				<input type="text" name="min" id="input-with-keypress-0" value="0" />
 				-
-				<input type="text" name="max" id="input-with-keypress-1" value="10000" />
+				<input type="text" name="max" id="input-with-keypress-1" value="15547" />
 			</div>
 			<div class="filter__range" id="filter__range"></div>
 		</div>
 		<ul>
-			<li class="filter__block filter__block--NOMENKLATURNAYA_GRUPPA">
+			<li class="filter__block" data-block-type="checkbox" name="NOMENKLATURNAYA_GRUPPA">
 				<div class="filter__name filter__name--drop">
 					<svg class="icon-svg"><use xlink:href="./img/symbol_sprite.svg#icon-svg-drop"></use></svg> <span>Вид</span>
 				</div>
 				<ul>
 					<li>
-						<label>
-							<input type="checkbox" name="NOMENKLATURNAYA_GRUPPA" value="0" /> <span>Настенная плитка</span>
+						<label class="filter-input">
+							<input class="filter-input__input" type="checkbox" name="NOMENKLATURNAYA_GRUPPA" value="0" /> <span>Настенная плитка</span>
 							<div class="checkmark"></div>
 						</label>
 					</li>
 					<li>
-						<label>
-							<input type="checkbox" name="NOMENKLATURNAYA_GRUPPA" value="0" /> <span>Настенная плитка</span>
+						<label class="filter-input">
+							<input class="filter-input__input" type="checkbox" name="NOMENKLATURNAYA_GRUPPA" value="1" /> <span>Настенная плитка</span>
 							<div class="checkmark"></div>
 						</label>
 					</li>
 					<li>
-						<label>
-							<input type="checkbox" name="NOMENKLATURNAYA_GRUPPA" value="0" /> <span>Настенная плитка</span>
+						<label class="filter-input">
+							<input class="filter-input__input" type="checkbox" name="NOMENKLATURNAYA_GRUPPA" value="2" /> <span>Настенная плитка</span>
 							<div class="checkmark"></div>
 						</label>
 					</li>
 					<li>
-						<label>
-							<input type="checkbox" name="NOMENKLATURNAYA_GRUPPA" value="0" /> <span>Настенная плитка</span>
+						<label class="filter-input">
+							<input class="filter-input__input" type="checkbox" name="NOMENKLATURNAYA_GRUPPA" value="3" /> <span>Настенная плитка</span>
 							<div class="checkmark"></div>
 						</label>
 					</li>
 					<li>
-						<label>
-							<input type="checkbox" name="NOMENKLATURNAYA_GRUPPA" value="0" /> <span>Настенная плитка</span>
+						<label class="filter-input">
+							<input class="filter-input__input" type="checkbox" name="NOMENKLATURNAYA_GRUPPA" value="4" /> <span>Настенная плитка</span>
 							<div class="checkmark"></div>
 						</label>
 					</li>
 					<li>
-						<label>
-							<input type="checkbox" name="NOMENKLATURNAYA_GRUPPA" value="0" /> <span>Настенная плитка</span>
+						<label class="filter-input">
+							<input class="filter-input__input" type="checkbox" name="NOMENKLATURNAYA_GRUPPA" value="5" /> <span>Настенная плитка</span>
 							<div class="checkmark"></div>
 						</label>
 					</li>
 					<li>
-						<label>
-							<input type="checkbox" name="NOMENKLATURNAYA_GRUPPA" value="0" /> <span>Настенная плитка</span>
+						<label class="filter-input">
+							<input class="filter-input__input" type="checkbox" name="NOMENKLATURNAYA_GRUPPA" value="6" /> <span>Настенная плитка</span>
 							<div class="checkmark"></div>
 						</label>
 					</li>
 					<li>
-						<label>
-							<input type="checkbox" name="NOMENKLATURNAYA_GRUPPA" value="1" /> <span>Напольная плитка</span>
+						<label class="filter-input">
+							<input class="filter-input__input" type="checkbox" name="NOMENKLATURNAYA_GRUPPA" value="7" /> <span>Напольная плитка</span>
 							<div class="checkmark"></div>
 						</label>
 					</li>
 					<li>
-						<label>
-							<input type="checkbox" name="NOMENKLATURNAYA_GRUPPA" value="2" /> <span>Керамогранит</span>
+						<label class="filter-input">
+							<input class="filter-input__input" type="checkbox" name="NOMENKLATURNAYA_GRUPPA" value="8" /> <span>Керамогранит</span>
 							<div class="checkmark"></div>
 						</label>
 					</li> 
 				</ul>
 			</li>
-			<li class="filter__block filter__block--FORMA">
+			<li class="filter__block" data-block-type="checkbox" name="FORMA">
 				<div class="filter__name filter__name--drop">
 					<svg class="icon-svg"><use xlink:href="./img/symbol_sprite.svg#icon-svg-drop"></use></svg> <span>Форма</span>
 				</div>
 				<ul>
 					<li>
-						<label>
-							<input type="checkbox" name="FORMA" value="3079" /> <span>Восьмигранник</span>
+						<label class="filter-input">
+							<input class="filter-input__input" type="checkbox" name="FORMA" value="3079" /> <span>Восьмигранник</span>
 							<div class="checkmark"></div>
 						</label>
 					</li>
 					<li>
-						<label>
-							<input type="checkbox" name="FORMA" value="3080" /> <span>Другие</span>
+						<label class="filter-input">
+							<input class="filter-input__input" type="checkbox" name="FORMA" value="3080" /> <span>Другие</span>
 							<div class="checkmark"></div>
 						</label>
 					</li>
 					<li>
-						<label>
-							<input type="checkbox" name="FORMA" value="3077" /> <span>Квадрат</span>
+						<label class="filter-input">
+							<input class="filter-input__input" type="checkbox" name="FORMA" value="3077" /> <span>Квадрат</span>
 							<div class="checkmark"></div>
 						</label>
 					</li>
 					<li>
-						<label>
-							<input type="checkbox" name="FORMA" value="3075" /> <span>Прямоугольник</span>
+						<label class="filter-input">
+							<input class="filter-input__input" type="checkbox" name="FORMA" value="3075" /> <span>Прямоугольник</span>
 							<div class="checkmark"></div>
 						</label>
 					</li>
 					<li>
-						<label>
-							<input type="checkbox" name="FORMA" value="3076" /> <span>Ромб</span>
+						<label class="filter-input">
+							<input class="filter-input__input" type="checkbox" name="FORMA" value="3076" /> <span>Ромб</span>
 							<div class="checkmark"></div>
 						</label>
 					</li>
 					<li>
-						<label>
-							<input type="checkbox" name="FORMA" value="3078" /> <span>Шестигранник</span>
+						<label class="filter-input">
+							<input class="filter-input__input" type="checkbox" name="FORMA" value="3078" /> <span>Шестигранник</span>
 							<div class="checkmark"></div>
 						</label>
 					</li>
 				</ul>
 			</li>
-			<li class="filter__block filter__block--TIP_NAZNACHENIE">
+			<li class="filter__block" data-block-type="checkbox" name="TIP_NAZNACHENIE">
 				<div class="filter__name filter__name--drop">
 					<svg class="icon-svg"><use xlink:href="./img/symbol_sprite.svg#icon-svg-drop"></use></svg> <span>Назначение</span>
 				</div>
 				<ul>
 					<li>
-						<label>
-							<input type="checkbox" name="TIP_NAZNACHENIE" value="0" /> <span>Для бассейна</span>
+						<label class="filter-input">
+							<input class="filter-input__input" type="checkbox" name="TIP_NAZNACHENIE" value="0" /> <span>Для бассейна</span>
 							<div class="checkmark"></div>
 						</label>
 					</li>
 					<li>
-						<label>
-							<input type="checkbox" name="TIP_NAZNACHENIE" value="1" /> <span>Для ванной</span>
+						<label class="filter-input">
+							<input class="filter-input__input" type="checkbox" name="TIP_NAZNACHENIE" value="1" /> <span>Для ванной</span>
 							<div class="checkmark"></div>
 						</label>
 					</li>
 					<li>
-						<label>
-							<input type="checkbox" name="TIP_NAZNACHENIE" value="2" /> <span>Для кухни</span>
+						<label class="filter-input">
+							<input class="filter-input__input" type="checkbox" name="TIP_NAZNACHENIE" value="2" /> <span>Для кухни</span>
 							<div class="checkmark"></div>
 						</label>
 					</li>
 				</ul>
 			</li>
-			<li class="filter__block filter__block--KOLLEKTSIYA">
+			<li class="filter__block" data-block-type="checkbox" name="KOLLEKTSIYA">
 				<div class="filter__name filter__name--drop">
 					<svg class="icon-svg"><use xlink:href="./img/symbol_sprite.svg#icon-svg-drop"></use></svg> <span>Коллекция</span>
 				</div>
 				<ul>
 					<li>
-						<label>
-							<input type="checkbox" name="KOLLEKTSIYA" value="19" /> <span>Adra</span>
+						<label class="filter-input">
+							<input class="filter-input__input" type="checkbox" name="KOLLEKTSIYA" value="19" /> <span>Adra</span>
 							<div class="checkmark"></div>
 						</label>
 					</li>
 					<li>
-						<label>
-							<input type="checkbox" name="KOLLEKTSIYA" value="20" /> <span>Aged</span>
+						<label class="filter-input">
+							<input class="filter-input__input" type="checkbox" name="KOLLEKTSIYA" value="20" /> <span>Aged</span>
 							<div class="checkmark"></div>
 						</label>
 					</li>
 					<li>
-						<label>
-							<input type="checkbox" name="KOLLEKTSIYA" value="21" /> <span>Alberta</span>
+						<label class="filter-input">
+							<input class="filter-input__input" type="checkbox" name="KOLLEKTSIYA" value="21" /> <span>Alberta</span>
 							<div class="checkmark"></div>
 						</label>
 					</li>
 				</ul>
 			</li>
-			<li class="filter__block filter__block--PROIZVODITEL">
+			<li class="filter__block" data-block-type="checkbox" name="PROIZVODITEL">
 				<div class="filter__name filter__name--drop">
 					<svg class="icon-svg"><use xlink:href="./img/symbol_sprite.svg#icon-svg-drop"></use></svg> <span>Производитель</span>
 				</div>
 				<ul>
 					<li>
-						<label>
-							<input type="checkbox" name="PROIZVODITEL" value="2568" /> <span>Alaplana</span>
+						<label class="filter-input">
+							<input class="filter-input__input" type="checkbox" name="PROIZVODITEL" value="2568" /> <span>Alaplana</span>
 							<div class="checkmark"></div>
 						</label>
 					</li>
 					<li>
-						<label>
-							<input type="checkbox" name="PROIZVODITEL" value="2812" /> <span>Aparici</span>
+						<label class="filter-input">
+							<input class="filter-input__input" type="checkbox" name="PROIZVODITEL" value="2812" /> <span>Aparici</span>
 							<div class="checkmark"></div>
 						</label>
 					</li>
 					<li>
-						<label>
-							<input type="checkbox" name="PROIZVODITEL" value="1927" /> <span>APE</span>
+						<label class="filter-input">
+							<input class="filter-input__input" type="checkbox" name="PROIZVODITEL" value="1927" /> <span>APE</span>
 							<div class="checkmark"></div>
 						</label>
 					</li>
 					<li>
-						<label>
-							<input type="checkbox" name="PROIZVODITEL" value="1989" /> <span>Argenta</span>
+						<label class="filter-input">
+							<input class="filter-input__input" type="checkbox" name="PROIZVODITEL" value="1989" /> <span>Argenta</span>
 							<div class="checkmark"></div>
 						</label>
 					</li>
 					<li>
-						<label>
-							<input type="checkbox" name="PROIZVODITEL" value="2592" /> <span>Azteca</span>
+						<label class="filter-input">
+							<input class="filter-input__input" type="checkbox" name="PROIZVODITEL" value="2592" /> <span>Azteca</span>
 							<div class="checkmark"></div>
 						</label>
 					</li>
 				</ul>
 			</li>
-			<li class="filter__block filter__block--STIL">
+			<li class="filter__block" data-block-type="checkbox" name="STIL">
 				<div class="filter__name filter__name--drop">
 					<svg class="icon-svg"><use xlink:href="./img/symbol_sprite.svg#icon-svg-drop"></use></svg> <span>Стиль</span>
 				</div>
 				<ul>
 					<li>
-						<label>
-							<input type="checkbox" name="STIL" value="0" /> <span>Бетон</span>
+						<label class="filter-input">
+							<input class="filter-input__input" type="checkbox" name="STIL" value="0" /> <span>Бетон</span>
 							<div class="checkmark"></div>
 						</label>
 					</li>
 					<li>
-						<label>
-							<input type="checkbox" name="STIL" value="1" /> <span>Биселадо</span>
+						<label class="filter-input">
+							<input class="filter-input__input" type="checkbox" name="STIL" value="1" /> <span>Биселадо</span>
 							<div class="checkmark"></div>
 						</label>
 					</li>
 					<li>
-						<label>
-							<input type="checkbox" name="STIL" value="2" /> <span>Винтаж</span>
+						<label class="filter-input">
+							<input class="filter-input__input" type="checkbox" name="STIL" value="2" /> <span>Винтаж</span>
 							<div class="checkmark"></div>
 						</label>
 					</li>
 				</ul>
 			</li>
-			<li class="filter__block filter__block--POVERKHNOST">
+			<li class="filter__block" data-block-type="checkbox" name="POVERKHNOST">
 				<div class="filter__name filter__name--drop">
 					<svg class="icon-svg"><use xlink:href="./img/symbol_sprite.svg#icon-svg-drop"></use></svg> <span>Поверхность</span>
 				</div>
 				<ul>
 					<li>
-						<label>
-							<input type="checkbox" name="POVERKHNOST" value="1386" /> <span>Глянцевая</span>
+						<label class="filter-input">
+							<input class="filter-input__input" type="checkbox" name="POVERKHNOST" value="1386" /> <span>Глянцевая</span>
 							<div class="checkmark"></div>
 						</label>
 					</li>
 					<li>
-						<label>
-							<input type="checkbox" name="POVERKHNOST" value="1764" /> <span>Матовая</span>
+						<label class="filter-input">
+							<input class="filter-input__input" type="checkbox" name="POVERKHNOST" value="1764" /> <span>Матовая</span>
 							<div class="checkmark"></div>
 						</label>
 					</li>
 					<li>
-						<label>
-							<input type="checkbox" name="POVERKHNOST" value="1947" /> <span>Полированная</span>
+						<label class="filter-input">
+							<input class="filter-input__input" type="checkbox" name="POVERKHNOST" value="1947" /> <span>Полированная</span>
 							<div class="checkmark"></div>
 						</label>
 					</li>
 				</ul>
 			</li>
-			<li class="filter__block filter__block--RAZMER">
+			<li class="filter__block" data-block-type="fields" name="RAZMER">
 				<div class="filter__name filter__name--drop">
 					<svg class="icon-svg"><use xlink:href="./img/symbol_sprite.svg#icon-svg-drop"></use></svg> <span>Размер</span>
 				</div>
 				<ul>
 					<li>
 						<div class="price">
-							<div class="title filter__name filter__name--price">Ширина, см.</div>
-							<div class="filter__inputs"><input type="text" name="wmin" id="input-with-keypress-2" value="0" /> - <input type="text" name="wmax" id="input-with-keypress-3" value="300" /></div>
-							<div class="filter__range" id="filter__range1"></div>
+							<div class="filter__name filter__name--price">Ширина, см.</div>
+							<div class="filter__inputs">
+								<input type="text" name="wmin" id="input-with-keypress-2" value="0" /> - <input type="text" name="wmax" id="input-with-keypress-3" value="300" />
+							</div>
+							<!-- <div class="filter__range" id="filter__range1"></div> -->
 						</div>
 						<div class="price">
-							<div class="title filter__name filter__name--price">Длина, см.</div>
+							<div class="filter__name filter__name--price">Длина, см.</div>
 							<div class="filter__inputs">
 								<input type="text" name="hmin" id="input-with-keypress-4" value="0" /> - <input type="text" name="hmax" id="input-with-keypress-5" value="300" />
 							</div>
-							<div class="filter__range" id="filter__range2"></div>
+							<!-- <div class="filter__range" id="filter__range2"></div> -->
 						</div>
 					</li>
 				</ul>
 			</li>
-			<li class="filter__block filter__block--TSVET">
+			<li class="filter__block" data-block-type="checkbox" name="TSVET">
 				<div class="filter__name filter__name--drop">
 					<svg class="icon-svg"><use xlink:href="./img/symbol_sprite.svg#icon-svg-drop"></use></svg> <span>Цвет</span>
 				</div>
 				<ul>
 					<li>
-						<label>
-							<input type="checkbox" name="TSVET" value="2993" /> <span>Антрацит</span>
+						<label class="filter-input">
+							<input type="checkbox" class="filter-input__input" name="TSVET" value="2993" /> <span>Антрацит</span>
 							<div class="checkmark"></div>
 						</label>
 					</li>
 					<li>
-						<label>
-							<input type="checkbox" name="TSVET" value="1749" /> <span>Бежевый</span>
+						<label class="filter-input">
+							<input type="checkbox" class="filter-input__input" name="TSVET" value="1749" /> <span>Бежевый</span>
 							<div class="checkmark"></div>
 						</label>
 					</li>
 					<li>
-						<label>
-							<input type="checkbox" name="TSVET" value="1846" /> <span>Белый</span>
+						<label class="filter-input">
+							<input type="checkbox" class="filter-input__input" name="TSVET" value="1846" /> <span>Белый</span>
 							<div class="checkmark"></div>
 						</label>
 					</li>
 				</ul>
 			</li>
-			<li class="filter__block filter__block--STRANA">
+			<li class="filter__block" data-block-type="checkbox" name="STRANA">
 				<div class="filter__name filter__name--drop">
-					<svg class="icon-svg"><use xlink:href="./img/symbol_sprite.svg#icon-svg-drop"></use></svg> <span>Страна</span>
+					<svg class="icon-svg">
+						<use xlink:href="./img/symbol_sprite.svg#icon-svg-drop"></use>
+					</svg>
+					<span>Страна</span>
 				</div>
 				<ul>
 					<li>
-						<label>
-							<input type="checkbox" name="STRANA" value="3104" /> <span>Бразилия</span>
+						<label class="filter-input">
+							<input type="checkbox" class="filter-input__input" name="STRANA" value="3104" /> <span>Бразилия</span>
 							<div class="checkmark"></div>
 						</label>
 					</li>
 					<li>
-						<label>
-							<input type="checkbox" name="STRANA" value="2605" /> <span>Германия</span>
+						<label class="filter-input">
+							<input type="checkbox" class="filter-input__input" name="STRANA" value="2605" /> <span>Германия</span>
 							<div class="checkmark"></div>
 						</label>
 					</li>
 					<li>
-						<label>
-							<input type="checkbox" name="STRANA" value="3205" /> <span>Индия</span>
+						<label class="filter-input">
+							<input type="checkbox" class="filter-input__input" name="STRANA" value="3205" /> <span>Индия</span>
 							<div class="checkmark"></div>
 						</label>
 					</li>
@@ -360,7 +369,7 @@
 			</li>
 		</ul>
 		<div class="buttons filter__buttons">
-			<div class="reset filter__reset">Сбросить</div>
+			<button class="reset filter__reset">Сбросить</button>
 		</div>
 	</div>
-</div>
+</form>

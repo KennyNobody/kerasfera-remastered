@@ -2,6 +2,7 @@
 	display: flex;
 	justify-content: space-between;
 	flex-wrap: wrap;
+	width: 100%;
 	&__column {
 		width: 100%;
 		&--1 {
@@ -77,6 +78,15 @@
 				width: calc(50% - 8px);
 			}
 			@include r(600) {
+				width: 100%;
+			}
+		}
+		&--catalog {
+			width: calc(100% / 12 * 4 - 16px);
+			@include r(1000) {
+				width: calc(50% - 8px);
+			}
+			@include r(560) {
 				width: 100%;
 			}
 		}

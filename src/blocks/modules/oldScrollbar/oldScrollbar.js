@@ -257,27 +257,27 @@
 })(jQuery);
 
 document.addEventListener('DOMContentLoaded', function() {
-    function reWidth() {
-        if ($(document).width() < 1000) {
-            $('.filter__wrapper').customScroll({
-                vertical: true,
-                horizontal: false
-            });
-        } else {
-            $('.filter__block ul').customScroll({
-                vertical: true,
-                horizontal: false
-            });
-        }
-    };
+    // function reWidth() {
+    //     if ($(document).width() < 1000) {
+    //         $('.filter__wrapper').customScroll({
+    //             vertical: true,
+    //             horizontal: false
+    //         });
+    //     } else {
+    //         $('.filter__block ul').customScroll({
+    //             vertical: true,
+    //             horizontal: false
+    //         });
+    //     }
+    // };
 
-    reWidth();
+    // reWidth();
 
-    $(window).on('resize', function(){
-        setTimeout(reWidth, 300);
-    });
+    // $(window).on('resize', function(){
+    //     setTimeout(reWidth, 300);
+    // });
 
-    $(".filter__block").click(function() {
-        setTimeout(reWidth, 300);
-    });
+    // $(".filter__block").click(function() {
+    //     setTimeout(reWidth, 300);
+    // });
 });

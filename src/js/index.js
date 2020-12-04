@@ -1,5 +1,4 @@
 import "./import/modules";
-// import "./libs";
 
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -14,16 +13,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		$('.autoscroll').toggleClass('autoscroll--hidden', $(this).scrollTop() > 600);
 	});
 
-	 $(window).scroll(function() {
-
-    	if ($(document).width() < 1000) {
-    		if ($(window).scrollTop()  > 300) {
-    			$('.filter__mob-title').addClass('filter__mob-title--fixed');
-    		} else {
-    			$('.filter__mob-title').removeClass('filter__mob-title--fixed');
-    		}
-    	} 
-    });
 
 		// $(".grid").masonry({
 		// 	itemSelector: ".grid__item", 
@@ -179,5 +168,111 @@ document.addEventListener('DOMContentLoaded', function() {
 					n.trigger("submit");
 				}
 			});
-		})
+		});
+
+		$(".popup").magnificPopup();
+		$(".popup-item").magnificPopup({
+			showCloseBtn:!1
+		});
+		$(".popup-image").magnificPopup({
+			type:"image",
+			closeOnContentClick:"true"
+		});
+
+		$(document).on('click', '.item-card__btn--plus', function() {
+			var value = $(this).parent().children("input").val();
+			value++;
+			$(this).parent().children("input").val(value);
+		});
+
+		$(document).on('click', '.item-card__btn--minus', function() {
+			var value = $(this).parent().children("input").val();
+			1 < value && (value--, $(this).parent().children("input").val(value));
+		});
+
+		$('.item-card__tag--favorite').on('click', function () {
+			var favorID = $(this).attr('data-item');
+			if ($(this).hasClass('item-card__tag--favorite')) {
+				favHandler(favorID, 'delete');
+			} else {
+				favHandler(favorID, 'add');
+			}
+		});
+		getFavoriteItems();
+
+		$(".item-card__submit.fast-buy").on("click", function(e){
+
+
+			e.preventDefault();
+
+			var t = $(this);
+			if(t.hasClass("item-card__submit--added")) {
+
+				window.location="/personal/cart/";
+
+			} else {
+				t.css("position","relative");
+				t.addClass("item-card__submit--added");
+				t.text("Добавлено");
+				setTimeout(function(){
+					t.removeClass("item-card__submit--added");
+					t.text("В корзину");
+				}, 5000);
+
+				var n=$(t.attr("data-href")).find("form");
+				n.find(".counter__input").val($(this).parents(".item-card").find(".item-card__input").val());
+				n.trigger("submit");
+			}
+		});
+
+		$(document).ready(function () {
+
+			$(document).on('click', '.counter__btn--plus', function() {
+				var value = $(this).parent().children("input").val();
+				value++;
+				$(this).parent().children("input").val(value);
+			});
+
+			$(document).on('click', '.counter__btn--minus', function() {
+				var value = $(this).parent().children("input").val();
+				1 < value && (value--, $(this).parent().children("input").val(value));
+			});
+
+			$(document).on('click', '.shop__btn', function() {
+				var url = window.location.href;
+				var matches = url.match(/count=[a-z\d]+/gi);
+
+				if (matches) {
+					var countLink = +parseInt(matches[0].replace(/[^\d]/g, '')) + 15;
+
+					var leftLink = url.split(matches)[0];
+					var rightLink = url.split(matches)[1];
+
+					window.location.href = leftLink + "count=" + countLink + rightLink;    
+				}
+
+			})
+
+		});
+
+		function getFavoriteItems() {
+			var param = 'get_fav_list=1';
+			$.ajax({
+				url: '/ajax/favorites.php',
+				type: "GET",
+				dataType: "html",
+				data: param,
+				success: function (response) {
+					var result = $.parseJSON(response);
+					$(result).each(function (index, element) {
+						if ($('.favorite-btn[data-item="' + element + '"]')) {
+							$('.favorite-btn[data-item="' + element + '"]').addClass('item-card__tag--favorite');
+						}
+					});
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					console.log('Error: ' + errorThrown);
+				}
+			});
+		}
 	});
