@@ -52,3 +52,24 @@
 .autoscroll {
 
 }
+
+// .custom-scroll {
+// 	scrollbar-color: $green;
+//     scrollbar-width: 4px;
+// 	&::-webkit-scrollbar {
+// 		width: 4px;
+// 		height: 4px;
+// 		background-color: inherit;
+// 	}
+
+// 	&::-webkit-scrollbar-thumb {
+// 		background-color: $green;
+// 	}
+// 	&::-webkit-scrollbar-button:vertical:start:decrement {
+// 		display: none;
+// 	}
+
+// 	&::-webkit-scrollbar-button:vertical:end:increment {
+// 		display: none;
+// 	}
+// }

@@ -1,23 +1,32 @@
 import magnificPopup from 'magnific-popup';
 import noUiSlider from 'nouislider';
 
-// document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
+    $(window).scroll(function() {
+        if ($(document).width() < 1000) {
+            if ($(window).scrollTop()  > 300) {
+                $('.filter__mob-title').addClass('filter__mob-title--fixed');
+            } else {
+                $('.filter__mob-title').removeClass('filter__mob-title--fixed');
+            }
+        } 
+    });
+});
 
-// });
+document.addEventListener('DOMContentLoaded', function() {
+    $(".filter__mob-title").click(function(){
+        $('.body').toggleClass('body--filter');
+    });
 
-// $(window).scroll(function() {
+    $(".filter__overlay").click(function(){
+        $('.body').toggleClass('body--filter');
+    });
 
-//     if ($(document).width() < 1000) {
-//         if ($(window).scrollTop()  > 300) {
-//             $('.filter__mob-title').addClass('filter__mob-title--fixed');
-//         } else {
-//             $('.filter__mob-title').removeClass('filter__mob-title--fixed');
-//         }
-//     } 
-// });
+});
 
 document.addEventListener('DOMContentLoaded', function() {
     let filter;
+    let page;
 
     function initFilter() {
         let parent = document.querySelector('.filter');
@@ -28,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
             initRangeSlider();
             initCheckboxes();
             initToolbar();
+            initPagination();
             initTypes();
             clearForm();
         }
@@ -82,9 +92,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
 
-            activeBlock.noUiSlider.on('change', function (values, handle) {
+            activeBlock.noUiSlider.on('update', function (values, handle) {
                 minValue.value = Math.round(values[0]);
                 maxValue.value = Math.round(values[1]);
+            });
+
+            activeBlock.noUiSlider.on('change', function (values, handle) {
                 getRequest();
             });
 
@@ -107,30 +120,28 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    function initToolbar() {
-        const inputs = document.querySelectorAll('.toolbar select');
+    function initPagination() {
+        $('.shop__navigation').on('click', '.pagination__btn', function(e) {
+            page = this.dataset.page;
+            getRequest();
+        });
+    }
 
-        if (inputs) {
-            for (let i = 0; i < inputs.length; i++) {
-                inputs[i].addEventListener('change', function() {
-                    getRequest();
-                })
-            } 
-        }
+    function initToolbar() {
+        $('.shop').on('change', '.toolbar__select', function() {
+            getRequest();
+        });
     }
 
     function getValues() {
 
         let result = {
+            page: page || 1,
             count: getCount(), 
             tag : getTag(),
             type: getTypes(),
             min: getPrice('min'),
             max: getPrice('max'),
-            wmin: getSizes('wmin'),
-            wmax: getSizes('wmax'),
-            hmin: getSizes('hmin'),
-            hmax: getSizes('hmax'),
         };
 
         let array = filter.querySelectorAll('[data-block-type="checkbox"]');
@@ -190,20 +201,22 @@ document.addEventListener('DOMContentLoaded', function() {
         return form.elements['select-count'].value;
     }
 
-    function getSizes(type) {
-        return filter.elements[type].value;
-    }
+    function getRequest(page) {
 
-    function getRequest() {
+
+        document.querySelector('.shop__items').classList.add('m-load');
         $.ajax({
-            url: 'shop',
             type: 'GET',
             data: getValues(),
             success: function (response) {
-                console.log(response);
+                console.log(this);
+                let params = $(response).find('.shop__content .columns').html();
+                $('.shop__content .columns').html(params);
+                document.querySelector('.shop__items').classList.remove('m-load');
+
             },
             error: function (response) {
-                console.log(response);
+                document.querySelector('.shop__items').classList.remove('m-load');
             }
         });
     }
@@ -218,7 +231,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 getRequest();
             });
         }
-
     }
 
     initFilter();
@@ -230,215 +242,37 @@ document.addEventListener('DOMContentLoaded', function() {
 //         clearInterval(waitInterval);
 
 //         $('.shop').each(function(){
-//             var $shop = $(this),
-//             $filterCheckbox = $shop.find('.filter__block input[type="checkbox"]'),
-//             $resetBtn = $shop.find('.reset.filter__reset'),
-
-//             $toggler = $shop.find('.filter__toogle'),
-
-//             initEnd = false,
-//             filterCheckbox = {},
-//             keypressSlider = null,
-//             keypressSlider1 = null,
-//             keypressSlider2 = null,
-
-//             needScroll = false,
-
-//             page = null,
-//             priceSetManual = false,
-//             sizeSetManual0 = false,
-//             sizeSetManual1 = false,
-//             execTimeout = null,
-
 //             init = function(){
-//                 initPrice();
-//                 initSize();
-//                 initFilter();
-
-//                 $resetBtn.on('click', resetFilter);
-//                 $shop.on('change', '.toolbar__select--sort', clickTag);
-//                 $shop.on('change', '.filter__type-select', clickTag);
-//                 $shop.on('change', '.toolbar__select--count', clickCount);
-//                 $shop.on('click', '.page_nav a', clickPages);
-//                 $shop.on('click', '.filter__toogle', clickToogler);
-
-//                 // $(".filter__name").click(function(){
-//                 //     $(this).parent().toggleClass('filter__block--open');
-//                 // });
-
-//                 $(".filter__mob-title").click(function(){
-//                     $('.body').toggleClass('body--filter');
-//                 });
-
-//                 $(".filter__overlay").click(function(){
-//                     $('.body').toggleClass('body--filter');
-//                 });
-
-
-//                 window.addEventListener('popstate', loadPage);
-
-//                 exec();
-//                 initEnd = true;
-//                 $('body').removeClass('body--filter');
-
-//                 $(".filter__name").eq(1).trigger('click');
-//                 var showSize = false;
-//                 $('.filter__block--RAZMER').find('input').each(function(i){
-//                     if (i == 0 || i == 2) {
-//                         if($(this).val() != 0) showSize = true;
-//                     } else {
-//                         if($(this).val() != 300) showSize = true;
-//                     }
-//                 });
-//                 if (showSize) {
-//                     $('.filter__block--RAZMER .filter__name').trigger('click');
-//                 }
+//                 инициализируем фильтр
 //             },
-
 //             initPrice = function(){
-//                 // keypressSlider = document.getElementById('filter__range');
-//                 // var input0 = document.getElementById('input-with-keypress-0');
-//                 // var input1 = document.getElementById('input-with-keypress-1');
-//                 // var inputs = [input0, input1];
-
-
-//                 // if (keypressSlider) {
-//                 //     noUiSlider.create(keypressSlider, {
-//                 //         start: [$(input0).val(), $(input1).val()],
-//                 //         connect: true,
-//                 //         step: 100,
-
-//                 //         range: {
-//                 //             'min': [0],
-//                 //             'max': 10000
-//                 //         }
-//                 //     });
-
-//                 //     keypressSlider.noUiSlider.on('update', function (values, handle) {
-//                 //         inputs[handle].value = +values[handle];
-//                 //         page = 1;
-//                 //         if(!priceSetManual) {
-//                 //             $('.body').addClass('body--filter');
-//                 //             exec();
-//                 //         }
-//                 //     });
-
-//                 //     inputs.forEach(function (input, handle) {
-//                 //         input.addEventListener('change', function () {
-//                 //             keypressSlider.noUiSlider.setHandle(handle, this.value);
-//                 //         });
-//                 //         input.addEventListener('keydown', function (e) {
-//                 //             var values = keypressSlider.noUiSlider.get();
-//                 //             var value = Number(values[handle]);
-
-//                 //             var steps = keypressSlider.noUiSlider.steps();
-
-//                 //             var step = steps[handle];
-//                 //             var position;
-
-//                 //             switch (e.which) {
-//                 //                 case 13:
-//                 //                 keypressSlider.noUiSlider.setHandle(handle, this.value);
-//                 //                 break;
-//                 //                 case 38:
-//                 //                 position = step[1];
-
-//                 //                 if (position === false) {
-//                 //                     position = 1;
-//                 //                 }
-
-//                 //                 if (position !== null) {
-//                 //                     keypressSlider.noUiSlider.setHandle(handle, value + position);
-//                 //                 }
-//                 //                 break;
-//                 //                 case 40:
-//                 //                 position = step[0];
-//                 //                 if (position === false) {
-//                 //                     position = 1;
-//                 //                 }
-//                 //                 if (position !== null) {
-//                 //                     keypressSlider.noUiSlider.setHandle(handle, value - position);
-//                 //                 }
-//                 //                 break;
-//                 //             }
-//                 //         });
-//                 //     });
-//                 // }
+//                 инициализируем слайдер цен
 //             },
-
 //             initFilter = function(){
-//                 $filterCheckbox.on('click', changeFilter);
-
-//                 $shop.find('.filter__checked-block').on('click', removeFilter);
-
-//                 $filterCheckbox.each(function(){
-//                     var $this = $(this);
-//                     if (typeof(filterCheckbox[$this.attr('name')]) == 'undefined') {
-//                         filterCheckbox[$this.attr('name')] = {};
-//                     }
-//                     filterCheckbox[$this.attr('name')][$this.attr('value')] = {
-//                         input: $this,
-//                         el: $shop.find('.filter-'+$this.attr('name')+'-'+$this.attr('value'))
-//                     };
-
-//                 });
-
-//                 $filterCheckbox.filter(':checked').trigger('click');
+//                 инициализируем
 //             },
-
 //             clickToogler = function(e){
-//                 e.preventDefault();
-//                 $(this).toggleClass('filter__toogle--active');
-//                 exec();
+//                 переключаем коллекции/товары
 //             },
 
 //             changeFilter = function(e){
-//                 var label = $(this).parent();
-//                 if (label.hasClass("active")){
-//                     label.removeClass('active');
-//                     $(this).prop('checked', false);
-//                     filterCheckbox[$(this).attr('name')][$(this).attr('value')].el.hide();
-//                 }else{
-//                     label.addClass('active');
-//                     $(e.target).prop('checked', true);
-//                     filterCheckbox[$(this).attr('name')][$(this).attr('value')].el.show();
-//                 }
-//                 page = 1;
-//                 exec();
+//                 не нужно
 //             },
-
 //             resetFilter = function(){
-//                 $filterCheckbox.filter(':checked').trigger('click');
-//                 keypressSlider.noUiSlider.set([0, 50000]);
-//                 keypressSlider1.noUiSlider.set([0, 300]);
-//                 keypressSlider2.noUiSlider.set([0, 300]);
+//                 все скидываем, возвращаем к изначальному значению
 //             },
-
 //             removeFilter = function(e){
-//                 e.preventDefault();
-//                 filterCheckbox[$(this).data('name')][$(this).data('value')].input.trigger('click');
+//                очищаем все чекбоксы
 //             },
-
 //             clickTag = function(){
-
-//                 page = 1;
-//                 exec();
+//                ??
 //             },
-
 //             clickCount = function(){
-
-//                 page = 1;
-//                 exec();
-
+//                передаем номер страницы
 //             },
-
 //             clickPages = function(e){
-//                 e.preventDefault();
-//                 page = $(this).attr('rel');
-//                 needScroll = true;
-//                 exec();
+//                 выбираем номер страницы
 //             },
-
 //             exec = function(){
 //                 if(!initEnd) return;
 //                 clearTimeout(execTimeout);
@@ -446,71 +280,10 @@ document.addEventListener('DOMContentLoaded', function() {
 //                     var params = {};
 //                     var url = [];
 
-//                     $('.shop__items').addClass('m-load');
-
-//                     if (page != null) {
-//                         url.push('page='+page);
-//                         params.page = page;
-//                     }
-
-//                     if($toggler.hasClass('filter__toogle--active')) {
-//                         url.push('type');
-//                     }
-
-//                     url.push('count='+Number($(".toolbar__select--count").children("option:selected").val()));
-//                     params.count = Number($(".toolbar__select--count").children("option:selected").val());
-
-//                     if (document.documentElement.clientWidth > 1000) {
-//                         url.push('tag=' + $(".toolbar__select--sort").children("option:selected").attr('name'));
-//                         params.tag = $(".toolbar__select--sort").children("option:selected").attr('name');
-//                         console.log('toolbar');
-//                     } else {
-//                         url.push('tag=' + $(".filter__type-select").children("option:selected").attr('name'));
-//                         params.tag = $(".filter__type-select").children("option:selected").attr('name');
-//                         console.log('filter');
-//                     }    
-
-//                     var min = $('#input-with-keypress-0').val();
-//                     var max = $('#input-with-keypress-1').val();
-
-//                     url.push('min='+min);
-//                     url.push('max='+max);
-
-//                     params.min = min;
-//                     params.max = max;
-
-//                     var wmin = $('#input-with-keypress-2').val();
-//                     var wmax = $('#input-with-keypress-3').val();
-
-//                     url.push('wmin='+wmin);
-//                     url.push('wmax='+wmax);
-
-//                     params.wmin = wmin;
-//                     params.wmax = wmax;
-
-//                     var hmin = $('#input-with-keypress-4').val();
-//                     var hmax = $('#input-with-keypress-5').val();
-
-//                     url.push('hmin='+hmin);
-//                     url.push('hmax='+hmax);
-
-//                     params.hmin = hmin;
-//                     params.hmax = hmax;
-
-//                     var filterCheckboxActive = {};
-//                     $filterCheckbox.filter(':checked').each(function(){
-//                         if (typeof(filterCheckboxActive[$(this).attr('name')]) == 'undefined') {
-//                             filterCheckboxActive[$(this).attr('name')] = $(this).val();
-//                         } else {
-//                             filterCheckboxActive[$(this).attr('name')] += ','+$(this).val();
-//                         }
-//                     });
-
-//                     params.filter = {};
-//                     for (var prop in filterCheckboxActive) {
-//                         url.push(prop+'='+filterCheckboxActive[prop]);
-//                         params.filter[prop] = filterCheckboxActive[prop].split(',');
-//                     }
+//                     1. Формируем пустой params
+//                     2. Формируем пустой url
+//                     3. Добавляем класс loader $('.shop__items').addClass('m-load');
+//                     4. 
 
 //                     $.get('?'+url.join('&'), function(html){
 //                         params.html = $(html).find('.shop__content').html();
