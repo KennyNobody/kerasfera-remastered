@@ -1,4 +1,3 @@
-import magnificPopup from 'magnific-popup';
 import noUiSlider from 'nouislider';
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -26,6 +25,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.addEventListener('DOMContentLoaded', function() {
     let filter;
+
+    let count;
     let page;
 
     function initFilter() {
@@ -38,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
             initCheckboxes();
             initToolbar();
             initPagination();
+            initLoadMore();
             initTypes();
             clearForm();
         }
@@ -49,6 +51,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         for (let i = 0; i < radios.length; i++) {
             radios[i].addEventListener('change', function() {
+                resetCount();
+                resetPages();
                 getRequest();
             });
         }
@@ -120,24 +124,47 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    function initLoadMore() {
+        $('.shop__toolbar').on('click', '.shop__btn', function(e) {
+
+            if (count) {
+                count = +count + 15;
+            } else {
+                count = getCount();
+                count = +count + 15;
+            }
+            getRequest();
+        });
+    }
+
     function initPagination() {
         $('.shop__navigation').on('click', '.pagination__btn', function(e) {
             page = this.dataset.page;
+            // resetCount();
             getRequest();
         });
     }
 
     function initToolbar() {
         $('.shop').on('change', '.toolbar__select', function() {
+            resetCount();
             getRequest();
         });
+    }
+
+    function resetCount() {
+        count = getCount();
+    }
+
+    function resetPages() {
+        page = 1;
     }
 
     function getValues() {
 
         let result = {
             page: page || 1,
-            count: getCount(), 
+            count: count, 
             tag : getTag(),
             type: getTypes(),
             min: getPrice('min'),
@@ -182,7 +209,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function getPrice(price) {
-        return filter.elements[price].value;
+        if (filter.elements[price].value == 0) {
+            return false;
+        } else {
+            return filter.elements[price].value;
+        }
     }
 
     function getTypes() {
@@ -203,15 +234,72 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function getRequest(page) {
 
-
         document.querySelector('.shop__items').classList.add('m-load');
+
+
         $.ajax({
             type: 'GET',
             data: getValues(),
+            url: '/shop/ajax.php/',
             success: function (response) {
                 console.log(this);
-                let params = $(response).find('.shop__content .columns').html();
-                $('.shop__content .columns').html(params);
+
+                let responceArr = $.parseHTML(response);
+
+                function gelEl (el) {
+                    for (let i = 0; i < responceArr.length; i++) {
+                        console.log(el);
+                        // if (el == responceArr[i]) {
+                        //     return el;
+                        // } else {
+                        //     return false;
+                        // }
+                    }
+                 }
+
+                
+
+                let items = gelEl('div.shop__items');
+                console.log(items);
+               
+
+                // console.log(responceArr.find('div.shop__items'));
+                // console.log(responceArr[3].innerHTML); // window.loadMore = response;
+                // console.log(loadMore.text())
+                //
+                // $.each(responceArr, function (i, el) {
+                //     $('.shop__content').append(el.innerHTML)
+                // })
+                // $('.shop__content').append('test')
+                // $('.shop__content').append(responceArr[5].innerHTML)
+                // $('.shop__content').append('test')
+                // Игорь
+
+
+                let params = $(response).find('.columns').html();
+
+                if ($(response).find('.columns__column').length < 4) {
+                    $('.shop__items .columns').html('<p style="margin-bottom:25px; text-align: center; width: 100%;">По данным параметрам товаров не найдено. Попробуйте изменить запрос</p>');
+                } else {
+                    $('.shop__items .columns').html(params);
+                }
+
+                let loadMore = $(response).html();
+
+                if (loadMore) {
+                    $('.shop__toolbar').html(loadMore);
+                } else {
+                    $('.shop__toolbar').html('');
+                }
+
+                let pagination = $(response).find('.pagination').html();
+
+                if (pagination == undefined) {
+                    $('.shop__navigation .pagination').html('');
+                } else {
+                    $('.shop__navigation .pagination').html(pagination);
+                }
+
                 document.querySelector('.shop__items').classList.remove('m-load');
 
             },
@@ -236,119 +324,3 @@ document.addEventListener('DOMContentLoaded', function() {
     initFilter();
 
 });
-
-// var waitInterval = setInterval(function(){
-//     if (typeof($) == typeof(function(){})) {
-//         clearInterval(waitInterval);
-
-//         $('.shop').each(function(){
-//             init = function(){
-//                 инициализируем фильтр
-//             },
-//             initPrice = function(){
-//                 инициализируем слайдер цен
-//             },
-//             initFilter = function(){
-//                 инициализируем
-//             },
-//             clickToogler = function(e){
-//                 переключаем коллекции/товары
-//             },
-
-//             changeFilter = function(e){
-//                 не нужно
-//             },
-//             resetFilter = function(){
-//                 все скидываем, возвращаем к изначальному значению
-//             },
-//             removeFilter = function(e){
-//                очищаем все чекбоксы
-//             },
-//             clickTag = function(){
-//                ??
-//             },
-//             clickCount = function(){
-//                передаем номер страницы
-//             },
-//             clickPages = function(e){
-//                 выбираем номер страницы
-//             },
-//             exec = function(){
-//                 if(!initEnd) return;
-//                 clearTimeout(execTimeout);
-//                 execTimeout = setTimeout(function(){
-//                     var params = {};
-//                     var url = [];
-
-//                     1. Формируем пустой params
-//                     2. Формируем пустой url
-//                     3. Добавляем класс loader $('.shop__items').addClass('m-load');
-//                     4. 
-
-//                     $.get('?'+url.join('&'), function(html){
-//                         params.html = $(html).find('.shop__content').html();
-//                         history.pushState(params, null, '?'+url.join('&'));
-//                         try {
-//                             var popStateEvent = new PopStateEvent('popstate', { state: params });
-//                             dispatchEvent(popStateEvent);
-
-//                             $('.toolbar__select--count option[value="'+ params.count +'"]').prop('selected', true);
-//                             $('.toolbar__select--sort option[name="'+ params.tag +'"]').prop('selected', true);
-//                         } catch (ex) {
-//                             window.location = '?'+url.join('&');
-//                         }
-//                     });
-//                 }, 500);
-//             },
-
-//             loadPage = function(e){
-//                 if (e.state == null) return;
-//                 if ($('.filter__wrapper').css('position') != 'fixed') {
-//                     $('.body').removeClass('body--filter');
-//                 }
-//                 $shop.find('.shop__content').html(e.state.html).find('.popup-item').magnificPopup({
-//                     showCloseBtn: false,
-//                 });
-//                 $shop.find('.shop__content').find('.call__close').on('click', function(e){
-//                     $.magnificPopup.close();
-//                 });
-//                 priceSetManual = true;
-//                 keypressSlider.noUiSlider.set([e.state.min, e.state.max]);
-//                 priceSetManual = false;
-//                 sizeSetManual0 = true;
-//                 keypressSlider1.noUiSlider.set([e.state.wmin, e.state.wmax]);
-//                 sizeSetManual0 = false;
-//                 sizeSetManual1 = true;
-//                 keypressSlider2.noUiSlider.set([e.state.hmin, e.state.hmax]);
-//                 sizeSetManual1 = false;
-//                 $filterCheckbox.filter(':checked').each(function(){
-//                     $(this).parent().removeClass('active');
-//                     $(this).prop('checked', false);
-//                     filterCheckbox[$(this).attr('name')][$(this).attr('value')].el.hide();
-//                 });
-
-//                 for (var prop in e.state.filter) {
-//                     $.each(e.state.filter[prop], function(){
-//                         filterCheckbox[prop][this].input.parent().addClass('active');
-//                         filterCheckbox[prop][this].input.prop('checked', true);
-//                         filterCheckbox[prop][this].el.show();
-//                     });
-//                 }
-
-//                 if (needScroll) {
-//                     $("html, body").stop().animate({scrollTop:0}, 500, 'swing');
-//                     needScroll = false;
-//                 }
-//             };
-
-//             init();
-//         });
-
-// }
-// }, 100);
-
-
-
-
-// });
-

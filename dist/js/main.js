@@ -206,11 +206,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var magnific_popup__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! magnific-popup */ "./node_modules/magnific-popup/dist/jquery.magnific-popup.js");
-/* harmony import */ var magnific_popup__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(magnific_popup__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var nouislider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! nouislider */ "./node_modules/nouislider/distribute/nouislider.js");
-/* harmony import */ var nouislider__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(nouislider__WEBPACK_IMPORTED_MODULE_1__);
-
+/* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var nouislider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! nouislider */ "./node_modules/nouislider/distribute/nouislider.js");
+/* harmony import */ var nouislider__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(nouislider__WEBPACK_IMPORTED_MODULE_0__);
 
 document.addEventListener('DOMContentLoaded', function () {
   $(window).scroll(function () {
@@ -233,6 +230,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 document.addEventListener('DOMContentLoaded', function () {
   var filter;
+  var count;
   var page;
 
   function initFilter() {
@@ -245,6 +243,7 @@ document.addEventListener('DOMContentLoaded', function () {
       initCheckboxes();
       initToolbar();
       initPagination();
+      initLoadMore();
       initTypes();
       clearForm();
     }
@@ -255,6 +254,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     for (var i = 0; i < radios.length; i++) {
       radios[i].addEventListener('change', function () {
+        resetCount();
+        resetPages();
         getRequest();
       });
     }
@@ -282,7 +283,7 @@ document.addEventListener('DOMContentLoaded', function () {
       var activeBlock = rangeSlider.querySelector('.filter__range');
       var minValue = rangeSlider.querySelector('#input-with-keypress-0') || 0;
       var maxValue = rangeSlider.querySelector('#input-with-keypress-1') || 10000;
-      nouislider__WEBPACK_IMPORTED_MODULE_1___default.a.create(activeBlock, {
+      nouislider__WEBPACK_IMPORTED_MODULE_0___default.a.create(activeBlock, {
         start: [+minValue.value, +maxValue.value],
         connect: true,
         step: 100,
@@ -316,23 +317,46 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+  function initLoadMore() {
+    $('.shop__toolbar').on('click', '.shop__btn', function (e) {
+      if (count) {
+        count = +count + 15;
+      } else {
+        count = getCount();
+        count = +count + 15;
+      }
+
+      getRequest();
+    });
+  }
+
   function initPagination() {
     $('.shop__navigation').on('click', '.pagination__btn', function (e) {
-      page = this.dataset.page;
+      page = this.dataset.page; // resetCount();
+
       getRequest();
     });
   }
 
   function initToolbar() {
     $('.shop').on('change', '.toolbar__select', function () {
+      resetCount();
       getRequest();
     });
+  }
+
+  function resetCount() {
+    count = getCount();
+  }
+
+  function resetPages() {
+    page = 1;
   }
 
   function getValues() {
     var result = {
       page: page || 1,
-      count: getCount(),
+      count: count,
       tag: getTag(),
       type: getTypes(),
       min: getPrice('min'),
@@ -372,7 +396,11 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function getPrice(price) {
-    return filter.elements[price].value;
+    if (filter.elements[price].value == 0) {
+      return false;
+    } else {
+      return filter.elements[price].value;
+    }
   }
 
   function getTypes() {
@@ -394,10 +422,58 @@ document.addEventListener('DOMContentLoaded', function () {
     $.ajax({
       type: 'GET',
       data: getValues(),
+      url: '/shop/ajax.php/',
       success: function success(response) {
         console.log(this);
-        var params = $(response).find('.shop__content .columns').html();
-        $('.shop__content .columns').html(params);
+        var responceArr = $.parseHTML(response);
+
+        function gelEl(el) {
+          for (var i = 0; i < responceArr.length; i++) {
+            console.log(el); // if (el == responceArr[i]) {
+            //     return el;
+            // } else {
+            //     return false;
+            // }
+          }
+        }
+
+        var items = gelEl('div.shop__items');
+        console.log(items); // console.log(responceArr.find('div.shop__items'));
+        // console.log(responceArr[3].innerHTML); // window.loadMore = response;
+        // console.log(loadMore.text())
+        //
+        // $.each(responceArr, function (i, el) {
+        //     $('.shop__content').append(el.innerHTML)
+        // })
+        // $('.shop__content').append('test')
+        // $('.shop__content').append(responceArr[5].innerHTML)
+        // $('.shop__content').append('test')
+        // Игорь
+
+        var params = $(response).find('.columns').html();
+
+        if ($(response).find('.columns__column').length < 4) {
+          $('.shop__items .columns').html('<p style="margin-bottom:25px; text-align: center; width: 100%;">По данным параметрам товаров не найдено. Попробуйте изменить запрос</p>');
+        } else {
+          $('.shop__items .columns').html(params);
+        }
+
+        var loadMore = $(response).html();
+
+        if (loadMore) {
+          $('.shop__toolbar').html(loadMore);
+        } else {
+          $('.shop__toolbar').html('');
+        }
+
+        var pagination = $(response).find('.pagination').html();
+
+        if (pagination == undefined) {
+          $('.shop__navigation .pagination').html('');
+        } else {
+          $('.shop__navigation .pagination').html(pagination);
+        }
+
         document.querySelector('.shop__items').classList.remove('m-load');
       },
       error: function error(response) {
@@ -419,106 +495,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   initFilter();
-}); // var waitInterval = setInterval(function(){
-//     if (typeof($) == typeof(function(){})) {
-//         clearInterval(waitInterval);
-//         $('.shop').each(function(){
-//             init = function(){
-//                 инициализируем фильтр
-//             },
-//             initPrice = function(){
-//                 инициализируем слайдер цен
-//             },
-//             initFilter = function(){
-//                 инициализируем
-//             },
-//             clickToogler = function(e){
-//                 переключаем коллекции/товары
-//             },
-//             changeFilter = function(e){
-//                 не нужно
-//             },
-//             resetFilter = function(){
-//                 все скидываем, возвращаем к изначальному значению
-//             },
-//             removeFilter = function(e){
-//                очищаем все чекбоксы
-//             },
-//             clickTag = function(){
-//                ??
-//             },
-//             clickCount = function(){
-//                передаем номер страницы
-//             },
-//             clickPages = function(e){
-//                 выбираем номер страницы
-//             },
-//             exec = function(){
-//                 if(!initEnd) return;
-//                 clearTimeout(execTimeout);
-//                 execTimeout = setTimeout(function(){
-//                     var params = {};
-//                     var url = [];
-//                     1. Формируем пустой params
-//                     2. Формируем пустой url
-//                     3. Добавляем класс loader $('.shop__items').addClass('m-load');
-//                     4. 
-//                     $.get('?'+url.join('&'), function(html){
-//                         params.html = $(html).find('.shop__content').html();
-//                         history.pushState(params, null, '?'+url.join('&'));
-//                         try {
-//                             var popStateEvent = new PopStateEvent('popstate', { state: params });
-//                             dispatchEvent(popStateEvent);
-//                             $('.toolbar__select--count option[value="'+ params.count +'"]').prop('selected', true);
-//                             $('.toolbar__select--sort option[name="'+ params.tag +'"]').prop('selected', true);
-//                         } catch (ex) {
-//                             window.location = '?'+url.join('&');
-//                         }
-//                     });
-//                 }, 500);
-//             },
-//             loadPage = function(e){
-//                 if (e.state == null) return;
-//                 if ($('.filter__wrapper').css('position') != 'fixed') {
-//                     $('.body').removeClass('body--filter');
-//                 }
-//                 $shop.find('.shop__content').html(e.state.html).find('.popup-item').magnificPopup({
-//                     showCloseBtn: false,
-//                 });
-//                 $shop.find('.shop__content').find('.call__close').on('click', function(e){
-//                     $.magnificPopup.close();
-//                 });
-//                 priceSetManual = true;
-//                 keypressSlider.noUiSlider.set([e.state.min, e.state.max]);
-//                 priceSetManual = false;
-//                 sizeSetManual0 = true;
-//                 keypressSlider1.noUiSlider.set([e.state.wmin, e.state.wmax]);
-//                 sizeSetManual0 = false;
-//                 sizeSetManual1 = true;
-//                 keypressSlider2.noUiSlider.set([e.state.hmin, e.state.hmax]);
-//                 sizeSetManual1 = false;
-//                 $filterCheckbox.filter(':checked').each(function(){
-//                     $(this).parent().removeClass('active');
-//                     $(this).prop('checked', false);
-//                     filterCheckbox[$(this).attr('name')][$(this).attr('value')].el.hide();
-//                 });
-//                 for (var prop in e.state.filter) {
-//                     $.each(e.state.filter[prop], function(){
-//                         filterCheckbox[prop][this].input.parent().addClass('active');
-//                         filterCheckbox[prop][this].input.prop('checked', true);
-//                         filterCheckbox[prop][this].el.show();
-//                     });
-//                 }
-//                 if (needScroll) {
-//                     $("html, body").stop().animate({scrollTop:0}, 500, 'swing');
-//                     needScroll = false;
-//                 }
-//             };
-//             init();
-//         });
-// }
-// }, 100);
-// });
+});
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")))
 
 /***/ }),
@@ -599,6 +576,175 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /***/ }),
 
+/***/ "./src/blocks/modules/modal/modal.js":
+/*!*******************************************!*\
+  !*** ./src/blocks/modules/modal/modal.js ***!
+  \*******************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _fancyapps_fancybox__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @fancyapps/fancybox */ "./node_modules/@fancyapps/fancybox/dist/jquery.fancybox.js");
+/* harmony import */ var _fancyapps_fancybox__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_fancyapps_fancybox__WEBPACK_IMPORTED_MODULE_0__);
+
+
+/***/ }),
+
+/***/ "./src/blocks/modules/oldBuy/oldBuy.js":
+/*!*********************************************!*\
+  !*** ./src/blocks/modules/oldBuy/oldBuy.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function($) {document.addEventListener('DOMContentLoaded', function () {
+  $(".item-card__submit.fast-buy").on("click", function (e) {
+    e.preventDefault();
+    var t = $(this);
+
+    if (t.hasClass("item-card__submit--added")) {
+      window.location = "/personal/cart/";
+    } else {
+      t.css("position", "relative");
+      t.addClass("item-card__submit--added");
+      t.text("Добавлено");
+      setTimeout(function () {
+        t.removeClass("item-card__submit--added");
+        t.text("В корзину");
+      }, 5000);
+      var n = $(t.attr("data-href")).find("form");
+      n.find(".counter__input").val($(this).parents(".item-card").find(".item-card__input").val());
+      n.trigger("submit");
+    }
+  });
+  $('body').on('click', '.cart__link', function (e) {
+    e.preventDefault();
+    $.get('/personal/cart/ajax.php?action=delete&id=' + $(this).parents('.cart__line').data('id'), function (data) {});
+    $(this).parents('.cart__line').remove();
+    var a = $(".header__link-counter").text();
+    $(".header__link-counter").text(Number(a) - parseFloat($(this).parents('.cart__line').find(".cart__counter-total").val()));
+    $(".mob-toolbar__counter").text(Number(a) - parseFloat($(this).parents('.cart__line').find(".cart__counter-total").val()));
+  }); // Для карточки товара
+
+  $("body").on("submit", ".item-card", function (e) {
+    var form = this;
+    e.preventDefault();
+    $.ajax({
+      type: 'POST',
+      data: {
+        item_id: form.dataset.id,
+        iblick_id: form.dataset.iblockId,
+        count: form.elements['q'].value
+      },
+      url: '/ajax/add2basket.php',
+      success: function success(response) {
+        addCounter();
+        showMessage(form);
+      },
+      error: function error(response) {}
+    });
+
+    function addCounter() {
+      var countMob = document.querySelector('.mob-toolbar__counter');
+      console.log(+countMob.innerText);
+
+      if (countMob) {
+        countMob.innerText = +countMob.innerText + 1;
+      }
+
+      var countDesktop = document.querySelector('.header__link-counter');
+      console.log(+countDesktop.innerText);
+
+      if (countDesktop) {
+        countDesktop.innerText = +countDesktop.innerText + 1;
+      }
+    }
+
+    function showMessage(form) {
+      var button = form.querySelector('.item-card__submit');
+
+      if (button) {
+        button.innerText = "Добавлено";
+        setTimeout(function () {
+          button.innerText = "В корзину";
+        }, 3000);
+      }
+    }
+  });
+  $("body").on("submit", ".product-form", function (e) {
+    var form = this;
+    e.preventDefault();
+    $.ajax({
+      type: 'POST',
+      data: {
+        item_id: form.dataset.id,
+        iblick_id: form.dataset.iblockId,
+        count: form.elements['product-form__value'].value
+      },
+      url: '/ajax/add2basket.php',
+      success: function success(response) {
+        addCounter();
+        showMessage(form);
+      },
+      error: function error(response) {}
+    });
+
+    function addCounter() {
+      var countMob = document.querySelector('.mob-toolbar__counter');
+      console.log(+countMob.innerText);
+
+      if (countMob) {
+        countMob.innerText = +countMob.innerText + 1;
+      }
+
+      var countDesktop = document.querySelector('.header__link-counter');
+      console.log(+countDesktop.innerText);
+
+      if (countDesktop) {
+        countDesktop.innerText = +countDesktop.innerText + 1;
+      }
+    }
+
+    function showMessage(form) {
+      var button = form.querySelector('#buy');
+
+      if (button) {
+        button.innerText = "Добавлено";
+        setTimeout(function () {
+          button.innerText = "В корзину";
+        }, 3000);
+      }
+    }
+  }); // if ($.post("/ajax/add2basket.php")) {
+  // 	var a = $(".header__link-counter").text();
+  // 	$(".header__link-counter").text(Number(a) + parseFloat($(this).find(".counter__input").val()));
+  // 	$(".mob-toolbar__counter").text(Number(a) + parseFloat($(this).find(".counter__input").val()));
+  // 	t.find(".call__control-btn").val("Перейти в корзину")
+  // } else {
+  // 	t.html("<p>Мы проинформируем вас о поступлении. Спасибо за обращение</p>")
+  // }
+  // 	if (!t.find(".call__columns").length) {
+  // 		var n = t.find('input[name="Prop[1]"]').val(),
+  // 		i = t.find('input[name="Prop[2]"]').val();
+  // 		if ("" == n && "" == i) return void alert("Пожалуйста, заполните имя и телефон");
+  // 		if ("" == n) return void alert("Пожалуйста, заполните имя");
+  // 		if ("" == i) return void alert("Пожалуйста, заполните телефон")
+  // 	}
+  // if (t.hasClass("sending")) t.find(".call__columns").length && (window.location = "/personal/cart/");
+  // else if (t.addClass("sending"), $.post(t.find(".call__columns").length ? "/ajax/add2basket.php" : "/ajax/under_order.php", t.serialize()), t.find(".call__columns").length) {
+  // 	var a = $(".header__link-counter").text();
+  // 	$(".header__link-counter").text(Number(a) + parseFloat($(this).find(".counter__input").val()));
+  // 	$(".mob-toolbar__counter").text(Number(a) + parseFloat($(this).find(".counter__input").val()));
+  // 	t.find(".call__control-btn").val("Перейти в корзину")
+  // } else {
+  // 	t.html("<p>Мы проинформируем вас о поступлении. Спасибо за обращение</p>")
+  // }
+});
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")))
+
+/***/ }),
+
 /***/ "./src/blocks/modules/oldCookie/oldCookie.js":
 /*!***************************************************!*\
   !*** ./src/blocks/modules/oldCookie/oldCookie.js ***!
@@ -653,19 +799,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /* WEBPACK VAR INJECTION */(function($) {document.addEventListener('DOMContentLoaded', function () {
   $(document).ready(function () {
-    $('.item-card__tag--favorite').on('click', function () {
+    // $('.item-card__tag--favorite').on('click', function () {
+    // 	var favorID = $(this).attr('data-item');
+    // 	if ($(this).hasClass('item-card__tag--favorite-active')) {
+    // 		favHandler(favorID, 'delete');
+    // 	} else {
+    // 		favHandler(favorID, 'add');
+    // 	}
+    // });
+    // $('.favorite-btn').on('click', function () {
+    // 	var favorID = $(this).attr('data-item');
+    // 	if ($(this).hasClass('active')) {
+    // 		favHandler(favorID, 'delete');
+    // 	} else {
+    // 		favHandler(favorID, 'add');
+    // 	}
+    // });
+    $(document).on('click', '.item-card__tag--favorite', function (e) {
       var favorID = $(this).attr('data-item');
 
       if ($(this).hasClass('item-card__tag--favorite-active')) {
-        favHandler(favorID, 'delete');
-      } else {
-        favHandler(favorID, 'add');
-      }
-    });
-    $('.favorite-btn').on('click', function () {
-      var favorID = $(this).attr('data-item');
-
-      if ($(this).hasClass('active')) {
         favHandler(favorID, 'delete');
       } else {
         favHandler(favorID, 'add');
@@ -848,43 +1001,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }, "titleSrc", function titleSrc(item) {
       return '<a href="' + item.el.attr('data-link') + '">Посмотреть коллекцию</a>';
     })
-  }); // var mainInterval = setInterval(function () {
-  // 	if (typeof ($) == typeof (function () {
-  // 	})) {
-  // 		clearInterval(mainInterval);
-  // 		let $btn = $('.gallery__btn');
-  // 		let $win = $(window);
-  // 		let $items = $('.gallery__item');
-  // 		let current = 0;
-  // 		// var subInterval = setInterval(function () {
-  // 		// 	if ($btn.offset().top < $win.scrollTop() + $win.height()) {
-  // 		// 		var i = current * 20, e = 0;
-  // 		// 		while (e < 20) {
-  // 		// 			if ($items.eq(i + e).length) {
-  // 		// 				$items.eq(i + e).show();
-  // 		// 			} else {
-  // 		// 				clearInterval(subInterval);
-  // 		// 				break;
-  // 		// 			}
-  // 		// 			e++;
-  // 		// 		}
-  // 		// 		current++;
-  // 		// 	}
-  // 		// }, 500);
-  // 		var intervalGallery = null;
-  // 		$('.popup-gallery').on('mfpChange', function () {
-  // 			clearInterval(intervalGallery);
-  // 			intervalGallery = setInterval(function () {
-  // 				var src = $('.mfp-img').attr('src');
-  // 				if (typeof (src) != 'undefined') {
-  // 					var $item = $('.gallery__item[href="' + src + '"]');
-  // 					$('.mfp-title').html($item.data('link') ? '<a href="' + $item.data('link') + '">Посмотреть коллекцию</a>' : '');
-  // 					clearInterval(intervalGallery);
-  // 				}
-  // 			}, 200);
-  // 		});
-  // 	}
-  // }, 500);
+  });
 });
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")))
 
@@ -938,289 +1055,6 @@ $(".rating-visible").barrating({
 $(".rating-input").barrating({
   theme: "css-stars",
   initialRating: 5
-});
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")))
-
-/***/ }),
-
-/***/ "./src/blocks/modules/oldScrollbar/oldScrollbar.js":
-/*!*********************************************************!*\
-  !*** ./src/blocks/modules/oldScrollbar/oldScrollbar.js ***!
-  \*********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(jQuery) {/* jQuery Custom Scroll plugin v0.6.6 | (c) 2015 Mostovoy Andrey | https://github.com/standy/custom-scroll/blob/master/LICENSE */
-(function ($) {
-  $.fn.customScroll = function (options) {
-    if (!this.length) {
-      return $.extend(defaultOptions, options);
-    }
-
-    if (options === 'destroy') {
-      this.each(function () {
-        var cs = $(this).data('custom-scroll');
-        if (cs) cs.destroy();
-      });
-      return this;
-    }
-
-    if (this.length === 1) return customScroll(this, options);
-    this.each(function () {
-      customScroll($(this), options);
-    });
-  };
-
-  var defaultOptions = {
-    prefix: 'custom-scroll_',
-    barMinHeight: 10,
-    barMinWidth: 10,
-    offsetTop: 0,
-    offsetBottom: 0,
-    offsetLeft: 0,
-    offsetRight: 0,
-    trackWidth: 10,
-    trackHeight: 10,
-    barHtml: '<div />',
-    vertical: true,
-    horizontal: true,
-    preventParentScroll: true
-  };
-  var DIRS_VERTICAL = {
-    dim: 'height',
-    Dim: 'Height',
-    dir: 'top',
-    Dir: 'Top',
-    dir2: 'bottom',
-    Dir2: 'Bottom',
-    clientAxis: 'clientY',
-    suffix: '-y'
-  };
-  var DIRS_HORIZONTAL = {
-    dim: 'width',
-    Dim: 'Width',
-    dir: 'left',
-    Dir: 'Left',
-    dir2: 'right',
-    Dir2: 'Right',
-    clientAxis: 'clientX',
-    suffix: '-x'
-  };
-
-  function customScroll($container, options) {
-    var cs = $container.data('custom-scroll');
-    if (cs) options = cs.options;else options = $.extend({}, defaultOptions, options);
-    var dirs = {};
-    var lastDims = {};
-    var isBarHidden = {
-      x: +options.vertical,
-      y: +options.horizontal
-    };
-
-    if (options.horizontal) {
-      dirs.x = DIRS_HORIZONTAL;
-      lastDims.x = {};
-    }
-
-    if (options.vertical) {
-      dirs.y = DIRS_VERTICAL;
-      lastDims.y = {};
-    }
-
-    if ($container.hasClass(options.prefix + 'container') && cs) {
-      cs.updateBars();
-      return cs;
-    }
-
-    var $inner = $container.children('.' + options.prefix + 'inner');
-
-    if (!$inner.length) {
-      $inner = $container.wrapInner('<div class="' + options.prefix + 'inner' + '"></div>').children();
-    }
-
-    $container.addClass(options.prefix + 'container');
-    var tmp = $('<div class="' + options.prefix + 'inner" />').width(100).height(100).appendTo('body').css({
-      overflow: 'scroll'
-    })[0];
-    var scrollWidth = tmp.offsetWidth - tmp.clientWidth;
-    var scrollHeight = tmp.offsetHeight - tmp.clientHeight;
-    tmp.parentElement.removeChild(tmp);
-
-    if (options.vertical) {
-      $inner.css({
-        paddingLeft: $container.css('paddingLeft'),
-        paddingRight: $container.css('paddingRight'),
-        marginRight: -scrollWidth + 'px'
-      });
-      $container.css({
-        paddingLeft: 0,
-        paddingRight: 0
-      });
-    } else {
-      $inner.css({
-        overflowY: 'hidden'
-      });
-    }
-
-    if (options.horizontal) {
-      $inner.css({
-        marginBottom: -scrollHeight + 'px',
-        paddingBottom: scrollHeight + 'px'
-      });
-      $container.css({
-        paddingTop: 0,
-        paddingBottom: 0
-      });
-    } else {
-      $inner.css({
-        overflowX: 'hidden'
-      });
-    }
-
-    var maxHeight = $container.css('maxHeight');
-
-    if (parseInt(maxHeight)) {
-      $container.css('maxHeight', 'none');
-      $inner.css('maxHeight', maxHeight);
-    }
-
-    $container.scrollTop(0);
-    var $body = $('body');
-    var $bars = {};
-    $.each(dirs, initBar);
-    $inner.on('scroll', updateBars);
-    updateBars();
-    if (options.preventParentScroll) preventParentScroll();
-    var data = {
-      $container: $container,
-      $bar: $bars.y,
-      $barX: $bars.x,
-      $inner: $inner,
-      destroy: destroy,
-      updateBars: updateBars,
-      options: options
-    };
-    $container.data('custom-scroll', data);
-    return data;
-
-    function preventParentScroll() {
-      $inner.on('DOMMouseScroll mousewheel', function (e) {
-        var $this = $(this);
-        var scrollTop = this.scrollTop;
-        var scrollHeight = this.scrollHeight;
-        var height = $this.height();
-        var delta = e.type == 'DOMMouseScroll' ? e.originalEvent.detail * -40 : e.originalEvent.wheelDelta;
-        var up = delta > 0;
-
-        if (up ? scrollTop === 0 : scrollTop === scrollHeight - height) {
-          e.preventDefault();
-        }
-      });
-    }
-
-    function initBar(dirKey, dir) {
-      $container['scroll' + dir.Dir](0);
-      var cls = options.prefix + 'bar' + dir.suffix;
-      var $bar = $container.children('.' + cls);
-
-      if (!$bar.length) {
-        $bar = $(options.barHtml).addClass(cls).appendTo($container);
-      }
-
-      $bar.on('mousedown touchstart', function (e) {
-        e.preventDefault(); // stop scrolling in ie9
-
-        var scrollStart = $inner['scroll' + dir.Dir]();
-        var posStart = e[dir.clientAxis] || e.originalEvent.changedTouches && e.originalEvent.changedTouches[0][dir.clientAxis];
-        var ratio = getDims(dirKey, dir).ratio;
-        $body.on('mousemove.custom-scroll touchmove.custom-scroll', function (e) {
-          e.preventDefault(); // stop scrolling
-
-          var pos = e[dir.clientAxis] || e.originalEvent.changedTouches && e.originalEvent.changedTouches[0][dir.clientAxis];
-          $inner['scroll' + dir.Dir](scrollStart + (pos - posStart) / ratio);
-        });
-        $body.on('mouseup.custom-scroll touchend.custom-scroll', function () {
-          $body.off('.custom-scroll');
-        });
-      });
-      $bars[dirKey] = $bar;
-    }
-
-    function getDims(dirKey, dir) {
-      var total = $inner.prop('scroll' + dir.Dim) | 0;
-      var dim = $container['inner' + dir.Dim]();
-      var inner = $inner['inner' + dir.Dim]();
-      var scroll = dim - options['offset' + dir.Dir] - options['offset' + dir.Dir2];
-      if (!isBarHidden[dirKey == 'x' ? 'y' : 'x']) scroll -= options['track' + dir.Dim];
-      var bar = Math.max(scroll * dim / total | 0, options['barMin' + dir.Dim]);
-      var ratio = (scroll - bar) / (total - inner);
-      return {
-        ratio: ratio,
-        dim: dim,
-        scroll: scroll,
-        total: total,
-        bar: bar
-      };
-    }
-
-    function updateBars() {
-      $.each(dirs, updateBar);
-    }
-
-    function updateBar(dirKey, dir) {
-      var dims = getDims(dirKey, dir);
-      if (!dims.total) return;
-      var scrollPos = $inner['scroll' + dir.Dir]();
-      if (lastDims[dirKey].scrollPos === scrollPos && lastDims[dirKey].scroll === dims.scroll && lastDims[dirKey].total === dims.total) return;
-      lastDims[dirKey] = dims;
-      lastDims[dirKey].scrollPos = scrollPos;
-      var isHide = dims.bar >= dims.scroll;
-
-      if (isHide !== isBarHidden[dirKey]) {
-        $container.toggleClass(options.prefix + 'hidden' + dir.suffix, isHide);
-        isBarHidden[dirKey] = isHide;
-      }
-
-      var barPos = scrollPos * dims.ratio;
-      if (barPos < 0) barPos = 0;
-      if (barPos > dims.scroll - dims.bar) barPos = dims.scroll - dims.bar;
-      $bars[dirKey][dir.dim](dims.bar).css(dir.dir, options['offset' + dir.Dir] + barPos);
-    }
-
-    function destroy() {
-      $.each(dirs, function (key) {
-        $bars[key].remove();
-      });
-      $container.removeClass(options.prefix + 'container').removeData('custom-scroll').css({
-        padding: '',
-        maxHeight: ''
-      });
-      $inner.contents().appendTo($container);
-      $inner.remove();
-    }
-  }
-})(jQuery);
-
-document.addEventListener('DOMContentLoaded', function () {// function reWidth() {
-  //     if ($(document).width() < 1000) {
-  //         $('.filter__wrapper').customScroll({
-  //             vertical: true,
-  //             horizontal: false
-  //         });
-  //     } else {
-  //         $('.filter__block ul').customScroll({
-  //             vertical: true,
-  //             horizontal: false
-  //         });
-  //     }
-  // };
-  // reWidth();
-  // $(window).on('resize', function(){
-  //     setTimeout(reWidth, 300);
-  // });
-  // $(".filter__block").click(function() {
-  //     setTimeout(reWidth, 300);
-  // });
 });
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")))
 
@@ -1606,31 +1440,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_oldFrontGrid_oldFrontGrid__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! %modules%/oldFrontGrid/oldFrontGrid */ "./src/blocks/modules/oldFrontGrid/oldFrontGrid.js");
 /* harmony import */ var _modules_oldMmenu_oldMmenu__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! %modules%/oldMmenu/oldMmenu */ "./src/blocks/modules/oldMmenu/oldMmenu.js");
 /* harmony import */ var _modules_oldSliders_oldSliders__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! %modules%/oldSliders/oldSliders */ "./src/blocks/modules/oldSliders/oldSliders.js");
-/* harmony import */ var _modules_oldScrollbar_oldScrollbar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! %modules%/oldScrollbar/oldScrollbar */ "./src/blocks/modules/oldScrollbar/oldScrollbar.js");
-/* harmony import */ var _modules_oldScrollbar_oldScrollbar__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_modules_oldScrollbar_oldScrollbar__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _modules_oldRating_oldRating__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! %modules%/oldRating/oldRating */ "./src/blocks/modules/oldRating/oldRating.js");
-/* harmony import */ var _modules_oldFavorites_oldFavorites__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! %modules%/oldFavorites/oldFavorites */ "./src/blocks/modules/oldFavorites/oldFavorites.js");
-/* harmony import */ var _modules_oldFavorites_oldFavorites__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_modules_oldFavorites_oldFavorites__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _modules_oldCookie_oldCookie__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! %modules%/oldCookie/oldCookie */ "./src/blocks/modules/oldCookie/oldCookie.js");
-/* harmony import */ var _modules_oldCookie_oldCookie__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_modules_oldCookie_oldCookie__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _modules_oldRating_oldRating__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! %modules%/oldRating/oldRating */ "./src/blocks/modules/oldRating/oldRating.js");
+/* harmony import */ var _modules_oldFavorites_oldFavorites__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! %modules%/oldFavorites/oldFavorites */ "./src/blocks/modules/oldFavorites/oldFavorites.js");
+/* harmony import */ var _modules_oldFavorites_oldFavorites__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_modules_oldFavorites_oldFavorites__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _modules_oldCookie_oldCookie__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! %modules%/oldCookie/oldCookie */ "./src/blocks/modules/oldCookie/oldCookie.js");
+/* harmony import */ var _modules_oldCookie_oldCookie__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_modules_oldCookie_oldCookie__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _modules_oldBuy_oldBuy__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! %modules%/oldBuy/oldBuy */ "./src/blocks/modules/oldBuy/oldBuy.js");
+/* harmony import */ var _modules_oldBuy_oldBuy__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_modules_oldBuy_oldBuy__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _modules_product_slider_product_slider__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! %modules%/product-slider/product-slider */ "./src/blocks/modules/product-slider/product-slider.js");
 /* harmony import */ var _modules_item_card_item_card__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! %modules%/item-card/item-card */ "./src/blocks/modules/item-card/item-card.js");
 /* harmony import */ var _modules_item_card_item_card__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_modules_item_card_item_card__WEBPACK_IMPORTED_MODULE_9__);
 /* harmony import */ var _modules_slider_line_slider_line__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! %modules%/slider-line/slider-line */ "./src/blocks/modules/slider-line/slider-line.js");
 /* harmony import */ var _modules_tabs_tabs__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! %modules%/tabs/tabs */ "./src/blocks/modules/tabs/tabs.js");
 /* harmony import */ var _modules_tabs_tabs__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_modules_tabs_tabs__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var _modules_sidebar_sidebar__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! %modules%/sidebar/sidebar */ "./src/blocks/modules/sidebar/sidebar.js");
-/* harmony import */ var _modules_sidebar_sidebar__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_modules_sidebar_sidebar__WEBPACK_IMPORTED_MODULE_12__);
-/* harmony import */ var _modules_subtabs_subtabs__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! %modules%/subtabs/subtabs */ "./src/blocks/modules/subtabs/subtabs.js");
-/* harmony import */ var _modules_subtabs_subtabs__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_modules_subtabs_subtabs__WEBPACK_IMPORTED_MODULE_13__);
-/* harmony import */ var _modules_item_contact_item_contact__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! %modules%/item-contact/item-contact */ "./src/blocks/modules/item-contact/item-contact.js");
-/* harmony import */ var _modules_product_form_product_form__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! %modules%/product-form/product-form */ "./src/blocks/modules/product-form/product-form.js");
-/* harmony import */ var _modules_product_form_product_form__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(_modules_product_form_product_form__WEBPACK_IMPORTED_MODULE_15__);
-/* harmony import */ var _modules_counter_counter__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! %modules%/counter/counter */ "./src/blocks/modules/counter/counter.js");
-/* harmony import */ var _modules_counter_counter__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_modules_counter_counter__WEBPACK_IMPORTED_MODULE_16__);
-/* harmony import */ var _modules_table_table__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! %modules%/table/table */ "./src/blocks/modules/table/table.js");
-/* harmony import */ var _modules_table_table__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(_modules_table_table__WEBPACK_IMPORTED_MODULE_17__);
-/* harmony import */ var _modules_filter_filter__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! %modules%/filter/filter */ "./src/blocks/modules/filter/filter.js");
+/* harmony import */ var _modules_modal_modal__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! %modules%/modal/modal */ "./src/blocks/modules/modal/modal.js");
+/* harmony import */ var _modules_sidebar_sidebar__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! %modules%/sidebar/sidebar */ "./src/blocks/modules/sidebar/sidebar.js");
+/* harmony import */ var _modules_sidebar_sidebar__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_modules_sidebar_sidebar__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var _modules_subtabs_subtabs__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! %modules%/subtabs/subtabs */ "./src/blocks/modules/subtabs/subtabs.js");
+/* harmony import */ var _modules_subtabs_subtabs__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(_modules_subtabs_subtabs__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var _modules_item_contact_item_contact__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! %modules%/item-contact/item-contact */ "./src/blocks/modules/item-contact/item-contact.js");
+/* harmony import */ var _modules_product_form_product_form__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! %modules%/product-form/product-form */ "./src/blocks/modules/product-form/product-form.js");
+/* harmony import */ var _modules_product_form_product_form__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_modules_product_form_product_form__WEBPACK_IMPORTED_MODULE_16__);
+/* harmony import */ var _modules_counter_counter__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! %modules%/counter/counter */ "./src/blocks/modules/counter/counter.js");
+/* harmony import */ var _modules_counter_counter__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(_modules_counter_counter__WEBPACK_IMPORTED_MODULE_17__);
+/* harmony import */ var _modules_table_table__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! %modules%/table/table */ "./src/blocks/modules/table/table.js");
+/* harmony import */ var _modules_table_table__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(_modules_table_table__WEBPACK_IMPORTED_MODULE_18__);
+/* harmony import */ var _modules_filter_filter__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! %modules%/filter/filter */ "./src/blocks/modules/filter/filter.js");
+
 
 
 
@@ -1673,37 +1509,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
   $(window).on('load scroll', function (e) {
     $('.autoscroll').toggleClass('autoscroll--hidden', $(this).scrollTop() > 600);
-  }); // $(".grid").masonry({
-  // 	itemSelector: ".grid__item", 
-  // 	gutter: 15
-  // });
-  // $(".rating-visible").barrating({
-  // 	theme: "css-stars", 
-  // 	readonly: !0
-  // });
-  // $(".rating-input").barrating({
-  // 	theme: "css-stars", 
-  // 	initialRating: 5
-  // });
-  // $(".data__dropdown-link").click(function () {
-  // 	$(".data__block-info").toggleClass("data__block-info--hidden"), $(".data__block-info").hasClass("data__block-info--hidden") ? $(".data__dropdown-link").text("Ð Ð°Ð·Ð²ÐµÑ€Ð½ÑƒÑ‚ÑŒ") : $(".data__dropdown-link").text("Ð¡Ð²ÐµÑ€Ð½ÑƒÑ‚ÑŒ")
-  // }), 5 < $("div.tabs__slider-wrapper  .swiper-slide").length) t = new Swiper(".tabs__slider", {
-  // 	spaceBetween: 10,
-  // 	slidesPerView: "auto",
-  // 	centeredMode: !0,
-  // 	loop: !0,
-  // 	centeredSlides: !0,
-  // 	loopedSlides: 5,
-  // 	navigation: {nextEl: ".tabs__slider-btn--next", prevEl: ".tabs__slider-btn--prev"}
-  // }); else $(".tabs__slider").addClass("tabs__slider--static");
-  // $(".tabs__slider-wrapper").magnificPopup({
-  // 	delegate: "a",
-  // 	type: "image",
-  // 	mainClass: "mfp-img-mobile",
-  // 	closeOnContentClick: !0,
-  // 	gallery: {enabled: !0, navigateByImgClick: !0, tCounter: "", preload: [0, 1]}
-  // }); 
-
+  });
   $(".cart__btn--minus").click(function (e) {
     $(this).bind("selectstart", function () {
       return !1;
@@ -1746,70 +1552,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }), $(".sign__block--2").css({
       display: "block"
     }), $(".sign__nav-link--2").addClass("sign__nav-link--active"), $(".sign__nav-link--1").removeClass("sign__nav-link--active");
-  }); // $(".accent__close--top").click(function () {
-  // 	$.cookie("popup-top", "1", {
-  // 		expires: 1
-  // 	}); 
-  // 	$(this).parent().parent().hide();
-  // });
-
-  $(function () {
-    $("body").on("submit", ".call__content", function (e) {
-      e.preventDefault();
-      var t = $(e.target);
-
-      if (!t.find(".call__columns").length) {
-        var n = t.find('input[name="Prop[1]"]').val(),
-            i = t.find('input[name="Prop[2]"]').val();
-        if ("" == n && "" == i) return void alert("Пожалуйста, заполните имя и телефон");
-        if ("" == n) return void alert("Пожалуйста, заполните имя");
-        if ("" == i) return void alert("Пожалуйста, заполните телефон");
-      }
-
-      if (t.hasClass("sending")) t.find(".call__columns").length && (window.location = "/personal/cart/");else if (t.addClass("sending"), $.post(t.find(".call__columns").length ? "/ajax/add2basket.php" : "/ajax/under_order.php", t.serialize()), t.find(".call__columns").length) {
-        var a = $(".header__link-counter").text();
-        $(".header__link-counter").text(Number(a) + parseFloat($(this).find(".counter__input").val()));
-        $(".mob-toolbar__counter").text(Number(a) + parseFloat($(this).find(".counter__input").val()));
-        t.find(".call__control-btn").val("Перейти в корзину");
-      } else {
-        t.html("<p>Мы проинформируем вас о поступлении. Спасибо за обращение</p>");
-      }
-    });
-    $('body').on('click', '.cart__link', function (e) {
-      e.preventDefault();
-      $.get('/personal/cart/ajax.php?action=delete&id=' + $(this).parents('.cart__line').data('id'), function (data) {});
-      $(this).parents('.cart__line').remove();
-      var a = $(".header__link-counter").text();
-      $(".header__link-counter").text(Number(a) - parseFloat($(this).parents('.cart__line').find(".cart__counter-total").val()));
-      $(".mob-toolbar__counter").text(Number(a) - parseFloat($(this).parents('.cart__line').find(".cart__counter-total").val()));
-    });
-    $(".item-card__submit.fast-buy").on("click", function (e) {
-      e.preventDefault();
-      var t = $(this);
-
-      if (t.hasClass("item-card__submit--added")) {
-        window.location = "/personal/cart/";
-      } else {
-        t.css("position", "relative");
-        t.addClass("item-card__submit--added");
-        t.text("Добавлено");
-        setTimeout(function () {
-          t.removeClass("item-card__submit--added");
-          t.text("В корзину");
-        }, 5000);
-        var n = $(t.attr("data-href")).find("form");
-        n.find(".counter__input").val($(this).parents(".item-card").find(".item-card__input").val());
-        n.trigger("submit");
-      }
-    });
-  });
-  $(".popup").magnificPopup();
-  $(".popup-item").magnificPopup({
-    showCloseBtn: !1
-  });
-  $(".popup-image").magnificPopup({
-    type: "image",
-    closeOnContentClick: "true"
   });
   $(document).on('click', '.item-card__btn--plus', function () {
     var value = $(this).parent().children("input").val();
@@ -1830,25 +1572,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
   getFavoriteItems();
-  $(".item-card__submit.fast-buy").on("click", function (e) {
-    e.preventDefault();
-    var t = $(this);
-
-    if (t.hasClass("item-card__submit--added")) {
-      window.location = "/personal/cart/";
-    } else {
-      t.css("position", "relative");
-      t.addClass("item-card__submit--added");
-      t.text("Добавлено");
-      setTimeout(function () {
-        t.removeClass("item-card__submit--added");
-        t.text("В корзину");
-      }, 5000);
-      var n = $(t.attr("data-href")).find("form");
-      n.find(".counter__input").val($(this).parents(".item-card").find(".item-card__input").val());
-      n.trigger("submit");
-    }
-  });
   $(document).ready(function () {
     $(document).on('click', '.counter__btn--plus', function () {
       var value = $(this).parent().children("input").val();

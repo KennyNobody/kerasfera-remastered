@@ -53,46 +53,4 @@ document.addEventListener('DOMContentLoaded', function() {
 			}
 		}
 	});
-
-	// var mainInterval = setInterval(function () {
-	// 	if (typeof ($) == typeof (function () {
-	// 	})) {
-	// 		clearInterval(mainInterval);
-	// 		let $btn = $('.gallery__btn');
-	// 		let $win = $(window);
-	// 		let $items = $('.gallery__item');
-	// 		let current = 0;
-
-	// 		// var subInterval = setInterval(function () {
-	// 		// 	if ($btn.offset().top < $win.scrollTop() + $win.height()) {
-	// 		// 		var i = current * 20, e = 0;
-	// 		// 		while (e < 20) {
-	// 		// 			if ($items.eq(i + e).length) {
-	// 		// 				$items.eq(i + e).show();
-	// 		// 			} else {
-	// 		// 				clearInterval(subInterval);
-	// 		// 				break;
-	// 		// 			}
-	// 		// 			e++;
-	// 		// 		}
-	// 		// 		current++;
-	// 		// 	}
-	// 		// }, 500);
-
-	// 		var intervalGallery = null;
-	// 		$('.popup-gallery').on('mfpChange', function () {
-	// 			clearInterval(intervalGallery);
-	// 			intervalGallery = setInterval(function () {
-	// 				var src = $('.mfp-img').attr('src');
-	// 				if (typeof (src) != 'undefined') {
-	// 					var $item = $('.gallery__item[href="' + src + '"]');
-	// 					$('.mfp-title').html($item.data('link') ? '<a href="' + $item.data('link') + '">Посмотреть коллекцию</a>' : '');
-	// 					clearInterval(intervalGallery);
-	// 				}
-	// 			}, 200);
-
-	// 		});
-
-	// 	}
-	// }, 500);
 });
