@@ -21,6 +21,7 @@
 				</span>
 			</label>
 		</div>
+		<div class="filter__selected"></div>
 		<p class="filter__name filter__name--sort">
 			Сортировка
 		</p>
@@ -40,7 +41,7 @@
 				</option>
 			</select>
 		</div>
-		<div class="price">
+		<div class="price" id="range-price">
 			<div class="filter__name filter__name--price">Цена, руб.</div>
 			<div class="filter__inputs">
 				<input type="text" name="min" id="input-with-keypress-0" value="0" />
@@ -57,25 +58,25 @@
 				<ul>
 					<li>
 						<label class="filter-input">
-							<input class="filter-input__input" type="checkbox" name="NOMENKLATURNAYA_GRUPPA" value="0" /> <span>Настенная плитка</span>
+							<input class="filter-input__input" type="checkbox" id="uniq1234" value="0" /> <span>Настенная плитка</span>
 							<div class="checkmark"></div>
 						</label>
 					</li>
 					<li>
 						<label class="filter-input">
-							<input class="filter-input__input" type="checkbox" name="NOMENKLATURNAYA_GRUPPA" value="1" /> <span>Настенная плитка</span>
+							<input class="filter-input__input" type="checkbox" id="uniq1235" name="NOMENKLATURNAYA_GRUPPA" value="1" /> <span>Настенная плитка</span>
 							<div class="checkmark"></div>
 						</label>
 					</li>
 					<li>
 						<label class="filter-input">
-							<input class="filter-input__input" type="checkbox" name="NOMENKLATURNAYA_GRUPPA" value="2" /> <span>Настенная плитка</span>
+							<input class="filter-input__input" type="checkbox" id="uniq1236" name="NOMENKLATURNAYA_GRUPPA" value="2" /> <span>Настенная плитка</span>
 							<div class="checkmark"></div>
 						</label>
 					</li>
 					<li>
 						<label class="filter-input">
-							<input class="filter-input__input" type="checkbox" name="NOMENKLATURNAYA_GRUPPA" value="3" /> <span>Настенная плитка</span>
+							<input class="filter-input__input" type="checkbox" id="uniq1237" name="NOMENKLATURNAYA_GRUPPA" value="3" /> <span>Настенная плитка</span>
 							<div class="checkmark"></div>
 						</label>
 					</li>
@@ -297,19 +298,19 @@
 				</div>
 				<ul>
 					<li>
-						<div class="price">
+						<div class="price" id="range-weight">
 							<div class="filter__name filter__name--price">Ширина, см.</div>
 							<div class="filter__inputs">
 								<input type="text" name="wmin" id="input-with-keypress-2" value="0" /> - <input type="text" name="wmax" id="input-with-keypress-3" value="300" />
 							</div>
-							<!-- <div class="filter__range" id="filter__range1"></div> -->
+							<div class="filter__range"></div>
 						</div>
-						<div class="price">
+						<div class="price" id="range-height">
 							<div class="filter__name filter__name--price">Длина, см.</div>
 							<div class="filter__inputs">
 								<input type="text" name="hmin" id="input-with-keypress-4" value="0" /> - <input type="text" name="hmax" id="input-with-keypress-5" value="300" />
 							</div>
-							<!-- <div class="filter__range" id="filter__range2"></div> -->
+							<div class="filter__range"></div>
 						</div>
 					</li>
 				</ul>

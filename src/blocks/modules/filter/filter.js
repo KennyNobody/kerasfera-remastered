@@ -77,35 +77,105 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function initRangeSlider() {
-        let rangeSlider = filter.querySelector('.price');
+        function initRangeSlider1() {
+            let rangeSlider = filter.querySelector('#range-price');
 
-        if (rangeSlider) {
+            if (rangeSlider) {
 
-            let activeBlock = rangeSlider.querySelector('.filter__range');
-            let minValue = rangeSlider.querySelector('#input-with-keypress-0') || 0;
-            let maxValue = rangeSlider.querySelector('#input-with-keypress-1') || 10000;
+                let activeBlock = rangeSlider.querySelector('.filter__range');
+                let minValue = rangeSlider.querySelector('#input-with-keypress-0') || 0;
+                let maxValue = rangeSlider.querySelector('#input-with-keypress-1') || 10000;
 
-            noUiSlider.create(activeBlock, {
-                start: [+minValue.value, +maxValue.value],
-                connect: true,
-                step: 100,
+                noUiSlider.create(activeBlock, {
+                    start: [+minValue.value, +maxValue.value],
+                    connect: true,
+                    step: 100,
 
-                range: {
-                    'min': [+minValue.value],
-                    'max': [+maxValue.value]
-                }
-            });
+                    range: {
+                        'min': [+minValue.value],
+                        'max': [+maxValue.value]
+                    }
+                });
 
-            activeBlock.noUiSlider.on('update', function (values, handle) {
-                minValue.value = Math.round(values[0]);
-                maxValue.value = Math.round(values[1]);
-            });
+                activeBlock.noUiSlider.on('update', function (values, handle) {
+                    minValue.value = Math.round(values[0]);
+                    maxValue.value = Math.round(values[1]);
+                });
 
-            activeBlock.noUiSlider.on('change', function (values, handle) {
-                getRequest();
-            });
+                activeBlock.noUiSlider.on('change', function (values, handle) {
+                    getRequest();
+                });
 
+            }
         }
+
+        function initRangeSlider2() {
+            let rangeSlider = filter.querySelector('#range-weight');
+
+            if (rangeSlider) {
+
+                let activeBlock = rangeSlider.querySelector('.filter__range');
+                let minValue = rangeSlider.querySelector('#input-with-keypress-2') || 0;
+                let maxValue = rangeSlider.querySelector('#input-with-keypress-3') || 10000;
+
+                noUiSlider.create(activeBlock, {
+                    start: [+minValue.value, +maxValue.value],
+                    connect: true,
+                    step: 1,
+
+                    range: {
+                        'min': [+minValue.value],
+                        'max': [+maxValue.value]
+                    }
+                });
+
+                activeBlock.noUiSlider.on('update', function (values, handle) {
+                    minValue.value = Math.round(values[0]);
+                    maxValue.value = Math.round(values[1]);
+                });
+
+                activeBlock.noUiSlider.on('change', function (values, handle) {
+                    getRequest();
+                });
+
+            }
+        }
+
+        function initRangeSlider3() {
+            let rangeSlider = filter.querySelector('#range-height');
+
+            if (rangeSlider) {
+
+                let activeBlock = rangeSlider.querySelector('.filter__range');
+                let minValue = rangeSlider.querySelector('#input-with-keypress-4') || 0;
+                let maxValue = rangeSlider.querySelector('#input-with-keypress-5') || 10000;
+
+                noUiSlider.create(activeBlock, {
+                    start: [+minValue.value, +maxValue.value],
+                    connect: true,
+                    step: 1,
+
+                    range: {
+                        'min': [+minValue.value],
+                        'max': [+maxValue.value]
+                    }
+                });
+
+                activeBlock.noUiSlider.on('update', function (values, handle) {
+                    minValue.value = Math.round(values[0]);
+                    maxValue.value = Math.round(values[1]);
+                });
+
+                activeBlock.noUiSlider.on('change', function (values, handle) {
+                    getRequest();
+                });
+
+            }
+        }
+
+        initRangeSlider1();
+        initRangeSlider2();
+        initRangeSlider3();
     }
 
     function initCheckboxes() {
@@ -119,6 +189,7 @@ document.addEventListener('DOMContentLoaded', function() {
             let field = item.querySelector('.filter-input__input');
 
             field.addEventListener('change', function() {
+                toggleButton(item, field.checked);
                 getRequest();
             });
         }
@@ -152,6 +223,47 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    function toggleButton(item, state) {
+
+        let parent = filter.querySelector('.filter__selected');
+        let block = item.querySelector('.filter-input__input');
+
+        let title = item.querySelector('span').innerHTML.trim();
+        let forValue = block.id;
+
+        if (title && forValue && state) {
+            createDOMNode();
+        } else {
+            removeDOMNode();
+        }
+
+        function createDOMNode() {
+            let message = `
+            <span class="selected-item__text">
+            ${title}
+            </span>
+            <svg class="selected-item__icon">
+            <use xlink:href="/local/templates/new/img/sprites/sprite.svg#icon-svg-close"></use>
+            </svg>`;
+
+            let node = document.createElement('label');
+            node.classList.add('selected-item');
+            node.setAttribute('for', forValue);
+            node.innerHTML = message;
+
+            parent.appendChild(node);
+        }
+
+        function removeDOMNode() {
+            let block = parent.querySelector( 'label[for="' + forValue + '"]' );
+
+            if (block) {
+                block.remove();
+            }
+        }
+        
+    }
+
     function resetCount() {
         count = getCount();
     }
@@ -167,8 +279,12 @@ document.addEventListener('DOMContentLoaded', function() {
             count: count, 
             tag : getTag(),
             type: getTypes(),
-            min: getPrice('min'),
-            max: getPrice('max'),
+            min: getRange('min'),
+            max: getRange('max'),
+            hmin: getRange('hmin'),
+            hmax: getRange('hmax'),
+            wmin: getRange('wmin'),
+            wmax: getRange('wmax'),
         };
 
         let array = filter.querySelectorAll('[data-block-type="checkbox"]');
@@ -208,12 +324,20 @@ document.addEventListener('DOMContentLoaded', function() {
         return 1;
     }
 
-    function getPrice(price) {
+    function getRange(price) {
         if (filter.elements[price].value == 0) {
             return false;
         } else {
             return filter.elements[price].value;
         }
+    }
+
+    function getWeight() {
+
+    }
+
+    function getHeight() {
+
     }
 
     function getTypes() {
@@ -248,20 +372,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 function gelEl (el) {
                     for (let i = 0; i < responceArr.length; i++) {
-                        console.log(el);
-                        // if (el == responceArr[i]) {
-                        //     return el;
-                        // } else {
-                        //     return false;
-                        // }
+                        if (el == responceArr[i].className) {
+                            // console.log(responceArr[i]);
+                            return responceArr[i];
+                        }
+                        // console.log(responceArr[i].className);
                     }
-                 }
+                }
 
-                
+                // gelEl('shop__items');
 
-                let items = gelEl('div.shop__items');
-                console.log(items);
-               
 
                 // console.log(responceArr.find('div.shop__items'));
                 // console.log(responceArr[3].innerHTML); // window.loadMore = response;
@@ -276,7 +396,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Игорь
 
 
-                let params = $(response).find('.columns').html();
+                let params = gelEl('shop__items').querySelector('.columns');
+
+                // $(response).find('.columns').html();
 
                 if ($(response).find('.columns__column').length < 4) {
                     $('.shop__items .columns').html('<p style="margin-bottom:25px; text-align: center; width: 100%;">По данным параметрам товаров не найдено. Попробуйте изменить запрос</p>');
@@ -284,21 +406,29 @@ document.addEventListener('DOMContentLoaded', function() {
                     $('.shop__items .columns').html(params);
                 }
 
-                let loadMore = $(response).html();
+                console.log(params);
 
-                if (loadMore) {
-                    $('.shop__toolbar').html(loadMore);
-                } else {
+                let loadMore = gelEl('shop__toolbar');
+
+                if (loadMore == undefined) {
                     $('.shop__toolbar').html('');
+                } else {
+                    let btn = loadMore.querySelector('.shop__btn');
+                    $('.shop__toolbar').html(btn);
                 }
 
-                let pagination = $(response).find('.pagination').html();
+                console.log(loadMore);
+
+                let pagination = gelEl('shop__navigation');
 
                 if (pagination == undefined) {
-                    $('.shop__navigation .pagination').html('');
+                    $('.shop__navigation').html('');
                 } else {
-                    $('.shop__navigation .pagination').html(pagination);
+                    let block = pagination.querySelector('.pagination')
+                    $('.shop__navigation').html(block);
                 }
+
+                console.log(pagination);
 
                 document.querySelector('.shop__items').classList.remove('m-load');
 
@@ -311,11 +441,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function clearForm() {
         let button = filter.querySelector('.filter__reset');
+        let tags = filter.querySelector('.filter__selected');
 
         if (button) {
             button.addEventListener('click', function(e) {
                 e.preventDefault();
                 filter.reset();
+                tags.innerHTML = '';
                 getRequest();
             });
         }

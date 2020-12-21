@@ -33,4 +33,10 @@
 	&__subtitle {
 		color: #A1A1A1;
 	}
+	&__item {
+		iframe {
+			width: 800px !important;
+			height: 600px !important;
+		}
+	}
 }

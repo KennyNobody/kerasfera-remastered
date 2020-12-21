@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					});
 				}
 
+
 				for (var _i = 0; _i < select.length; _i++) {
 					select[_i].addEventListener('change', function (e) {
 						var activeItem = this.options[this.selectedIndex].value;

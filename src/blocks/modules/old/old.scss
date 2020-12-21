@@ -15,6 +15,7 @@
     -webkit-font-smoothing: subpixel-antialiased;
     &--filter {
         position: relative;
+        overflow: hidden;
         .filter__overlay {
             display: block;
             opacity: 0.5;
