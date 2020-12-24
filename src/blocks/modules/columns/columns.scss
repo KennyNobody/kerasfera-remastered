@@ -3,6 +3,9 @@
 	justify-content: space-between;
 	flex-wrap: wrap;
 	width: 100%;
+	&--align {
+		align-items: center;
+	}
 	&__column {
 		width: 100%;
 		&--1 {

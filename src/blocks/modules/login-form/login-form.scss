@@ -1,0 +1,56 @@
+.login-form {
+	padding-top: 126px;
+	padding-bottom: 118px;
+	background-repeat: no-repeat;
+	background-position: top center;
+	background-size: contain;
+	@include r(1100) {
+		padding-top: 0;
+		padding-bottom: 60px;
+	}
+	&__wrapper {
+		width: calc(50% - 8px);
+		background-color: $light;
+		margin-left: auto;
+		margin-right: auto;
+		padding: 29px 51px 40px 51px;
+		@include r(1100) {
+			width: 100%;
+			padding: 0; 
+		}
+		.login-form__form {
+			&:nth-child(1) {
+				display: block;
+				visibility: visible;
+			}
+			&:nth-child(2) {
+				display: none;
+				visibility: hidden;
+			}
+		}
+		&--reg {
+			.login-form__form {
+				&:nth-child(1) {
+					display: none;
+					visibility: hidden;
+				}
+				&:nth-child(2) {
+					display: block;
+					visibility: visible;
+				}
+			}
+		}
+	}
+	&__remember {
+		color: #A1A1A1;
+		font-weight: 400;
+		text-decoration: underline;
+		font-size: 16px;
+		display: block;
+	}
+	&__discript {
+		color: #A1A1A1;
+		font-size: 16px;
+		line-height: 1.3;
+	}
+}

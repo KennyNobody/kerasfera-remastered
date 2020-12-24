@@ -36,30 +36,30 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	}); 
 
-	$(".sign__accept input").on("change", function () {
-		1 == $(this).prop("checked") ? $("#sign__button").removeClass("sign__button--disabled") : $("#sign__button").addClass("sign__button--disabled")
-	}), $(".faq__form .faq__accept input").on("change", function () {
-		1 == $(this).prop("checked") ? $(".faq__form .faq__btn").removeClass("faq__btn--disabled") : $(".faq__form .faq__btn").addClass("faq__btn--disabled")
-	}), $(".call__question input").on("change", function () {
-		1 == $(this).prop("checked") ? $(".call__control-btn").removeClass("call__control-btn--disabled") : $(".call__control-btn").addClass("call__control-btn--disabled")
-	}), $(".write__checked-wrap input").on("change", function () {
-		1 == $(this).prop("checked") ? $(".write__btn").removeClass("write__btn--disabled") : $(".write__btn").addClass("write__btn--disabled")
-	}), $(".sign__nav-link--1").click(function () {
-		$(".sign__block--2").css({display: "none"}), $(".sign__block--1").css({display: "block"}), $(".sign__nav-link--1").addClass("sign__nav-link--active"), $(".sign__nav-link--2").removeClass("sign__nav-link--active")
-	}), $(".sign__nav-link--2").click(function () {
-		$(".sign__block--1").css({display: "none"}), $(".sign__block--2").css({display: "block"}), $(".sign__nav-link--2").addClass("sign__nav-link--active"), $(".sign__nav-link--1").removeClass("sign__nav-link--active")
-	}); 
+	// $(".sign__accept input").on("change", function () {
+	// 	1 == $(this).prop("checked") ? $("#sign__button").removeClass("sign__button--disabled") : $("#sign__button").addClass("sign__button--disabled")
+	// }), $(".faq__form .faq__accept input").on("change", function () {
+	// 	1 == $(this).prop("checked") ? $(".faq__form .faq__btn").removeClass("faq__btn--disabled") : $(".faq__form .faq__btn").addClass("faq__btn--disabled")
+	// }), $(".call__question input").on("change", function () {
+	// 	1 == $(this).prop("checked") ? $(".call__control-btn").removeClass("call__control-btn--disabled") : $(".call__control-btn").addClass("call__control-btn--disabled")
+	// }), $(".write__checked-wrap input").on("change", function () {
+	// 	1 == $(this).prop("checked") ? $(".write__btn").removeClass("write__btn--disabled") : $(".write__btn").addClass("write__btn--disabled")
+	// }), $(".sign__nav-link--1").click(function () {
+	// 	$(".sign__block--2").css({display: "none"}), $(".sign__block--1").css({display: "block"}), $(".sign__nav-link--1").addClass("sign__nav-link--active"), $(".sign__nav-link--2").removeClass("sign__nav-link--active")
+	// }), $(".sign__nav-link--2").click(function () {
+	// 	$(".sign__block--1").css({display: "none"}), $(".sign__block--2").css({display: "block"}), $(".sign__nav-link--2").addClass("sign__nav-link--active"), $(".sign__nav-link--1").removeClass("sign__nav-link--active")
+	// }); 
 
-	$(document).on('click', '.item-card__btn--plus', function() {
-		var value = $(this).parent().children("input").val();
-		value++;
-		$(this).parent().children("input").val(value);
-	});
+	// $(document).on('click', '.item-card__btn--plus', function() {
+	// 	var value = $(this).parent().children("input").val();
+	// 	value++;
+	// 	$(this).parent().children("input").val(value);
+	// });
 
-	$(document).on('click', '.item-card__btn--minus', function() {
-		var value = $(this).parent().children("input").val();
-		1 < value && (value--, $(this).parent().children("input").val(value));
-	});
+	// $(document).on('click', '.item-card__btn--minus', function() {
+	// 	var value = $(this).parent().children("input").val();
+	// 	1 < value && (value--, $(this).parent().children("input").val(value));
+	// });
 
 	$('.item-card__tag--favorite').on('click', function () {
 		var favorID = $(this).attr('data-item');
@@ -69,8 +69,8 @@ document.addEventListener('DOMContentLoaded', function() {
 			favHandler(favorID, 'add');
 		}
 	});
-	getFavoriteItems();
 
+	getFavoriteItems();
 
 	$(document).ready(function () {
 

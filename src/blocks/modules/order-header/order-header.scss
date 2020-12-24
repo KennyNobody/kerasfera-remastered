@@ -1,0 +1,57 @@
+.order-header {
+	background-color: $green;
+	color: $light;
+	display: flex;
+	font-size: 16px;
+	justify-content: space-between;
+	align-items: center;
+	@include r(820) {
+		display: block;
+	}
+	&__main {
+		padding: 9px 16px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex-grow: 1;
+		@include r(820) {
+			display: block;
+		}
+	}
+	&__btn {
+
+	}
+	&__link {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 9px 16px;
+		height: 100%;
+		flex-shrink: 0;
+		&--active {
+			background-color: #008555;
+			cursor: pointer;
+			&:hover {
+				opacity: 0.7;
+			}
+		}
+		&--static {
+			background-color: $orange;
+		}
+	}
+	&__link-icon {
+		display: block;
+		width: 20px;
+		height: 20px;
+		margin-right: 8px;
+		position: relative;
+		top: -1px;
+	}
+	&__link-text {
+		font-weight: 700;
+		color: $light;
+	}
+	strong {
+		font-weight: 700;
+	}
+}

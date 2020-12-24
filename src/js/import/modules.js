@@ -6,6 +6,7 @@ import "%modules%/oldRating/oldRating";
 import "%modules%/oldFavorites/oldFavorites";
 import "%modules%/oldCookie/oldCookie";
 import "%modules%/oldBuy/oldBuy";
+import "%modules%/oldLk/oldLk";
 
 import "%modules%/product-slider/product-slider";
 import "%modules%/item-card/item-card";
@@ -19,3 +20,4 @@ import "%modules%/product-form/product-form";
 import "%modules%/counter/counter";
 import "%modules%/table/table";
 import "%modules%/filter/filter";
+import "%modules%/login-form/login-form";

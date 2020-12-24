@@ -1,0 +1,8 @@
+.form-toolbar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	@include r(1100) {
+		display: block;
+	}
+}

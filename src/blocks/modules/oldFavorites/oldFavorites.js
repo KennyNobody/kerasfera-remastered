@@ -1,23 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 	$(document).ready(function () {
 
-		// $('.item-card__tag--favorite').on('click', function () {
-		// 	var favorID = $(this).attr('data-item');
-		// 	if ($(this).hasClass('item-card__tag--favorite-active')) {
-		// 		favHandler(favorID, 'delete');
-		// 	} else {
-		// 		favHandler(favorID, 'add');
-		// 	}
-		// });
-		// $('.favorite-btn').on('click', function () {
-		// 	var favorID = $(this).attr('data-item');
-		// 	if ($(this).hasClass('active')) {
-		// 		favHandler(favorID, 'delete');
-		// 	} else {
-		// 		favHandler(favorID, 'add');
-		// 	}
-		// });
-
 		$(document).on('click', '.item-card__tag--favorite', function(e) {
             var favorID = $(this).attr('data-item');
 			if ($(this).hasClass('item-card__tag--favorite-active')) {

@@ -1,0 +1,54 @@
+.order {
+	padding: 9px 16px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	font-size: 16px;
+	color: $dark;
+	text-decoration: none;
+	@include r(1100) {
+		display: block;
+	}
+	&:hover {
+		opacity: 0.7;
+	}
+	&:nth-child(even) {
+		background-color: #F7F7F7;
+	}
+	&:nth-child(odd) {
+		background-color: $light;
+	}
+	&__number {
+		width: calc(100% / 9 * 2 - 8px);
+		@include r(1100) {
+			width: 100%;
+		}
+	}
+	&__title {
+		width: calc(100% / 9 * 5 - 8px);
+		@include r(1100) {
+			width: 100%;
+		}
+	}
+	&__status {
+		width: calc(100% / 9 * 2 - 8px);
+		display: flex;
+		justify-content: flex-end;
+		@include r(1100) {
+			display: block;
+			width: 100%;
+		}
+		&--orange {
+			color: $orange;
+		}
+		&--grey {
+			color: #A1A1A1;
+		}
+		&--green {
+			color: $green;
+		}
+	}
+	strong {
+		font-weight: 700;
+	}
+}
