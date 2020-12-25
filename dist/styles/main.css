@@ -15123,6 +15123,13 @@ ul.ul-warning li:before {
   right: 0px;
 }
 
+.decorline--bottom {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+}
+
 .textarea {
   width: 100%;
   display: block;
