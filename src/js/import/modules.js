@@ -7,6 +7,7 @@ import "%modules%/oldFavorites/oldFavorites";
 import "%modules%/oldCookie/oldCookie";
 import "%modules%/oldBuy/oldBuy";
 import "%modules%/oldLk/oldLk";
+import "%modules%/lk-sidebar/lk-sidebar";
 
 import "%modules%/product-slider/product-slider";
 import "%modules%/item-card/item-card";

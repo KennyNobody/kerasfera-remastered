@@ -6,6 +6,7 @@
 	margin-left: auto;
 	margin-right: auto;
 	background-color: $light;
+	max-width: 690px;
 	@include r(1100) {
 		padding: 30px 16px;
 	}

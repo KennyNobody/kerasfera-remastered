@@ -15729,6 +15729,7 @@ ul.ul-warning li:before {
   margin-left: auto;
   margin-right: auto;
   background-color: #ffffff;
+  max-width: 690px;
 }
 
 .modal--half {
