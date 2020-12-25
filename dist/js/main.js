@@ -1057,6 +1057,96 @@ document.addEventListener('DOMContentLoaded', function () {
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {document.addEventListener('DOMContentLoaded', function () {
+  function number_format(number, decimals, dec_point, thousands_sep) {
+    var i, j, kw, kd, km;
+
+    if (isNaN(decimals = Math.abs(decimals))) {
+      decimals = 2;
+    }
+
+    if (dec_point == undefined) {
+      dec_point = ",";
+    }
+
+    if (thousands_sep == undefined) {
+      thousands_sep = ".";
+    }
+
+    i = parseInt(number = (+number || 0).toFixed(decimals)) + "";
+
+    if ((j = i.length) > 3) {
+      j = j % 3;
+    } else {
+      j = 0;
+    }
+
+    km = j ? i.substr(0, j) + thousands_sep : "";
+    kw = i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thousands_sep);
+    kd = decimals ? dec_point + Math.abs(number - i).toFixed(decimals).replace(/-/, 0).slice(2) : "";
+    return km + kw + kd;
+  }
+
+  var counters = document.querySelectorAll('.table__counter');
+
+  for (var i = 0; i < counters.length; i++) {
+    changeCounter(counters[i]);
+  }
+
+  function changeCounter(item) {
+    var btnMinus = item.querySelector('.table__counter-btn--prev');
+    var btnPlus = item.querySelector('.table__counter-btn--next');
+    var input = item.querySelector('.table__counter-input');
+    checkDisabled(btnMinus, input.value);
+    btnMinus.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      if (input.value > 1) {
+        input.value = +input.value - 1;
+        getRequest(input);
+      }
+
+      checkDisabled(btnMinus, input.value);
+    });
+    btnPlus.addEventListener('click', function (e) {
+      e.preventDefault();
+      input.value = +input.value + 1;
+      getRequest(input);
+      checkDisabled(btnMinus, input.value);
+    });
+
+    function checkDisabled(item, value) {
+      if (value == 1) {
+        item.classList.add('table__counter-btn--disabled');
+      } else {
+        item.classList.remove('table__counter-btn--disabled');
+      }
+    }
+  }
+
+  var getRequest = function getRequest(el) {
+    var templateFolder = BX.message('templateFolder');
+    console.log(el);
+    $.ajax({
+      url: templateFolder + "/get/ajax.php",
+      data: {
+        "action": "update",
+        "id": $(el).closest('.table__tr').data('id'),
+        "q": $(el).val()
+      },
+      type: "GET",
+      success: function success(response) {
+        var onePrice = $(el).closest('.table__tr').find('#price_start').text();
+        onePrice = onePrice.replace('руб.', '');
+        onePrice = Number(onePrice.replace(/[^0-9\.]/gi, ''));
+        $(el).closest('.table__tr').find('.table__price--item').text(number_format(onePrice * Number($(el).val()), 2, '.', ' ').replace(/0+$/gi, '').replace(/\.+$/gi, '') + ' руб.');
+        recountCart();
+      },
+      error: function error(xhr) {
+        console.log(this);
+      }
+    });
+  };
+
   $(document).on('click', '.table__remove', function () {
     var templateFolder = BX.message('templateFolder');
     var el = this;
@@ -1101,6 +1191,27 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   });
+
+  var recountCart = function recountCart() {
+    var cart = document.querySelector('.table--cart');
+
+    if (cart) {
+      var items = cart.querySelectorAll('.table__price--item');
+      var resultBlock = cart.querySelector('.table__price--result');
+      var result;
+
+      for (var _i = 0; _i < items.length; _i++) {
+        if (result) {
+          result = +result + +items[_i].innerText.replace(/\D/g, '');
+        } else {
+          result = +items[_i].innerText.replace(/\D/g, '');
+        }
+      }
+
+      resultBlock.innerText = result.toLocaleString() + ' руб.';
+    } // console.log(result);
+
+  };
 });
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")))
 
@@ -1700,101 +1811,9 @@ document.addEventListener('DOMContentLoaded', function () {
   !*** ./src/blocks/modules/table/table.js ***!
   \*******************************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-/* WEBPACK VAR INJECTION */(function($) {document.addEventListener('DOMContentLoaded', function () {
-  function number_format(number, decimals, dec_point, thousands_sep) {
-    var i, j, kw, kd, km; // input sanitation & defaults
-
-    if (isNaN(decimals = Math.abs(decimals))) {
-      decimals = 2;
-    }
-
-    if (dec_point == undefined) {
-      dec_point = ",";
-    }
-
-    if (thousands_sep == undefined) {
-      thousands_sep = ".";
-    }
-
-    i = parseInt(number = (+number || 0).toFixed(decimals)) + "";
-
-    if ((j = i.length) > 3) {
-      j = j % 3;
-    } else {
-      j = 0;
-    }
-
-    km = j ? i.substr(0, j) + thousands_sep : "";
-    kw = i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thousands_sep); //kd = (decimals ? dec_point + Math.abs(number - i).toFixed(decimals).slice(2) : "");
-
-    kd = decimals ? dec_point + Math.abs(number - i).toFixed(decimals).replace(/-/, 0).slice(2) : "";
-    return km + kw + kd;
-  }
-
-  var counters = document.querySelectorAll('.table__counter');
-
-  for (var i = 0; i < counters.length; i++) {
-    changeCounter(counters[i]);
-  }
-
-  function changeCounter(item) {
-    var btnMinus = item.querySelector('.table__counter-btn--prev');
-    var btnPlus = item.querySelector('.table__counter-btn--next');
-    var input = item.querySelector('.table__counter-input');
-    checkDisabled(btnMinus, input.value);
-    btnMinus.addEventListener('click', function (e) {
-      e.preventDefault();
-
-      if (input.value > 1) {
-        input.value = +input.value - 1;
-        getRequest(input);
-      }
-
-      checkDisabled(btnMinus, input.value);
-    });
-    btnPlus.addEventListener('click', function (e) {
-      e.preventDefault();
-      input.value = +input.value + 1;
-      getRequest(input);
-      checkDisabled(btnMinus, input.value);
-    });
-
-    function checkDisabled(item, value) {
-      if (value == 1) {
-        item.classList.add('table__counter-btn--disabled');
-      } else {
-        item.classList.remove('table__counter-btn--disabled');
-      }
-    }
-  }
-
-  var getRequest = function getRequest(el) {
-    var templateFolder = BX.message('templateFolder');
-    console.log(el);
-    $.ajax({
-      url: templateFolder + "/get/ajax.php",
-      data: {
-        "action": "update",
-        "id": $(el).closest('.table__tr').data('id'),
-        "q": $(el).val()
-      },
-      type: "GET",
-      success: function success(response) {
-        var onePrice = $(el).closest('.table__tr').find('#price_start').text();
-        onePrice = onePrice.replace('руб.', '');
-        onePrice = Number(onePrice.replace(/[^0-9\.]/gi, ''));
-        $(el).closest('.table__tr').find('#price_sum').text(number_format(onePrice * Number($(el).val()), 2, '.', ' ').replace(/0+$/gi, '').replace(/\.+$/gi, '') + ' руб.');
-        console.log(this);
-      },
-      error: function error(xhr) {
-        console.log(this);
-      }
-    });
-  };
-});
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")))
+document.addEventListener('DOMContentLoaded', function () {});
 
 /***/ }),
 

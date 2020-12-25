@@ -14858,6 +14858,10 @@ ul.ul-warning li:before {
   line-height: 1.3;
 }
 
+.agreement__text a {
+  color: #222324;
+}
+
 .table {
   font-size: 14px;
   width: 100%;
