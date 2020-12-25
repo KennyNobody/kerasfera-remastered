@@ -15024,6 +15024,10 @@ ul.ul-warning li:before {
   text-decoration: none;
 }
 
+.table__text strong {
+  font-weight: bold;
+}
+
 .table__discript {
   color: #A1A1A1;
   font-size: 14px;
