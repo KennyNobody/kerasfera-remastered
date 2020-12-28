@@ -231,6 +231,8 @@ document.addEventListener('DOMContentLoaded', function() {
         let title = item.querySelector('span').innerHTML.trim();
         let forValue = block.id;
 
+        console.log('Тоггл');
+
         if (title && forValue && state) {
             createDOMNode();
         } else {

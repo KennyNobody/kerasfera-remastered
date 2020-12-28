@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			}
 
 			if (type == 'square') {
-				inputVisible.value = Math.floor(resultArea * 100) / 100;
+				inputVisible.value = Math.floor(resultArea * 1000) / 1000;
 				console.log(resultArea + ' площадь');
 			} else if (type == 'quantity') {
 				console.log(resultCount + ' штуки');
@@ -90,7 +90,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 			if (area) {
 				if (resultArea) {
-					console.log('ЕСть ' + resultArea);
 					resultArea = +resultArea + +area.value;
 				} else {
 					resultArea = area.value;
@@ -148,10 +147,6 @@ document.addEventListener('DOMContentLoaded', function() {
 			countResult();
 		}
 
-		function setState() {
-
-		}
-
 		countResult();
 	}
 
@@ -189,7 +184,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		function countResult() {
 			inputVisible.value = result;
 			inputHidden.value = result;
-			console.log('Посчитали, текущая: ' + +result);
 		}
 
 		function countChange() {
@@ -206,7 +200,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			if (type == 'quantity') {
 				result = Math.ceil(result * count.value);
 			} else if (type == 'packs') {
-				result = Math.ceil(result / count.value);
+				result = Math.ceil(result);
 			} else {
 				return false;
 			}

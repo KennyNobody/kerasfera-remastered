@@ -27,29 +27,29 @@
 </head>
 <body class="body">
     <div id="page">
-        <section class="modal" id="#modal-remember">
+        <section class="modal modal--center" id="#modal-remember">
 	<h2 class="title mb-20">
-		Восстановление пароля
+		Карта скидок 5%
 	</h2>
 	<div class="editor mb-30">
 		<p>
-			Если вы забыли пароль, введите логин или E-Mail, и новые данные будут высланы вам на почту
+			Скидка по карте предоставляется на весь ассортимент <br>
+			Скидка применяется к первой покупке. (Уточните у Оксаны) <br>
+			Стоимость карты 200 рублей
 		</p>
 	</div>
-	<label class="input mb-30">
-		<input type="text" class="input__field" placeholder="Логин">
-	</label>
-	<div class="editor mb-30">
-		<p>
-			или
-		</p>
+	<div class="columns">
+		<div class="columns__column columns__column--6 mb-20">
+			<a href="/personal/cart/card.php" class="button button--orange button--full">
+				Добавить
+			</a>
+		</div>
+		<div class="columns__column columns__column--6 mb-20">
+			<button class="button button--green button--full" data-fancybox-close>
+				Отменить
+			</button>
+		</div>
 	</div>
-	<label class="input mb-30">
-		<input type="text" class="input__field" placeholder="E-mail">
-	</label>
-	<button class="button button--orange button--full">
-		Выслать пароль
-	</button>
 	<div class="decorline decorline--bottom"></div>
 </section>
         <div class="container">

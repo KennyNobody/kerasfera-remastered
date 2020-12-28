@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			console.log(+countMob.innerText);
 
 			if (countMob) {
-				countMob.innerText = +countMob.innerText + 1;
+				countMob.innerText = +countMob.innerText + +form.elements['product-form__value'].value;
 			}
 
 			let countDesktop = document.querySelector('.header__link-counter');
@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			console.log(+countDesktop.innerText);
 
 			if (countDesktop) {
-				countDesktop.innerText = +countDesktop.innerText + 1;
+				countDesktop.innerText = +countDesktop.innerText + +form.elements['product-form__value'].value;
 			}
 		}
 

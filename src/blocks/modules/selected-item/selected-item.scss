@@ -1,7 +1,7 @@
 .selected-item {
 	display: flex;
 	align-items: center;
-	border: 1px solid $green;
+	border: 1px solid $orange;
 	cursor: pointer;
 	transition: 0.3s all;
 	padding: 2px 4px;
@@ -16,7 +16,7 @@
 	}
 	&__icon {
 		display: block;
-		width: 12px;
-		height: 12px;
+		width: 10px;
+		height: 10px;
 	}
 }
