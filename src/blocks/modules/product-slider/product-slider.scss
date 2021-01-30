@@ -10,6 +10,8 @@
 		transition: 0.3s all;
 		display: block;
 		cursor: default;
+		position: relative;
+		cursor: pointer;
 		@include r(1100) {
 			margin-bottom: 0px;
 		}
@@ -17,6 +19,60 @@
 			display: block;
 			width: 100%;
 			height: auto;
+		}
+		&:after {
+			transition: 0.3s all;
+			position: absolute;
+			top: 0px;
+			bottom: 0px;
+			left: 0px;
+			right: 0px;
+			display: block;
+			content: "";
+			background-image: url('https://dev.kerasfera.ru/local/templates/diez__template_kerasfera/img/poisk.svg');
+			background-image: url('https://kerasfera.ru/local/templates/diez__template_kerasfera/img/poisk.svg');
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: 20%;
+			background-color: rgba(34, 35, 36, 0.45);
+			opacity: 0;
+		}
+		&:hover {
+			&::after {
+				opacity: 1;
+			}
+		}
+	}
+	&__btn {
+		position: absolute;
+		z-index: 2;
+		width: 46px;
+		top: 0px;
+		bottom: 16px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: rgba(0, 0, 0, 0.2);
+		&:hover {
+			background-color: rgba(0, 0, 0, 0.5);
+		}
+		&--prev {
+			left: 0px;
+			svg {
+				transform: rotate(90deg);
+				fill: $light;
+				width: 30px;
+				height: 30px;
+			}
+		}
+		&--next {
+			right: 0px;
+			svg {
+				transform: rotate(-90deg);
+				fill: $light;
+				width: 30px;
+				height: 30px;
+			}
 		}
 	}
 	&__bottom-slider {

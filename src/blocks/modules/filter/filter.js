@@ -25,9 +25,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.addEventListener('DOMContentLoaded', function() {
     let filter;
-
     let count;
     let page;
+
+    // setFilter();
 
     function initFilter() {
         let parent = document.querySelector('.filter');
@@ -41,9 +42,75 @@ document.addEventListener('DOMContentLoaded', function() {
             initPagination();
             initLoadMore();
             initTypes();
+            setFilter(filter);
             clearForm();
+
+            if (sessionStorage.filterUsed) {
+                preRequest();
+            }
+        }
+    }
+
+    function setStatus(state) {
+        sessionStorage.setItem('filterUsed', state);
+    }
+
+
+    function setFilter() {
+        let state = JSON.parse(sessionStorage.getItem('filterState'));
+        let checkboxes = JSON.parse(sessionStorage.getItem('filterCheckboxes'));
+
+        if (state) {
+            setToolbar(state['tag'] || null, state['count'] || null);
+            setRadio(state['type']);
         }
 
+        if (checkboxes) {
+            setCheckboxes(checkboxes);
+        }
+
+        function setToolbar(stateTag, stateCount) {
+            let toolbar = document.querySelector('.toolbar');
+
+            let type;
+            let counter;
+
+            if (toolbar) {
+                type = toolbar.elements['select-tag'];
+                counter = toolbar.elements['select-count'];
+            }
+
+            if (stateTag && type) {
+                type.value = stateTag;
+            }
+
+            if (stateCount && counter) {
+                counter.value = stateCount;
+            }
+        }
+
+        function setCheckboxes() {
+            console.log(filter);
+            for (let item of checkboxes) {
+                let input =  document.getElementById(item);
+                console.log(input);
+                input.checked = true;
+                setTag('add', input.id, input.parentNode.querySelector('span').innerHTML.trim());
+                // console.log(item);
+            }
+        }
+
+        function setRadio(stateType) {
+            let radio = filter.querySelectorAll('.filter__toggle-input');
+
+            for (let i = 0; i < radio.length; i++) {
+                if (radio[i].value == stateType) {
+                    radio[i].checked = true;
+                } else {
+                    radio[i].checked = false;
+                }
+            }
+        }
     }
 
     function initTypes() {
@@ -53,6 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
             radios[i].addEventListener('change', function() {
                 resetCount();
                 resetPages();
+                setStatus(true);
                 getRequest();
             });
         }
@@ -72,11 +140,31 @@ document.addEventListener('DOMContentLoaded', function() {
 
             area.addEventListener('click', function() {
                 item.classList.toggle('filter__block--open');
+
+                if (item.classList.contains('filter__block--fixed') == false && window.innerWidth > 1100) {
+                    let height = 0;
+
+                    let items = item.querySelectorAll('ul li');
+
+                    for (let i = 0; i < 5; i++) {
+                        if (items[i]) {
+                            height = height + items[i].clientHeight;
+                        }
+                    }
+
+                    if (item.classList.contains("filter__block--open")) {
+                        item.querySelector('ul').setAttribute("style", "max-height:" + height + "px");
+                    } else {
+                        item.querySelector('ul').setAttribute("style", "");
+                    }
+                }
             });
         }
     }
 
     function initRangeSlider() {
+        let state = JSON.parse(sessionStorage.getItem('filterState'));
+
         function initRangeSlider1() {
             let rangeSlider = filter.querySelector('#range-price');
 
@@ -86,8 +174,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 let minValue = rangeSlider.querySelector('#input-with-keypress-0') || 0;
                 let maxValue = rangeSlider.querySelector('#input-with-keypress-1') || 10000;
 
+                let startMin;
+                let startMax;
+
+                if (state) {
+                    startMin = +state.min;
+                    startMax = +state.max;
+                } else {
+                    startMin = +minValue.value;
+                    startMax = +maxValue.value;
+                }
+
                 noUiSlider.create(activeBlock, {
-                    start: [+minValue.value, +maxValue.value],
+                    start: [startMin, startMax],
                     connect: true,
                     step: 100,
 
@@ -103,6 +202,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
 
                 activeBlock.noUiSlider.on('change', function (values, handle) {
+                    setStatus(true);
                     getRequest();
                 });
 
@@ -118,8 +218,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 let minValue = rangeSlider.querySelector('#input-with-keypress-2') || 0;
                 let maxValue = rangeSlider.querySelector('#input-with-keypress-3') || 10000;
 
+                let startWmin;
+                let startWmax;
+
+                if (state) {
+                    startWmin = +state.wmin;
+                    startWmax = +state.wmax;
+                } else {
+                    startWmin = +minValue.value;
+                    startWmax = +maxValue.value;
+                }
+
                 noUiSlider.create(activeBlock, {
-                    start: [+minValue.value, +maxValue.value],
+                    start: [startWmin, startWmax],
                     connect: true,
                     step: 1,
 
@@ -135,6 +246,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
 
                 activeBlock.noUiSlider.on('change', function (values, handle) {
+                    setStatus(true);
                     getRequest();
                 });
 
@@ -150,8 +262,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 let minValue = rangeSlider.querySelector('#input-with-keypress-4') || 0;
                 let maxValue = rangeSlider.querySelector('#input-with-keypress-5') || 10000;
 
+                let startHmin;
+                let startHmax;
+
+                if (state) {
+                    startHmin = +state.hmin;
+                    startHmax = +state.hmax;
+                } else {
+                    startHmin = +minValue.value;
+                    startHmax = +maxValue.value;
+                }
+
                 noUiSlider.create(activeBlock, {
-                    start: [+minValue.value, +maxValue.value],
+                    start: [startHmin, startHmax],
                     connect: true,
                     step: 1,
 
@@ -167,6 +290,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
 
                 activeBlock.noUiSlider.on('change', function (values, handle) {
+                    setStatus(true);
                     getRequest();
                 });
 
@@ -189,7 +313,12 @@ document.addEventListener('DOMContentLoaded', function() {
             let field = item.querySelector('.filter-input__input');
 
             field.addEventListener('change', function() {
+                if (field.checked) {
+                    setStatus(true);
+                }
+
                 toggleButton(item, field.checked);
+
                 getRequest();
             });
         }
@@ -211,7 +340,6 @@ document.addEventListener('DOMContentLoaded', function() {
     function initPagination() {
         $('.shop__navigation').on('click', '.pagination__btn', function(e) {
             page = this.dataset.page;
-            // resetCount();
             getRequest();
         });
     }
@@ -224,46 +352,67 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function toggleButton(item, state) {
-
-        let parent = filter.querySelector('.filter__selected');
         let block = item.querySelector('.filter-input__input');
 
-        let title = item.querySelector('span').innerHTML.trim();
-        let forValue = block.id;
-
-        console.log('Тоггл');
-
-        if (title && forValue && state) {
-            createDOMNode();
+        if (block.id && state) {
+            setTag('add', item.querySelector('input').id, item.querySelector('span').innerHTML.trim());
+            setStoreCheckbox('add', item.querySelector('input').id);
         } else {
-            removeDOMNode();
+            setTag('remove', item.querySelector('input').id, item.querySelector('span').innerHTML.trim());
+            setStoreCheckbox('remove', item.querySelector('input').id);
         }
+    }
 
-        function createDOMNode() {
+    function setTag(event, id, title) {
+        let parent = document.querySelector('.filter__selected');
+
+        if (event == 'add') {
             let message = `
             <span class="selected-item__text">
             ${title}
             </span>
             <svg class="selected-item__icon">
-            <use xlink:href="/local/templates/new/img/sprites/sprite.svg#icon-svg-close"></use>
+            <use xlink:href="/local/templates/diez__template_kerasfera/img/sprites/sprite.svg#icon-svg-close"></use>
             </svg>`;
 
             let node = document.createElement('label');
             node.classList.add('selected-item');
-            node.setAttribute('for', forValue);
+            node.setAttribute('for', id);
             node.innerHTML = message;
 
             parent.appendChild(node);
-        }
 
-        function removeDOMNode() {
-            let block = parent.querySelector( 'label[for="' + forValue + '"]' );
+            sessionStorage.setItem('tags', parent.innerHTML);
+        } else if (event == 'remove') {
+            let block = parent.querySelector('label[for="' + id + '"]');
 
             if (block) {
                 block.remove();
             }
+
+            sessionStorage.setItem('tags', parent.innerHTML);
+        } else {
+            return false;
         }
-        
+    }
+
+    function setStoreCheckbox(event, id) {
+        let store = JSON.parse(sessionStorage.getItem('filterCheckboxes'));
+
+        if (store && event == 'add') {
+            store = store.concat(id);
+            sessionStorage.setItem('filterCheckboxes', JSON.stringify(store));
+        } else if (store && event == 'remove') {
+            let index = store.indexOf(id);
+            if (index > -1) {
+                store.splice(index, 1);
+            }
+            sessionStorage.setItem('filterCheckboxes', JSON.stringify(store));
+        } else {
+            store = [id];
+            sessionStorage.setItem('filterCheckboxes', JSON.stringify(store));
+        }
+
     }
 
     function resetCount() {
@@ -276,18 +425,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function getValues() {
 
-        let result = {
-            page: page || 1,
-            count: count, 
-            tag : getTag(),
-            type: getTypes(),
-            min: getRange('min'),
-            max: getRange('max'),
-            hmin: getRange('hmin'),
-            hmax: getRange('hmax'),
-            wmin: getRange('wmin'),
-            wmax: getRange('wmax'),
-        };
+        let result;
+
+        if (sessionStorage.filterState == undefined) {
+            result = {
+                page: page || 1,
+                count: count, 
+                type: getTypes(),
+                tag : getTag(),
+            };
+        } else  {
+            result = {
+                page: page || 1,
+                count: count, 
+                tag : getTag(),
+                type: getTypes(),
+                min: getRange('min'),
+                max: getRange('max'),
+                hmin: getRange('hmin'),
+                hmax: getRange('hmax'),
+                wmin: getRange('wmin'),
+                wmax: getRange('wmax'),
+            };
+        }
 
         let array = filter.querySelectorAll('[data-block-type="checkbox"]');
 
@@ -301,16 +461,16 @@ document.addEventListener('DOMContentLoaded', function() {
             let urlString;
             let name = parent.getAttribute("name");
 
-            let inputs = parent.querySelectorAll('.filter-input__input');
+            let inputs = parent.querySelectorAll('.filter-input__input:checked');
 
             for (let n = 0; n < inputs.length; n++) {
 
-                if ((result[name] != undefined) && inputs[n].checked) {
+                if ((result[name] != undefined)) {
                     result[name] = result[name] + "," + inputs[n].value;
-                } else if (result[name] == undefined && inputs[n].checked) {
+                } else if (result[name] == undefined) {
                     result[name] = inputs[n].value;
                 } else {
-
+                    return false;
                 }
             }
 
@@ -319,7 +479,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        return result;
+        sessionStorage.setItem('filterState', JSON.stringify(result));
+
+        return result;     
     }
 
     function getPage() {
@@ -332,14 +494,6 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             return filter.elements[price].value;
         }
-    }
-
-    function getWeight() {
-
-    }
-
-    function getHeight() {
-
     }
 
     function getTypes() {
@@ -366,49 +520,28 @@ document.addEventListener('DOMContentLoaded', function() {
         $.ajax({
             type: 'GET',
             data: getValues(),
-            url: '/shop/ajax.php/',
+            url: '/shop/ajax.php',
             success: function (response) {
-                console.log(this);
+                console.log('Кастом-запрос:');
+                console.log(getValues());
 
                 let responceArr = $.parseHTML(response);
 
                 function gelEl (el) {
                     for (let i = 0; i < responceArr.length; i++) {
                         if (el == responceArr[i].className) {
-                            // console.log(responceArr[i]);
                             return responceArr[i];
                         }
-                        // console.log(responceArr[i].className);
                     }
                 }
 
-                // gelEl('shop__items');
-
-
-                // console.log(responceArr.find('div.shop__items'));
-                // console.log(responceArr[3].innerHTML); // window.loadMore = response;
-                // console.log(loadMore.text())
-                //
-                // $.each(responceArr, function (i, el) {
-                //     $('.shop__content').append(el.innerHTML)
-                // })
-                // $('.shop__content').append('test')
-                // $('.shop__content').append(responceArr[5].innerHTML)
-                // $('.shop__content').append('test')
-                // Игорь
-
-
                 let params = gelEl('shop__items').querySelector('.columns');
 
-                // $(response).find('.columns').html();
-
                 if ($(response).find('.columns__column').length < 4) {
-                    $('.shop__items .columns').html('<p style="margin-bottom:25px; text-align: center; width: 100%;">По данным параметрам товаров не найдено. Попробуйте изменить запрос</p>');
+                    $('.shop__items .columns').html('<p style="margin-bottom:25px; text-align: center; width: 100%;">По вашему запросу ничего не найдено</p>');
                 } else {
                     $('.shop__items .columns').html(params);
                 }
-
-                console.log(params);
 
                 let loadMore = gelEl('shop__toolbar');
 
@@ -419,7 +552,66 @@ document.addEventListener('DOMContentLoaded', function() {
                     $('.shop__toolbar').html(btn);
                 }
 
-                console.log(loadMore);
+                let pagination = gelEl('shop__navigation');
+
+                if (pagination == undefined) {
+                    $('.shop__navigation').html('');
+                } else {
+                    let block = pagination.querySelector('.pagination')
+                    $('.shop__navigation').html(block);
+                }
+
+                toggleCounter();
+
+                document.querySelector('.shop__items').classList.remove('m-load');
+
+            },
+            error: function (response) {
+                document.querySelector('.shop__items').classList.remove('m-load');
+            }
+        });
+    }
+
+    function preRequest() {
+        let retrievedObject = sessionStorage.getItem('filterState');
+        let parent = filter.querySelector('.filter__selected');
+
+        document.querySelector('.shop__items').classList.add('m-load');
+
+        $.ajax({
+            type: 'GET',
+            data: JSON.parse(retrievedObject),
+            url: '/shop/ajax.php',
+            success: function (response) {
+                console.log('Первичный-запрос:');
+                console.log(getValues());
+
+                let responceArr = $.parseHTML(response);
+
+                function gelEl (el) {
+                    for (let i = 0; i < responceArr.length; i++) {
+                        if (el == responceArr[i].className) {
+                            return responceArr[i];
+                        }
+                    }
+                }
+
+                let params = gelEl('shop__items').querySelector('.columns');
+
+                if ($(response).find('.columns__column').length < 4) {
+                    $('.shop__items .columns').html('<p style="margin-bottom:25px; text-align: center; width: 100%;">По вашему запросу ничего не найдено</p>');
+                } else {
+                    $('.shop__items .columns').html(params);
+                }
+
+                let loadMore = gelEl('shop__toolbar');
+
+                if (loadMore == undefined) {
+                    $('.shop__toolbar').html('');
+                } else {
+                    let btn = loadMore.querySelector('.shop__btn');
+                    $('.shop__toolbar').html(btn);
+                }
 
                 let pagination = gelEl('shop__navigation');
 
@@ -430,7 +622,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     $('.shop__navigation').html(block);
                 }
 
-                console.log(pagination);
+                toggleCounter();
+
+                // if (filter.querySelectorAll('.filter-input__input:checked').length > 0) {
+                //     parent.innerHTML = sessionStorage.getItem('tags');
+                // } else {
+                //     delete sessionStorage.tags;
+                // }
 
                 document.querySelector('.shop__items').classList.remove('m-load');
 
@@ -448,12 +646,50 @@ document.addEventListener('DOMContentLoaded', function() {
         if (button) {
             button.addEventListener('click', function(e) {
                 e.preventDefault();
+                let type = filter.elements['filter-type'].value;
                 filter.reset();
+                filter.elements['filter-type'].value = type;
                 tags.innerHTML = '';
+                setStatus(false);
+                delete sessionStorage.filterState;
+                delete sessionStorage.tags;
+                delete sessionStorage.filterCheckboxes;
                 getRequest();
             });
         }
     }
+
+    function toggleCounter() {
+
+        let counter = document.querySelectorAll('.item-card__counter');
+
+        for (let i = 0; i < counter.length; i++) {
+            initToggleCounters(counter[i]);
+        }
+
+        function initToggleCounters(item) {
+            let btnMinus = item.querySelector('.item-card__btn--minus');
+            let btnPlus = item.querySelector('.item-card__btn--plus');
+            let field = item.querySelector('.item-card__input');
+
+            if (btnMinus && btnPlus && field) {
+                btnMinus.addEventListener('click', remove);
+                btnPlus.addEventListener('click', add);
+            }
+
+            function remove() {
+                if (+field.value > 1) {
+                    field.value--;
+                }
+            }
+
+            function add() {
+                field.value++;
+            }
+        }
+    };
+
+    toggleCounter();
 
     initFilter();
 

@@ -15,8 +15,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		btnMinus.addEventListener('click', function(e) {
 			e.preventDefault();
+			let step = input.getAttribute('step');
+
 			if (input.value > 1) {
-				input.value = +input.value - 1;
+				let val = +input.value - +step;
+				input.value = +val.toFixed(2);
 				getRequest(input);
 			}
 
@@ -25,7 +28,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		btnPlus.addEventListener('click', function(e) {
 			e.preventDefault();
-			input.value = +input.value + 1;
+
+			let step = input.getAttribute('step');
+
+			let val = +input.value + +step;
+
+			input.value = +val.toFixed(2);
+			
 			getRequest(input);
 			checkDisabled(btnMinus, input.value);
 		});
@@ -70,10 +79,13 @@ document.addEventListener('DOMContentLoaded', function () {
 			let itemPrice = price * quantity;
 			let itemOldPrice = oldPrice * quantity;
 
-			el.querySelector('.table__price--item').innerHTML = itemPrice.toLocaleString() + " руб.";
+			let itemPriceFixed = +itemPrice.toFixed(2);
+			let itemOldPriceFixed = +itemOldPrice.toFixed(2);
+
+			el.querySelector('.table__price--item').innerHTML = itemPriceFixed.toLocaleString() + " руб.";
 
 			if (el.querySelector('.table__oldprice')) {
-				el.querySelector('.table__oldprice').innerHTML = itemOldPrice.toLocaleString() + " руб.";
+				el.querySelector('.table__oldprice').innerHTML = itemOldPriceFixed.toLocaleString() + " руб.";
 			}
 			
 			el.dataset.fullPrice = itemPrice;
@@ -81,8 +93,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 
 		setPrice();
-		recountCart();
-		reqountWeight();
+		changeCart();
 	}
 
 	$(document).on('click', '.table__remove', function () {
@@ -105,11 +116,15 @@ document.addEventListener('DOMContentLoaded', function () {
 				let toolbarCounter =  document.querySelector('.mob-toolbar__counter');
 				let num = +headerCounter.innerText.trim();
 
-				$(el).closest('.table__tr').next().remove();
-				$(el).closest('.table__tr').remove();
+				
+
+				// $(el).closest('.table__tr').next().remove();
+				$(el).closest('.table__article').remove();
 
 				headerCounter.innerText = +num - itemSum;
 				toolbarCounter.innerText = +num - itemSum;
+
+				changeCart();
 			},
 			error: function(xhr) {
 				console.log(this);
@@ -133,38 +148,61 @@ document.addEventListener('DOMContentLoaded', function () {
 		});
 	});
 
-	let recountCart = () => {
-		let cart = document.querySelector('.table--cart');
+	let changeCart = () => {
+		let recountCart = () => {
+			let cart = document.querySelector('.table--cart');
 
-		if (cart) {
 			let articles = cart.querySelectorAll('.table__article');
 			let resultBlock = cart.querySelector('.table__price--result');
 
-			let result = 0;
+			if (articles) {
 
-			for (let i = 0; i < articles.length; i++) {
-				result = +result + +articles[i].dataset.price * +articles[i].querySelector('.table__counter-input').value;
+				let result = 0;
+
+				for (let i = 0; i < articles.length; i++) {
+					result = +result + +articles[i].dataset.price * +articles[i].querySelector('.table__counter-input').value;
+				}
+
+				let resultFixed = +result.toFixed(2);
+
+				resultBlock.innerText = resultFixed.toLocaleString() + ' руб.';
+
+			} else {
+				resultBlock.innerText = '0 руб.';
 			}
-
-			resultBlock.innerText = result.toLocaleString() + ' руб.';
 		}
-	}
 
-	let reqountWeight = () => {
-		let cart = document.querySelector('.table--cart');
+		let reqountWeight = () => {
+			let cart = document.querySelector('.table--cart');
 
-		if (cart) {
 			let items = cart.querySelectorAll('.table__article');
 			let resultBlock = cart.querySelector('#final-weight');
 
-			let result = 0;
+			if (items) {
+				let result = 0;
 
-			for (let i = 0; i < items.length; i++) {
-				result = +result + +items[i].dataset.weight * +items[i].querySelector('.table__counter-input').value;
-				console.log(result);
+				for (let i = 0; i < items.length; i++) {
+					result = +result + +items[i].dataset.weight * +items[i].querySelector('.table__counter-input').value;
+
+					let itemWeight = items[i].dataset.weight * +items[i].querySelector('.table__counter-input').value;
+
+					let itemWeightFixed = +itemWeight.toFixed(2);
+
+					items[i].querySelector('#result-weight').innerText = itemWeightFixed + ' кг.';
+				}
+
+				let resultFixed = +result.toFixed(2);
+
+				resultBlock.innerText = resultFixed + ' кг.';
+			} else {
+				resultBlock.innerText = '0 кг.';
 			}
 
-			resultBlock.innerText = result.toFixed(3) + ' кг.';
+			
 		}
+		recountCart();
+		reqountWeight();
 	}
+
+	
 })

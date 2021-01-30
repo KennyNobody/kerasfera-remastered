@@ -17,6 +17,7 @@ import "%modules%/modal/modal";
 import "%modules%/sidebar/sidebar";
 import "%modules%/subtabs/subtabs";
 import "%modules%/item-contact/item-contact";
+import "%modules%/item-card/item-card";
 import "%modules%/product-form/product-form";
 import "%modules%/counter/counter";
 import "%modules%/table/table";

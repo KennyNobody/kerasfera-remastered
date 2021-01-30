@@ -57,6 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			success: function (response) {
 				addCounter();
 				showMessage(form);
+				console.log(response);
 			},
 			error: function (response) {
 
@@ -149,31 +150,4 @@ document.addEventListener('DOMContentLoaded', function() {
 			}
 		}
 	});
-
-	// if ($.post("/ajax/add2basket.php")) {
-	// 	var a = $(".header__link-counter").text();
-	// 	$(".header__link-counter").text(Number(a) + parseFloat($(this).find(".counter__input").val()));
-	// 	$(".mob-toolbar__counter").text(Number(a) + parseFloat($(this).find(".counter__input").val()));
-	// 	t.find(".call__control-btn").val("Перейти в корзину")
-	// } else {
-	// 	t.html("<p>Мы проинформируем вас о поступлении. Спасибо за обращение</p>")
-	// }
-
-	// 	if (!t.find(".call__columns").length) {
-	// 		var n = t.find('input[name="Prop[1]"]').val(),
-	// 		i = t.find('input[name="Prop[2]"]').val();
-	// 		if ("" == n && "" == i) return void alert("Пожалуйста, заполните имя и телефон");
-	// 		if ("" == n) return void alert("Пожалуйста, заполните имя");
-	// 		if ("" == i) return void alert("Пожалуйста, заполните телефон")
-	// 	}
-
-	// if (t.hasClass("sending")) t.find(".call__columns").length && (window.location = "/personal/cart/");
-	// else if (t.addClass("sending"), $.post(t.find(".call__columns").length ? "/ajax/add2basket.php" : "/ajax/under_order.php", t.serialize()), t.find(".call__columns").length) {
-	// 	var a = $(".header__link-counter").text();
-	// 	$(".header__link-counter").text(Number(a) + parseFloat($(this).find(".counter__input").val()));
-	// 	$(".mob-toolbar__counter").text(Number(a) + parseFloat($(this).find(".counter__input").val()));
-	// 	t.find(".call__control-btn").val("Перейти в корзину")
-	// } else {
-	// 	t.html("<p>Мы проинформируем вас о поступлении. Спасибо за обращение</p>")
-	// }
 });

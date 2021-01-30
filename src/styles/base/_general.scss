@@ -53,6 +53,11 @@
 
 }
 
+.disabled {
+	opacity: 0.5;
+	pointer-events: none;
+}
+
 // .custom-scroll {
 // 	scrollbar-color: $green;
 //     scrollbar-width: 4px;

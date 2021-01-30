@@ -34,9 +34,16 @@
 		color: #A1A1A1;
 	}
 	&__item {
+		// padding: 0 !important;
+		padding: 44px;
+		width: 90% !important;
+		height: 100% !important;
+		max-width: 700px;
+		max-height: 700px;
 		iframe {
-			width: 800px !important;
-			height: 600px !important;
+			display: block;
+			width: 100% !important;
+			height: 100% !important;
 		}
 	}
 }

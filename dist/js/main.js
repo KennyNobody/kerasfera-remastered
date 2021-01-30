@@ -208,6 +208,12 @@ document.addEventListener('DOMContentLoaded', function () {
 __webpack_require__.r(__webpack_exports__);
 /* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var nouislider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! nouislider */ "./node_modules/nouislider/distribute/nouislider.js");
 /* harmony import */ var nouislider__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(nouislider__WEBPACK_IMPORTED_MODULE_0__);
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 
 document.addEventListener('DOMContentLoaded', function () {
   $(window).scroll(function () {
@@ -231,7 +237,7 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('DOMContentLoaded', function () {
   var filter;
   var count;
-  var page;
+  var page; // setFilter();
 
   function initFilter() {
     var parent = document.querySelector('.filter');
@@ -245,7 +251,82 @@ document.addEventListener('DOMContentLoaded', function () {
       initPagination();
       initLoadMore();
       initTypes();
+      setFilter(filter);
       clearForm();
+
+      if (sessionStorage.filterUsed) {
+        preRequest();
+      }
+    }
+  }
+
+  function setStatus(state) {
+    sessionStorage.setItem('filterUsed', state);
+  }
+
+  function setFilter() {
+    var state = JSON.parse(sessionStorage.getItem('filterState'));
+    var checkboxes = JSON.parse(sessionStorage.getItem('filterCheckboxes'));
+
+    if (state) {
+      setToolbar(state['tag'] || null, state['count'] || null);
+      setRadio(state['type']);
+    }
+
+    if (checkboxes) {
+      setCheckboxes(checkboxes);
+    }
+
+    function setToolbar(stateTag, stateCount) {
+      var toolbar = document.querySelector('.toolbar');
+      var type;
+      var counter;
+
+      if (toolbar) {
+        type = toolbar.elements['select-tag'];
+        counter = toolbar.elements['select-count'];
+      }
+
+      if (stateTag && type) {
+        type.value = stateTag;
+      }
+
+      if (stateCount && counter) {
+        counter.value = stateCount;
+      }
+    }
+
+    function setCheckboxes() {
+      console.log(filter);
+
+      var _iterator = _createForOfIteratorHelper(checkboxes),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var item = _step.value;
+          var input = document.getElementById(item);
+          console.log(input);
+          input.checked = true;
+          setTag('add', input.id, input.parentNode.querySelector('span').innerHTML.trim()); // console.log(item);
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+    }
+
+    function setRadio(stateType) {
+      var radio = filter.querySelectorAll('.filter__toggle-input');
+
+      for (var i = 0; i < radio.length; i++) {
+        if (radio[i].value == stateType) {
+          radio[i].checked = true;
+        } else {
+          radio[i].checked = false;
+        }
+      }
     }
   }
 
@@ -256,6 +337,7 @@ document.addEventListener('DOMContentLoaded', function () {
       radios[i].addEventListener('change', function () {
         resetCount();
         resetPages();
+        setStatus(true);
         getRequest();
       });
     }
@@ -272,11 +354,31 @@ document.addEventListener('DOMContentLoaded', function () {
       var area = item.querySelector('.filter__name');
       area.addEventListener('click', function () {
         item.classList.toggle('filter__block--open');
+
+        if (item.classList.contains('filter__block--fixed') == false && window.innerWidth > 1100) {
+          var height = 0;
+
+          var _items = item.querySelectorAll('ul li');
+
+          for (var _i = 0; _i < 5; _i++) {
+            if (_items[_i]) {
+              height = height + _items[_i].clientHeight;
+            }
+          }
+
+          if (item.classList.contains("filter__block--open")) {
+            item.querySelector('ul').setAttribute("style", "max-height:" + height + "px");
+          } else {
+            item.querySelector('ul').setAttribute("style", "");
+          }
+        }
       });
     }
   }
 
   function initRangeSlider() {
+    var state = JSON.parse(sessionStorage.getItem('filterState'));
+
     function initRangeSlider1() {
       var rangeSlider = filter.querySelector('#range-price');
 
@@ -284,8 +386,19 @@ document.addEventListener('DOMContentLoaded', function () {
         var activeBlock = rangeSlider.querySelector('.filter__range');
         var minValue = rangeSlider.querySelector('#input-with-keypress-0') || 0;
         var maxValue = rangeSlider.querySelector('#input-with-keypress-1') || 10000;
+        var startMin;
+        var startMax;
+
+        if (state) {
+          startMin = +state.min;
+          startMax = +state.max;
+        } else {
+          startMin = +minValue.value;
+          startMax = +maxValue.value;
+        }
+
         nouislider__WEBPACK_IMPORTED_MODULE_0___default.a.create(activeBlock, {
-          start: [+minValue.value, +maxValue.value],
+          start: [startMin, startMax],
           connect: true,
           step: 100,
           range: {
@@ -298,6 +411,7 @@ document.addEventListener('DOMContentLoaded', function () {
           maxValue.value = Math.round(values[1]);
         });
         activeBlock.noUiSlider.on('change', function (values, handle) {
+          setStatus(true);
           getRequest();
         });
       }
@@ -310,8 +424,19 @@ document.addEventListener('DOMContentLoaded', function () {
         var activeBlock = rangeSlider.querySelector('.filter__range');
         var minValue = rangeSlider.querySelector('#input-with-keypress-2') || 0;
         var maxValue = rangeSlider.querySelector('#input-with-keypress-3') || 10000;
+        var startWmin;
+        var startWmax;
+
+        if (state) {
+          startWmin = +state.wmin;
+          startWmax = +state.wmax;
+        } else {
+          startWmin = +minValue.value;
+          startWmax = +maxValue.value;
+        }
+
         nouislider__WEBPACK_IMPORTED_MODULE_0___default.a.create(activeBlock, {
-          start: [+minValue.value, +maxValue.value],
+          start: [startWmin, startWmax],
           connect: true,
           step: 1,
           range: {
@@ -324,6 +449,7 @@ document.addEventListener('DOMContentLoaded', function () {
           maxValue.value = Math.round(values[1]);
         });
         activeBlock.noUiSlider.on('change', function (values, handle) {
+          setStatus(true);
           getRequest();
         });
       }
@@ -336,8 +462,19 @@ document.addEventListener('DOMContentLoaded', function () {
         var activeBlock = rangeSlider.querySelector('.filter__range');
         var minValue = rangeSlider.querySelector('#input-with-keypress-4') || 0;
         var maxValue = rangeSlider.querySelector('#input-with-keypress-5') || 10000;
+        var startHmin;
+        var startHmax;
+
+        if (state) {
+          startHmin = +state.hmin;
+          startHmax = +state.hmax;
+        } else {
+          startHmin = +minValue.value;
+          startHmax = +maxValue.value;
+        }
+
         nouislider__WEBPACK_IMPORTED_MODULE_0___default.a.create(activeBlock, {
-          start: [+minValue.value, +maxValue.value],
+          start: [startHmin, startHmax],
           connect: true,
           step: 1,
           range: {
@@ -350,6 +487,7 @@ document.addEventListener('DOMContentLoaded', function () {
           maxValue.value = Math.round(values[1]);
         });
         activeBlock.noUiSlider.on('change', function (values, handle) {
+          setStatus(true);
           getRequest();
         });
       }
@@ -370,6 +508,10 @@ document.addEventListener('DOMContentLoaded', function () {
     function addListeners(item) {
       var field = item.querySelector('.filter-input__input');
       field.addEventListener('change', function () {
+        if (field.checked) {
+          setStatus(true);
+        }
+
         toggleButton(item, field.checked);
         getRequest();
       });
@@ -391,8 +533,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function initPagination() {
     $('.shop__navigation').on('click', '.pagination__btn', function (e) {
-      page = this.dataset.page; // resetCount();
-
+      page = this.dataset.page;
       getRequest();
     });
   }
@@ -405,33 +546,58 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function toggleButton(item, state) {
-    var parent = filter.querySelector('.filter__selected');
     var block = item.querySelector('.filter-input__input');
-    var title = item.querySelector('span').innerHTML.trim();
-    var forValue = block.id;
-    console.log('Тоггл');
 
-    if (title && forValue && state) {
-      createDOMNode();
+    if (block.id && state) {
+      setTag('add', item.querySelector('input').id, item.querySelector('span').innerHTML.trim());
+      setStoreCheckbox('add', item.querySelector('input').id);
     } else {
-      removeDOMNode();
+      setTag('remove', item.querySelector('input').id, item.querySelector('span').innerHTML.trim());
+      setStoreCheckbox('remove', item.querySelector('input').id);
     }
+  }
 
-    function createDOMNode() {
-      var message = "\n            <span class=\"selected-item__text\">\n            ".concat(title, "\n            </span>\n            <svg class=\"selected-item__icon\">\n            <use xlink:href=\"/local/templates/new/img/sprites/sprite.svg#icon-svg-close\"></use>\n            </svg>");
+  function setTag(event, id, title) {
+    var parent = document.querySelector('.filter__selected');
+
+    if (event == 'add') {
+      var message = "\n            <span class=\"selected-item__text\">\n            ".concat(title, "\n            </span>\n            <svg class=\"selected-item__icon\">\n            <use xlink:href=\"/local/templates/diez__template_kerasfera/img/sprites/sprite.svg#icon-svg-close\"></use>\n            </svg>");
       var node = document.createElement('label');
       node.classList.add('selected-item');
-      node.setAttribute('for', forValue);
+      node.setAttribute('for', id);
       node.innerHTML = message;
       parent.appendChild(node);
-    }
-
-    function removeDOMNode() {
-      var block = parent.querySelector('label[for="' + forValue + '"]');
+      sessionStorage.setItem('tags', parent.innerHTML);
+    } else if (event == 'remove') {
+      var block = parent.querySelector('label[for="' + id + '"]');
 
       if (block) {
         block.remove();
       }
+
+      sessionStorage.setItem('tags', parent.innerHTML);
+    } else {
+      return false;
+    }
+  }
+
+  function setStoreCheckbox(event, id) {
+    var store = JSON.parse(sessionStorage.getItem('filterCheckboxes'));
+
+    if (store && event == 'add') {
+      store = store.concat(id);
+      sessionStorage.setItem('filterCheckboxes', JSON.stringify(store));
+    } else if (store && event == 'remove') {
+      var index = store.indexOf(id);
+
+      if (index > -1) {
+        store.splice(index, 1);
+      }
+
+      sessionStorage.setItem('filterCheckboxes', JSON.stringify(store));
+    } else {
+      store = [id];
+      sessionStorage.setItem('filterCheckboxes', JSON.stringify(store));
     }
   }
 
@@ -444,18 +610,30 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function getValues() {
-    var result = {
-      page: page || 1,
-      count: count,
-      tag: getTag(),
-      type: getTypes(),
-      min: getRange('min'),
-      max: getRange('max'),
-      hmin: getRange('hmin'),
-      hmax: getRange('hmax'),
-      wmin: getRange('wmin'),
-      wmax: getRange('wmax')
-    };
+    var result;
+
+    if (sessionStorage.filterState == undefined) {
+      result = {
+        page: page || 1,
+        count: count,
+        type: getTypes(),
+        tag: getTag()
+      };
+    } else {
+      result = {
+        page: page || 1,
+        count: count,
+        tag: getTag(),
+        type: getTypes(),
+        min: getRange('min'),
+        max: getRange('max'),
+        hmin: getRange('hmin'),
+        hmax: getRange('hmax'),
+        wmin: getRange('wmin'),
+        wmax: getRange('wmax')
+      };
+    }
+
     var array = filter.querySelectorAll('[data-block-type="checkbox"]');
 
     for (var i = 0; i < array.length; i++) {
@@ -467,14 +645,16 @@ document.addEventListener('DOMContentLoaded', function () {
     function getBlockValue(parent) {
       var urlString;
       var name = parent.getAttribute("name");
-      var inputs = parent.querySelectorAll('.filter-input__input');
+      var inputs = parent.querySelectorAll('.filter-input__input:checked');
 
       for (var n = 0; n < inputs.length; n++) {
-        if (result[name] != undefined && inputs[n].checked) {
+        if (result[name] != undefined) {
           result[name] = result[name] + "," + inputs[n].value;
-        } else if (result[name] == undefined && inputs[n].checked) {
+        } else if (result[name] == undefined) {
           result[name] = inputs[n].value;
-        } else {}
+        } else {
+          return false;
+        }
       }
 
       if (urlString != undefined) {
@@ -482,6 +662,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
 
+    sessionStorage.setItem('filterState', JSON.stringify(result));
     return result;
   }
 
@@ -496,10 +677,6 @@ document.addEventListener('DOMContentLoaded', function () {
       return filter.elements[price].value;
     }
   }
-
-  function getWeight() {}
-
-  function getHeight() {}
 
   function getTypes() {
     return filter.elements['filter-type'].value;
@@ -520,42 +697,28 @@ document.addEventListener('DOMContentLoaded', function () {
     $.ajax({
       type: 'GET',
       data: getValues(),
-      url: '/shop/ajax.php/',
+      url: '/shop/ajax.php',
       success: function success(response) {
-        console.log(this);
+        console.log('Кастом-запрос:');
+        console.log(getValues());
         var responceArr = $.parseHTML(response);
 
         function gelEl(el) {
           for (var i = 0; i < responceArr.length; i++) {
             if (el == responceArr[i].className) {
-              // console.log(responceArr[i]);
               return responceArr[i];
-            } // console.log(responceArr[i].className);
-
+            }
           }
-        } // gelEl('shop__items');
-        // console.log(responceArr.find('div.shop__items'));
-        // console.log(responceArr[3].innerHTML); // window.loadMore = response;
-        // console.log(loadMore.text())
-        //
-        // $.each(responceArr, function (i, el) {
-        //     $('.shop__content').append(el.innerHTML)
-        // })
-        // $('.shop__content').append('test')
-        // $('.shop__content').append(responceArr[5].innerHTML)
-        // $('.shop__content').append('test')
-        // Игорь
+        }
 
-
-        var params = gelEl('shop__items').querySelector('.columns'); // $(response).find('.columns').html();
+        var params = gelEl('shop__items').querySelector('.columns');
 
         if ($(response).find('.columns__column').length < 4) {
-          $('.shop__items .columns').html('<p style="margin-bottom:25px; text-align: center; width: 100%;">По данным параметрам товаров не найдено. Попробуйте изменить запрос</p>');
+          $('.shop__items .columns').html('<p style="margin-bottom:25px; text-align: center; width: 100%;">По вашему запросу ничего не найдено</p>');
         } else {
           $('.shop__items .columns').html(params);
         }
 
-        console.log(params);
         var loadMore = gelEl('shop__toolbar');
 
         if (loadMore == undefined) {
@@ -565,7 +728,6 @@ document.addEventListener('DOMContentLoaded', function () {
           $('.shop__toolbar').html(btn);
         }
 
-        console.log(loadMore);
         var pagination = gelEl('shop__navigation');
 
         if (pagination == undefined) {
@@ -575,7 +737,68 @@ document.addEventListener('DOMContentLoaded', function () {
           $('.shop__navigation').html(block);
         }
 
-        console.log(pagination);
+        toggleCounter();
+        document.querySelector('.shop__items').classList.remove('m-load');
+      },
+      error: function error(response) {
+        document.querySelector('.shop__items').classList.remove('m-load');
+      }
+    });
+  }
+
+  function preRequest() {
+    var retrievedObject = sessionStorage.getItem('filterState');
+    var parent = filter.querySelector('.filter__selected');
+    document.querySelector('.shop__items').classList.add('m-load');
+    $.ajax({
+      type: 'GET',
+      data: JSON.parse(retrievedObject),
+      url: '/shop/ajax.php',
+      success: function success(response) {
+        console.log('Первичный-запрос:');
+        console.log(getValues());
+        var responceArr = $.parseHTML(response);
+
+        function gelEl(el) {
+          for (var i = 0; i < responceArr.length; i++) {
+            if (el == responceArr[i].className) {
+              return responceArr[i];
+            }
+          }
+        }
+
+        var params = gelEl('shop__items').querySelector('.columns');
+
+        if ($(response).find('.columns__column').length < 4) {
+          $('.shop__items .columns').html('<p style="margin-bottom:25px; text-align: center; width: 100%;">По вашему запросу ничего не найдено</p>');
+        } else {
+          $('.shop__items .columns').html(params);
+        }
+
+        var loadMore = gelEl('shop__toolbar');
+
+        if (loadMore == undefined) {
+          $('.shop__toolbar').html('');
+        } else {
+          var btn = loadMore.querySelector('.shop__btn');
+          $('.shop__toolbar').html(btn);
+        }
+
+        var pagination = gelEl('shop__navigation');
+
+        if (pagination == undefined) {
+          $('.shop__navigation').html('');
+        } else {
+          var block = pagination.querySelector('.pagination');
+          $('.shop__navigation').html(block);
+        }
+
+        toggleCounter(); // if (filter.querySelectorAll('.filter-input__input:checked').length > 0) {
+        //     parent.innerHTML = sessionStorage.getItem('tags');
+        // } else {
+        //     delete sessionStorage.tags;
+        // }
+
         document.querySelector('.shop__items').classList.remove('m-load');
       },
       error: function error(response) {
@@ -591,28 +814,20 @@ document.addEventListener('DOMContentLoaded', function () {
     if (button) {
       button.addEventListener('click', function (e) {
         e.preventDefault();
+        var type = filter.elements['filter-type'].value;
         filter.reset();
+        filter.elements['filter-type'].value = type;
         tags.innerHTML = '';
+        setStatus(false);
+        delete sessionStorage.filterState;
+        delete sessionStorage.tags;
+        delete sessionStorage.filterCheckboxes;
         getRequest();
       });
     }
   }
 
-  initFilter();
-});
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")))
-
-/***/ }),
-
-/***/ "./src/blocks/modules/item-card/item-card.js":
-/*!***************************************************!*\
-  !*** ./src/blocks/modules/item-card/item-card.js ***!
-  \***************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-document.addEventListener('DOMContentLoaded', function () {
-  (function toggleCounter() {
+  function toggleCounter() {
     var counter = document.querySelectorAll('.item-card__counter');
 
     for (var i = 0; i < counter.length; i++) {
@@ -639,10 +854,46 @@ document.addEventListener('DOMContentLoaded', function () {
         field.value++;
       }
     }
+  }
 
-    ;
-  })();
+  ;
+  toggleCounter();
+  initFilter();
 });
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")))
+
+/***/ }),
+
+/***/ "./src/blocks/modules/item-card/item-card.js":
+/*!***************************************************!*\
+  !*** ./src/blocks/modules/item-card/item-card.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// (function toggleCounter() {
+//     let counter = document.querySelectorAll('.item-card__counter');
+//     for (let i = 0; i < counter.length; i++) {
+//         initToggleCounters(counter[i]);
+//     }
+//     function initToggleCounters(item) {
+//         let btnMinus = item.querySelector('.item-card__btn--minus');
+//         let btnPlus = item.querySelector('.item-card__btn--plus');
+//         let field = item.querySelector('.item-card__input');
+//         if (btnMinus && btnPlus && field) {
+//             btnMinus.addEventListener('click', remove);
+//             btnPlus.addEventListener('click', add);
+//         }
+//         function remove() {
+//             if (+field.value > 1) {
+//                 field.value--;
+//             }
+//         }
+//         function add() {
+//             field.value++;
+//         }
+//     }
+// })();
 
 /***/ }),
 
@@ -791,6 +1042,7 @@ __webpack_require__.r(__webpack_exports__);
       success: function success(response) {
         addCounter();
         showMessage(form);
+        console.log(response);
       },
       error: function error(response) {}
     });
@@ -866,30 +1118,7 @@ __webpack_require__.r(__webpack_exports__);
         }, 3000);
       }
     }
-  }); // if ($.post("/ajax/add2basket.php")) {
-  // 	var a = $(".header__link-counter").text();
-  // 	$(".header__link-counter").text(Number(a) + parseFloat($(this).find(".counter__input").val()));
-  // 	$(".mob-toolbar__counter").text(Number(a) + parseFloat($(this).find(".counter__input").val()));
-  // 	t.find(".call__control-btn").val("Перейти в корзину")
-  // } else {
-  // 	t.html("<p>Мы проинформируем вас о поступлении. Спасибо за обращение</p>")
-  // }
-  // 	if (!t.find(".call__columns").length) {
-  // 		var n = t.find('input[name="Prop[1]"]').val(),
-  // 		i = t.find('input[name="Prop[2]"]').val();
-  // 		if ("" == n && "" == i) return void alert("Пожалуйста, заполните имя и телефон");
-  // 		if ("" == n) return void alert("Пожалуйста, заполните имя");
-  // 		if ("" == i) return void alert("Пожалуйста, заполните телефон")
-  // 	}
-  // if (t.hasClass("sending")) t.find(".call__columns").length && (window.location = "/personal/cart/");
-  // else if (t.addClass("sending"), $.post(t.find(".call__columns").length ? "/ajax/add2basket.php" : "/ajax/under_order.php", t.serialize()), t.find(".call__columns").length) {
-  // 	var a = $(".header__link-counter").text();
-  // 	$(".header__link-counter").text(Number(a) + parseFloat($(this).find(".counter__input").val()));
-  // 	$(".mob-toolbar__counter").text(Number(a) + parseFloat($(this).find(".counter__input").val()));
-  // 	t.find(".call__control-btn").val("Перейти в корзину")
-  // } else {
-  // 	t.html("<p>Мы проинформируем вас о поступлении. Спасибо за обращение</p>")
-  // }
+  });
 });
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")))
 
@@ -1089,9 +1318,11 @@ document.addEventListener('DOMContentLoaded', function () {
     checkDisabled(btnMinus, input.value);
     btnMinus.addEventListener('click', function (e) {
       e.preventDefault();
+      var step = input.getAttribute('step');
 
       if (input.value > 1) {
-        input.value = +input.value - 1;
+        var val = +input.value - +step;
+        input.value = +val.toFixed(2);
         getRequest(input);
       }
 
@@ -1099,7 +1330,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     btnPlus.addEventListener('click', function (e) {
       e.preventDefault();
-      input.value = +input.value + 1;
+      var step = input.getAttribute('step');
+      var val = +input.value + +step;
+      input.value = +val.toFixed(2);
       getRequest(input);
       checkDisabled(btnMinus, input.value);
     });
@@ -1142,10 +1375,12 @@ document.addEventListener('DOMContentLoaded', function () {
     var setPrice = function setPrice() {
       var itemPrice = price * quantity;
       var itemOldPrice = oldPrice * quantity;
-      el.querySelector('.table__price--item').innerHTML = itemPrice.toLocaleString() + " руб.";
+      var itemPriceFixed = +itemPrice.toFixed(2);
+      var itemOldPriceFixed = +itemOldPrice.toFixed(2);
+      el.querySelector('.table__price--item').innerHTML = itemPriceFixed.toLocaleString() + " руб.";
 
       if (el.querySelector('.table__oldprice')) {
-        el.querySelector('.table__oldprice').innerHTML = itemOldPrice.toLocaleString() + " руб.";
+        el.querySelector('.table__oldprice').innerHTML = itemOldPriceFixed.toLocaleString() + " руб.";
       }
 
       el.dataset.fullPrice = itemPrice;
@@ -1153,8 +1388,7 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     setPrice();
-    recountCart();
-    reqountWeight();
+    changeCart();
   };
 
   $(document).on('click', '.table__remove', function () {
@@ -1172,11 +1406,12 @@ document.addEventListener('DOMContentLoaded', function () {
         var itemSum = $(el).closest('.table__tr').next().find(".table__counter-input").val();
         var headerCounter = document.querySelector('.header__link-counter');
         var toolbarCounter = document.querySelector('.mob-toolbar__counter');
-        var num = +headerCounter.innerText.trim();
-        $(el).closest('.table__tr').next().remove();
-        $(el).closest('.table__tr').remove();
+        var num = +headerCounter.innerText.trim(); // $(el).closest('.table__tr').next().remove();
+
+        $(el).closest('.table__article').remove();
         headerCounter.innerText = +num - itemSum;
         toolbarCounter.innerText = +num - itemSum;
+        changeCart();
       },
       error: function error(xhr) {
         console.log(this);
@@ -1201,37 +1436,50 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  var recountCart = function recountCart() {
-    var cart = document.querySelector('.table--cart');
-
-    if (cart) {
+  var changeCart = function changeCart() {
+    var recountCart = function recountCart() {
+      var cart = document.querySelector('.table--cart');
       var articles = cart.querySelectorAll('.table__article');
       var resultBlock = cart.querySelector('.table__price--result');
-      var result = 0;
 
-      for (var _i = 0; _i < articles.length; _i++) {
-        result = +result + +articles[_i].dataset.price * +articles[_i].querySelector('.table__counter-input').value;
+      if (articles) {
+        var result = 0;
+
+        for (var _i = 0; _i < articles.length; _i++) {
+          result = +result + +articles[_i].dataset.price * +articles[_i].querySelector('.table__counter-input').value;
+        }
+
+        var resultFixed = +result.toFixed(2);
+        resultBlock.innerText = resultFixed.toLocaleString() + ' руб.';
+      } else {
+        resultBlock.innerText = '0 руб.';
       }
+    };
 
-      resultBlock.innerText = result.toLocaleString() + ' руб.';
-    }
-  };
-
-  var reqountWeight = function reqountWeight() {
-    var cart = document.querySelector('.table--cart');
-
-    if (cart) {
+    var reqountWeight = function reqountWeight() {
+      var cart = document.querySelector('.table--cart');
       var items = cart.querySelectorAll('.table__article');
       var resultBlock = cart.querySelector('#final-weight');
-      var result = 0;
 
-      for (var _i2 = 0; _i2 < items.length; _i2++) {
-        result = +result + +items[_i2].dataset.weight * +items[_i2].querySelector('.table__counter-input').value;
-        console.log(result);
+      if (items) {
+        var result = 0;
+
+        for (var _i2 = 0; _i2 < items.length; _i2++) {
+          result = +result + +items[_i2].dataset.weight * +items[_i2].querySelector('.table__counter-input').value;
+          var itemWeight = items[_i2].dataset.weight * +items[_i2].querySelector('.table__counter-input').value;
+          var itemWeightFixed = +itemWeight.toFixed(2);
+          items[_i2].querySelector('#result-weight').innerText = itemWeightFixed + ' кг.';
+        }
+
+        var resultFixed = +result.toFixed(2);
+        resultBlock.innerText = resultFixed + ' кг.';
+      } else {
+        resultBlock.innerText = '0 кг.';
       }
+    };
 
-      resultBlock.innerText = result.toFixed(3) + ' кг.';
-    }
+    recountCart();
+    reqountWeight();
   };
 });
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")))
@@ -1249,8 +1497,6 @@ document.addEventListener('DOMContentLoaded', function () {
 __webpack_require__.r(__webpack_exports__);
 /* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var magnific_popup__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! magnific-popup */ "./node_modules/magnific-popup/dist/jquery.magnific-popup.js");
 /* harmony import */ var magnific_popup__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(magnific_popup__WEBPACK_IMPORTED_MODULE_0__);
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 document.addEventListener('DOMContentLoaded', function () {
   $(".popup").magnificPopup();
@@ -1270,22 +1516,17 @@ document.addEventListener('DOMContentLoaded', function () {
   });
   $(".discont__btn--cancel").on("click", function (e) {
     $.magnificPopup.close();
-  });
-  $(".popup-gallery").magnificPopup({
-    delegate: "a",
-    type: "image",
-    tLoading: "Загрузка изображения...",
-    mainClass: "mfp-img-mobile",
-    gallery: {
-      enabled: !0,
-      navigateByImgClick: !0,
-      tCounter: "",
-      preload: [0, 1]
-    },
-    image: {
-      tError: "Ошибка загрузки изображения"
-    }
-  });
+  }); // $(".popup-gallery").magnificPopup({
+  // 	delegate: "a",
+  // 	type: "image",
+  // 	tLoading: "Загрузка изображения...",
+  // 	mainClass: "mfp-img-mobile",
+  // 	gallery: {enabled: !0, navigateByImgClick: !0, tCounter: "", preload: [0, 1]},
+  // 	image: {
+  // 		tError: "Ошибка загрузки изображения"
+  // 	}
+  // });
+
   $(".gallery-top-popups").magnificPopup({
     delegate: "a",
     type: "image",
@@ -1297,15 +1538,15 @@ document.addEventListener('DOMContentLoaded', function () {
       tCounter: "",
       preload: [0, 1]
     }
-  });
-  $(".gallery__item").magnificPopup({
-    type: "image",
-    image: _defineProperty({
-      titleSrc: 'title'
-    }, "titleSrc", function titleSrc(item) {
-      return '<a href="' + item.el.attr('data-link') + '">Посмотреть коллекцию</a>';
-    })
-  });
+  }); // $(".gallery__item").magnificPopup({
+  // 	type: "image",
+  // 	image: {
+  // 		titleSrc: 'title',
+  // 		titleSrc: function(item) {
+  // 			return '<a href="' + item.el.attr('data-link') + '">Посмотреть коллекцию</a>';
+  // 		}
+  // 	}
+  // });
 });
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")))
 
@@ -1688,6 +1929,10 @@ document.addEventListener('DOMContentLoaded', function () {
           slideActiveClass: 'product-slider__top-slide--active',
           thumbs: {
             swiper: galleryThumbs
+          },
+          navigation: {
+            nextEl: '.product-slider__btn--next',
+            prevEl: '.product-slider__btn--prev'
           }
         });
         galleryTop.controller.control = galleryThumbs;
@@ -1928,6 +2173,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 /***/ }),
 
 /***/ "./src/js/index.js":
@@ -2048,6 +2294,34 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   }
+
+  function checkAgreement() {
+    var checkedControl = document.querySelectorAll('[data-checked-control]');
+    var checkedButton;
+
+    for (var i = 0; i < checkedControl.length; i++) {
+      toggle(checkedControl[i].dataset.checkedControl, checkedControl[i].checked);
+      checkedControl[i].addEventListener('change', function () {
+        toggle(this.dataset.checkedControl, this.checked);
+      });
+    }
+
+    var search = function search() {};
+
+    function toggle(id, status) {
+      var button = document.querySelector('[data-checked-button="' + id + '"]');
+
+      if (button && status) {
+        button.classList.remove('disabled');
+      } else if (button && status == false) {
+        button.classList.add('disabled');
+      } else {
+        return false;
+      }
+    }
+  }
+
+  checkAgreement();
 });
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")))
 

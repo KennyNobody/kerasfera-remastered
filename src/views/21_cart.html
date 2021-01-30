@@ -251,7 +251,17 @@
                                     @@include("../blocks/modules/promocode/promocode.html")
                                 </div>
                                 <div class="columns__column columns__column--12 mb-32">
-                                    @@include("../blocks/modules/agreement/agreement.html")
+                                    <label class="agreement">
+                                        <input type="checkbox" class="agreement__field" data-checked-control="1">
+                                        <div class="agreement__icon">
+                                            <svg>
+                                                <use xlink:href="/img/sprites/sprite.svg#icon-svg-check"></use>
+                                            </svg>
+                                        </div>
+                                        <p class="agreement__text">
+                                            Я ознакомлен и согласен с условиями договора-оферты и даю согласие на обработку персональных данных.
+                                        </p>
+                                    </label>
                                 </div>
                                 <div class="columns__column columns__column--6 mb-32">
                                     <a href="" class="button button--green button--full">
@@ -261,7 +271,7 @@
                                     </a>
                                 </div>
                                 <div class="columns__column columns__column--6 mb-32">
-                                    <button class="button button--orange button--full">
+                                    <button class="button button--orange button--full" data-checked-button="1">
                                         <span>
                                             Оформить заказ
                                         </span>

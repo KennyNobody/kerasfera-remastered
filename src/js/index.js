@@ -122,4 +122,36 @@ document.addEventListener('DOMContentLoaded', function() {
 			}
 		});
 	}
+
+	function checkAgreement() {
+		let checkedControl = document.querySelectorAll('[data-checked-control]');
+		let checkedButton;
+
+		for (let i = 0; i < checkedControl.length; i++) {
+			toggle(checkedControl[i].dataset.checkedControl, checkedControl[i].checked);
+
+			checkedControl[i].addEventListener('change', function() {
+				toggle(this.dataset.checkedControl, this.checked);
+			})
+		}
+
+		let search = () => {
+
+		}
+
+		function toggle (id, status) {
+			let button = document.querySelector('[data-checked-button="' + id + '"]');
+
+			if (button && status) {
+				button.classList.remove('disabled');
+			} else if (button && status == false) {
+				button.classList.add('disabled');
+			} else {
+				return false;
+			}
+			
+		}
+	}
+
+	checkAgreement();
 });

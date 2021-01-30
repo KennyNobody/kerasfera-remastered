@@ -25,16 +25,16 @@ document.addEventListener('DOMContentLoaded', function() {
 		$.magnificPopup.close()
 	});
 
-	$(".popup-gallery").magnificPopup({
-		delegate: "a",
-		type: "image",
-		tLoading: "Загрузка изображения...",
-		mainClass: "mfp-img-mobile",
-		gallery: {enabled: !0, navigateByImgClick: !0, tCounter: "", preload: [0, 1]},
-		image: {
-			tError: "Ошибка загрузки изображения"
-		}
-	});
+	// $(".popup-gallery").magnificPopup({
+	// 	delegate: "a",
+	// 	type: "image",
+	// 	tLoading: "Загрузка изображения...",
+	// 	mainClass: "mfp-img-mobile",
+	// 	gallery: {enabled: !0, navigateByImgClick: !0, tCounter: "", preload: [0, 1]},
+	// 	image: {
+	// 		tError: "Ошибка загрузки изображения"
+	// 	}
+	// });
 
 	$(".gallery-top-popups").magnificPopup({
 		delegate: "a",
@@ -44,13 +44,13 @@ document.addEventListener('DOMContentLoaded', function() {
 		gallery: {enabled: !0, navigateByImgClick: !0, tCounter: "", preload: [0, 1]}
 	});
 
-	$(".gallery__item").magnificPopup({
-		type: "image",
-		image: {
-			titleSrc: 'title',
-			titleSrc: function(item) {
-				return '<a href="' + item.el.attr('data-link') + '">Посмотреть коллекцию</a>';
-			}
-		}
-	});
+	// $(".gallery__item").magnificPopup({
+	// 	type: "image",
+	// 	image: {
+	// 		titleSrc: 'title',
+	// 		titleSrc: function(item) {
+	// 			return '<a href="' + item.el.attr('data-link') + '">Посмотреть коллекцию</a>';
+	// 		}
+	// 	}
+	// });
 });

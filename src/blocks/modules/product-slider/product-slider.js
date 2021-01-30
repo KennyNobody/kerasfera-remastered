@@ -29,7 +29,11 @@ document.addEventListener('DOMContentLoaded', function() {
 					slideActiveClass: 'product-slider__top-slide--active',
 					thumbs: {
 						swiper: galleryThumbs
-					}
+					},
+					navigation: {
+						nextEl: '.product-slider__btn--next',
+						prevEl: '.product-slider__btn--prev',
+					},
 				});
 
 				galleryTop.controller.control = galleryThumbs;

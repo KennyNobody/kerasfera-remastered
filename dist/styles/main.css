@@ -1147,6 +1147,11 @@ body.compensate-for-scrollbar {
   margin-bottom: 80px;
 }
 
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 .mfp-bg {
   top: 0;
   left: 0;
@@ -10909,7 +10914,6 @@ label {
 }
 
 .filter__block--open ul {
-  max-height: 150px;
   overflow: hidden;
   overflow-y: scroll;
   padding-bottom: 15px;
@@ -11333,6 +11337,7 @@ label {
   flex-grow: 1;
   min-width: 40px;
   text-align: center;
+  -moz-appearance: textfield;
 }
 
 .item-card__btn {
@@ -14818,6 +14823,11 @@ ul.ul-warning li:before {
   font-family: "Fira Sans", sans-serif;
 }
 
+.input__field--textarea {
+  min-height: 120px;
+  resize: none;
+}
+
 .agreement {
   transition: 0.3s all;
   cursor: pointer;
@@ -15174,12 +15184,74 @@ ul.ul-warning li:before {
   transition: 0.3s all;
   display: block;
   cursor: default;
+  position: relative;
+  cursor: pointer;
 }
 
 .product-slider__top-slide img {
   display: block;
   width: 100%;
   height: auto;
+}
+
+.product-slider__top-slide:after {
+  transition: 0.3s all;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  display: block;
+  content: "";
+  background-image: url("https://dev.kerasfera.ru/local/templates/diez__template_kerasfera/img/poisk.svg");
+  background-image: url("https://kerasfera.ru/local/templates/diez__template_kerasfera/img/poisk.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 20%;
+  background-color: rgba(34, 35, 36, 0.45);
+  opacity: 0;
+}
+
+.product-slider__top-slide:hover::after {
+  opacity: 1;
+}
+
+.product-slider__btn {
+  position: absolute;
+  z-index: 2;
+  width: 46px;
+  top: 0px;
+  bottom: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.product-slider__btn:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.product-slider__btn--prev {
+  left: 0px;
+}
+
+.product-slider__btn--prev svg {
+  transform: rotate(90deg);
+  fill: #ffffff;
+  width: 30px;
+  height: 30px;
+}
+
+.product-slider__btn--next {
+  right: 0px;
+}
+
+.product-slider__btn--next svg {
+  transform: rotate(-90deg);
+  fill: #ffffff;
+  width: 30px;
+  height: 30px;
 }
 
 .product-slider__bottom-slider--hidden {
@@ -15337,9 +15409,18 @@ ul.ul-warning li:before {
   color: #A1A1A1;
 }
 
+.item-visual__item {
+  padding: 44px;
+  width: 90% !important;
+  height: 100% !important;
+  max-width: 700px;
+  max-height: 700px;
+}
+
 .item-visual__item iframe {
-  width: 800px !important;
-  height: 600px !important;
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
 }
 
 .item-post {
@@ -15791,6 +15872,10 @@ ul.ul-warning li:before {
 .modal .fancybox-slide--html .fancybox-close-small {
   right: 10px;
   top: 10px;
+}
+
+.caption-gallery {
+  font-size: 22px;
 }
 
 .form-toolbar {
