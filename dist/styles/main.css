@@ -4877,11 +4877,12 @@ a:hover {
 .toolbar__select {
   box-sizing: border-box;
   height: 40px;
-  border-color: #e2e1e1;
+  border: 1px solid #e2e1e1;
   color: #9b9b9b;
   font-family: "Fira Sans", sans-serif;
   padding-left: 18px;
   padding-right: 18px;
+  -moz-appearance: none;
 }
 
 .breadcrumbs-nav {
@@ -10917,8 +10918,9 @@ label {
   overflow: hidden;
   overflow-y: scroll;
   padding-bottom: 15px;
-  scrollbar-color: #006a44;
+  scrollbar-color: #006a44 #ffffff;
   scrollbar-width: 4px;
+  scrollbar-width: thin;
 }
 
 .filter__block--open ul::-webkit-scrollbar {
@@ -17164,8 +17166,9 @@ ul.ul-warning li:before {
     transition: .3s all;
     padding-bottom: 110px;
     overflow-y: scroll;
-    scrollbar-color: #006a44;
+    scrollbar-color: #006a44 #006a44;
     scrollbar-width: 4px;
+    scrollbar-width: thin;
   }
 
   .filter__wrapper::-webkit-scrollbar {

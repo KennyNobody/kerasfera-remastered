@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+console.log('Подключен');
+
 document.addEventListener('DOMContentLoaded', function() {
     $(".filter__mob-title").click(function(){
         $('.body').toggleClass('body--filter');
@@ -42,6 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
             initPagination();
             initLoadMore();
             initTypes();
+            initInputs();
             setFilter(filter);
             clearForm();
 
@@ -53,6 +56,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function setStatus(state) {
         sessionStorage.setItem('filterUsed', state);
+    }
+
+    function initInputs () {
+        let inputs = filter.querySelectorAll('.filter__inputs input');
+
+        console.log(inputs);
+
+        for (let i = 0; i < inputs.length; i++) {
+            inputs[i].addEventListener('blur', getRequest);
+        }
     }
 
 
@@ -120,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function() {
             radios[i].addEventListener('change', function() {
                 resetCount();
                 resetPages();
-                setStatus(true);
+                // setStatus(true);
                 getRequest();
             });
         }
@@ -174,21 +187,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 let minValue = rangeSlider.querySelector('#input-with-keypress-0') || 0;
                 let maxValue = rangeSlider.querySelector('#input-with-keypress-1') || 10000;
 
-                let startMin;
-                let startMax;
+                window.priceSlider = activeBlock;
 
-                if (state) {
-                    startMin = +state.min;
-                    startMax = +state.max;
-                } else {
-                    startMin = +minValue.value;
-                    startMax = +maxValue.value;
-                }
+                let startMin = (state && state.min) ? +state.min : +minValue.value;
+                let startMax = (state && state.max) ? +state.max : +maxValue.value;
 
                 noUiSlider.create(activeBlock, {
                     start: [startMin, startMax],
                     connect: true,
-                    step: 100,
+                    step: 1,
 
                     range: {
                         'min': [+minValue.value],
@@ -201,9 +208,36 @@ document.addEventListener('DOMContentLoaded', function() {
                     maxValue.value = Math.round(values[1]);
                 });
 
+                minValue.addEventListener('change', function () {
+                    activeBlock.noUiSlider.set([this.value, null]);
+                });
+
+                maxValue.addEventListener('change', function () {
+                    activeBlock.noUiSlider.set([null, this.value]);
+                });
+
                 activeBlock.noUiSlider.on('change', function (values, handle) {
                     setStatus(true);
                     getRequest();
+                });
+
+                let inputStart = rangeSlider.querySelector('#input-with-keypress-0');
+                let inputEnd = rangeSlider.querySelector('#input-with-keypress-1');
+
+                inputStart.addEventListener("keydown", function(event) {
+                    if (event.key === "Enter") {
+                        event.preventDefault();
+                        window.priceSlider.noUiSlider.set([inputStart.value, null]);
+                        getRequest();
+                    }
+                });
+
+                inputEnd.addEventListener("keydown", function(event) {
+                    if (event.key === "Enter") {
+                        event.preventDefault();
+                        window.priceSlider.noUiSlider.set([null, inputEnd.value]);
+                        getRequest();
+                    }
                 });
 
             }
@@ -218,16 +252,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 let minValue = rangeSlider.querySelector('#input-with-keypress-2') || 0;
                 let maxValue = rangeSlider.querySelector('#input-with-keypress-3') || 10000;
 
-                let startWmin;
-                let startWmax;
+                window.weightSlider = activeBlock;
 
-                if (state) {
-                    startWmin = +state.wmin;
-                    startWmax = +state.wmax;
-                } else {
-                    startWmin = +minValue.value;
-                    startWmax = +maxValue.value;
-                }
+                let startWmin = (state && state.wmin) ? +state.wmin : +minValue.value;
+                let startWmax = (state && state.wmax) ? +state.wmax : +maxValue.value;
 
                 noUiSlider.create(activeBlock, {
                     start: [startWmin, startWmax],
@@ -250,6 +278,25 @@ document.addEventListener('DOMContentLoaded', function() {
                     getRequest();
                 });
 
+                let inputStart = rangeSlider.querySelector('#input-with-keypress-2');
+                let inputEnd = rangeSlider.querySelector('#input-with-keypress-3');
+
+                inputStart.addEventListener("keydown", function(event) {
+                    if (event.key === "Enter") {
+                        event.preventDefault();
+                        window.weightSlider.noUiSlider.set([inputStart.value, null]);
+                        getRequest();
+                    }
+                });
+
+                inputEnd.addEventListener("keydown", function(event) {
+                    if (event.key === "Enter") {
+                        event.preventDefault();
+                        window.weightSlider.noUiSlider.set([null, inputEnd.value]);
+                        getRequest();
+                    }
+                });
+
             }
         }
 
@@ -262,16 +309,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 let minValue = rangeSlider.querySelector('#input-with-keypress-4') || 0;
                 let maxValue = rangeSlider.querySelector('#input-with-keypress-5') || 10000;
 
-                let startHmin;
-                let startHmax;
+                window.heightSlider = activeBlock;
 
-                if (state) {
-                    startHmin = +state.hmin;
-                    startHmax = +state.hmax;
-                } else {
-                    startHmin = +minValue.value;
-                    startHmax = +maxValue.value;
-                }
+                let startHmin = (state && state.hmin) ? +state.hmin : +minValue.value;
+                let startHmax = (state && state.hmax) ? +state.hmax : +maxValue.value;
 
                 noUiSlider.create(activeBlock, {
                     start: [startHmin, startHmax],
@@ -292,6 +333,25 @@ document.addEventListener('DOMContentLoaded', function() {
                 activeBlock.noUiSlider.on('change', function (values, handle) {
                     setStatus(true);
                     getRequest();
+                });
+
+                let inputStart = rangeSlider.querySelector('#input-with-keypress-4');
+                let inputEnd = rangeSlider.querySelector('#input-with-keypress-5');
+
+                inputStart.addEventListener("keydown", function(event) {
+                    if (event.key === "Enter") {
+                        event.preventDefault();
+                        window.heightSlider.noUiSlider.set([inputStart.value, null]);
+                        getRequest();
+                    }
+                });
+
+                inputEnd.addEventListener("keydown", function(event) {
+                    if (event.key === "Enter") {
+                        event.preventDefault();
+                        window.heightSlider.noUiSlider.set([null, inputEnd.value]);
+                        getRequest();
+                    }
                 });
 
             }
@@ -425,29 +485,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function getValues() {
 
-        let result;
-
-        if (sessionStorage.filterState == undefined) {
-            result = {
-                page: page || 1,
-                count: count, 
-                type: getTypes(),
-                tag : getTag(),
-            };
-        } else  {
-            result = {
-                page: page || 1,
-                count: count, 
-                tag : getTag(),
-                type: getTypes(),
-                min: getRange('min'),
-                max: getRange('max'),
-                hmin: getRange('hmin'),
-                hmax: getRange('hmax'),
-                wmin: getRange('wmin'),
-                wmax: getRange('wmax'),
-            };
-        }
+        let result = {
+            page: page || 1,
+            count: count, 
+            tag : getTag(),
+            type: getTypes(),
+            min: getRange('min'),
+            max: getRange('max'),
+            hmin: getRange('hmin'),
+            hmax: getRange('hmax'),
+            wmin: getRange('wmin'),
+            wmax: getRange('wmax'),
+        };
 
         let array = filter.querySelectorAll('[data-block-type="checkbox"]');
 
@@ -489,10 +538,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function getRange(price) {
-        if (filter.elements[price].value == 0) {
-            return false;
+        let startValue = filter.elements[price];
+        let result;
+
+        if (startValue.dataset.startValue != startValue.value) {
+            result = filter.elements[price].value;
+
+            if (Number.isInteger(+result)) {
+                return result;
+            }
+
         } else {
-            return filter.elements[price].value;
+            return '';
         }
     }
 
@@ -523,7 +580,9 @@ document.addEventListener('DOMContentLoaded', function() {
             url: '/shop/ajax.php',
             success: function (response) {
                 console.log('Кастом-запрос:');
-                console.log(getValues());
+                console.log(this.url);
+                // console.log(getValues());
+                // console.log(response);
 
                 let responceArr = $.parseHTML(response);
 
@@ -584,7 +643,9 @@ document.addEventListener('DOMContentLoaded', function() {
             url: '/shop/ajax.php',
             success: function (response) {
                 console.log('Первичный-запрос:');
-                console.log(getValues());
+                console.log(this.url);
+                // console.log(getValues());
+                // console.log(response);
 
                 let responceArr = $.parseHTML(response);
 
@@ -624,12 +685,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 toggleCounter();
 
-                // if (filter.querySelectorAll('.filter-input__input:checked').length > 0) {
-                //     parent.innerHTML = sessionStorage.getItem('tags');
-                // } else {
-                //     delete sessionStorage.tags;
-                // }
-
                 document.querySelector('.shop__items').classList.remove('m-load');
 
             },
@@ -650,10 +705,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 filter.reset();
                 filter.elements['filter-type'].value = type;
                 tags.innerHTML = '';
-                setStatus(false);
+                window.priceSlider.noUiSlider.set([0, +filter.querySelector('#input-with-keypress-1').dataset.startValue]);
+                window.weightSlider.noUiSlider.set([0, +filter.querySelector('#input-with-keypress-3').dataset.startValue]);
+                window.heightSlider.noUiSlider.set([0, +filter.querySelector('#input-with-keypress-5').dataset.startValue]);
+                // console.log(window.priceSlider.noUiSlider.set([0, this.parentNode.querySelectorAll('input')[1].dataset.startValue]))
                 delete sessionStorage.filterState;
                 delete sessionStorage.tags;
                 delete sessionStorage.filterCheckboxes;
+                setStatus(false);
                 getRequest();
             });
         }

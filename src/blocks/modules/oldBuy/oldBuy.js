@@ -55,45 +55,16 @@ document.addEventListener('DOMContentLoaded', function() {
 			},
 			url: '/ajax/add2basket.php',
 			success: function (response) {
-				addCounter();
-				showMessage(form);
 				console.log(response);
+				if (response == 'true') {
+					addCounter();
+				}
+				showMessage(form);
 			},
 			error: function (response) {
 
 			}
 		});
-
-		function addCounter() {
-			let countMob = document.querySelector('.mob-toolbar__counter');
-
-			console.log(+countMob.innerText);
-
-			if (countMob) {
-				countMob.innerText = +countMob.innerText + 1;
-			}
-
-			let countDesktop = document.querySelector('.header__link-counter');
-
-			console.log(+countDesktop.innerText);
-
-			if (countDesktop) {
-				countDesktop.innerText = +countDesktop.innerText + 1;
-			}
-		}
-
-		function showMessage(form) {
-			let button = form.querySelector('.item-card__submit');
-
-			if (button) {
-
-				button.innerText = "Добавлено";
-
-				setTimeout(function(){
-					button.innerText = "В корзину";
-				}, 3000);
-			}
-		}
 	});
 
 	$("body").on("submit", ".product-form", function (e) {
@@ -111,43 +82,47 @@ document.addEventListener('DOMContentLoaded', function() {
 			},
 			url: '/ajax/add2basket.php',
 			success: function (response) {
-				addCounter();
-				showMessage(form);
+				console.log(response);
+				if (response == 'true') {
+					addCounter();
+					console.log('Ответ да');
+				} else {
+					console.log('Ответ нет');
+				}
 			},
 			error: function (response) {
 
 			}
 		});
-
-		function addCounter() {
-			let countMob = document.querySelector('.mob-toolbar__counter');
-
-			console.log(+countMob.innerText);
-
-			if (countMob) {
-				countMob.innerText = +countMob.innerText + +form.elements['product-form__value'].value;
-			}
-
-			let countDesktop = document.querySelector('.header__link-counter');
-
-			console.log(+countDesktop.innerText);
-
-			if (countDesktop) {
-				countDesktop.innerText = +countDesktop.innerText + +form.elements['product-form__value'].value;
-			}
-		}
-
-		function showMessage(form) {
-			let button = form.querySelector('#buy');
-
-			if (button) {
-
-				button.innerText = "Добавлено";
-
-				setTimeout(function(){
-					button.innerText = "В корзину";
-				}, 3000);
-			}
-		}
 	});
+
+	function addCounter() {
+
+		console.log('Счетчик');
+
+		let countMob = document.querySelector('.mob-toolbar__counter');
+
+		if (countMob) {
+			countMob.innerText = +countMob.innerText + 1;
+		}
+
+		let countDesktop = document.querySelector('.header__link-counter');
+
+		if (countDesktop) {
+			countDesktop.innerText = +countDesktop.innerText + 1;
+		}
+	}
+
+	function showMessage(form) {
+		let button = form.querySelector('.item-card__submit');
+
+		if (button) {
+
+			button.innerText = "Добавлено";
+
+			setTimeout(function(){
+				button.innerText = "В корзину";
+			}, 3000);
+		}
+	}
 });

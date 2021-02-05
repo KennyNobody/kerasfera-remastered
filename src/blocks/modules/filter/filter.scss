@@ -17,8 +17,9 @@
             transition: .3s all;
             padding-bottom: 110px;
             overflow-y: scroll;
-            scrollbar-color: $green;
+            scrollbar-color: $green $green;
             scrollbar-width: 4px;
+            scrollbar-width: thin;
             &::-webkit-scrollbar {
                 width: 4px;
                 height: 4px;
@@ -200,8 +201,9 @@
     overflow: hidden;
     overflow-y: scroll;
     padding-bottom: 15px;
-    scrollbar-color: $green;
+    scrollbar-color: $green $light;
     scrollbar-width: 4px;
+    scrollbar-width: thin;
     &::-webkit-scrollbar {
         width: 4px;
         height: 4px;

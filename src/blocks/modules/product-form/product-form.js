@@ -200,7 +200,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			if (type == 'quantity') {
 				result = Math.ceil(result * count.value);
 			} else if (type == 'packs') {
-				result = Math.ceil(result);
+				result = Math.ceil(result / count.value);
 			} else {
 				return false;
 			}

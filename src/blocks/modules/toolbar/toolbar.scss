@@ -16,11 +16,12 @@
 	&__select {
 		box-sizing: border-box;
 		height: 40px;
-		border-color: #e2e1e1;
+		border: 1px solid #e2e1e1;
 		color: #9b9b9b;
 		font-family: "Fira Sans", sans-serif;
 		padding-left: 18px;
 		padding-right: 18px;
+		-moz-appearance:none;
 		// -webkit-appearance: none;
 		// -moz-appearance: none;
 		// -o-appearance: none;

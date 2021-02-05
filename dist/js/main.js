@@ -226,6 +226,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 });
+console.log('Подключен');
 document.addEventListener('DOMContentLoaded', function () {
   $(".filter__mob-title").click(function () {
     $('.body').toggleClass('body--filter');
@@ -251,6 +252,7 @@ document.addEventListener('DOMContentLoaded', function () {
       initPagination();
       initLoadMore();
       initTypes();
+      initInputs();
       setFilter(filter);
       clearForm();
 
@@ -262,6 +264,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function setStatus(state) {
     sessionStorage.setItem('filterUsed', state);
+  }
+
+  function initInputs() {
+    var inputs = filter.querySelectorAll('.filter__inputs input');
+    console.log(inputs);
+
+    for (var i = 0; i < inputs.length; i++) {
+      inputs[i].addEventListener('blur', getRequest);
+    }
   }
 
   function setFilter() {
@@ -336,8 +347,8 @@ document.addEventListener('DOMContentLoaded', function () {
     for (var i = 0; i < radios.length; i++) {
       radios[i].addEventListener('change', function () {
         resetCount();
-        resetPages();
-        setStatus(true);
+        resetPages(); // setStatus(true);
+
         getRequest();
       });
     }
@@ -386,21 +397,13 @@ document.addEventListener('DOMContentLoaded', function () {
         var activeBlock = rangeSlider.querySelector('.filter__range');
         var minValue = rangeSlider.querySelector('#input-with-keypress-0') || 0;
         var maxValue = rangeSlider.querySelector('#input-with-keypress-1') || 10000;
-        var startMin;
-        var startMax;
-
-        if (state) {
-          startMin = +state.min;
-          startMax = +state.max;
-        } else {
-          startMin = +minValue.value;
-          startMax = +maxValue.value;
-        }
-
+        window.priceSlider = activeBlock;
+        var startMin = state && state.min ? +state.min : +minValue.value;
+        var startMax = state && state.max ? +state.max : +maxValue.value;
         nouislider__WEBPACK_IMPORTED_MODULE_0___default.a.create(activeBlock, {
           start: [startMin, startMax],
           connect: true,
-          step: 100,
+          step: 1,
           range: {
             'min': [+minValue.value],
             'max': [+maxValue.value]
@@ -410,9 +413,31 @@ document.addEventListener('DOMContentLoaded', function () {
           minValue.value = Math.round(values[0]);
           maxValue.value = Math.round(values[1]);
         });
+        minValue.addEventListener('change', function () {
+          activeBlock.noUiSlider.set([this.value, null]);
+        });
+        maxValue.addEventListener('change', function () {
+          activeBlock.noUiSlider.set([null, this.value]);
+        });
         activeBlock.noUiSlider.on('change', function (values, handle) {
           setStatus(true);
           getRequest();
+        });
+        var inputStart = rangeSlider.querySelector('#input-with-keypress-0');
+        var inputEnd = rangeSlider.querySelector('#input-with-keypress-1');
+        inputStart.addEventListener("keydown", function (event) {
+          if (event.key === "Enter") {
+            event.preventDefault();
+            window.priceSlider.noUiSlider.set([inputStart.value, null]);
+            getRequest();
+          }
+        });
+        inputEnd.addEventListener("keydown", function (event) {
+          if (event.key === "Enter") {
+            event.preventDefault();
+            window.priceSlider.noUiSlider.set([null, inputEnd.value]);
+            getRequest();
+          }
         });
       }
     }
@@ -424,17 +449,9 @@ document.addEventListener('DOMContentLoaded', function () {
         var activeBlock = rangeSlider.querySelector('.filter__range');
         var minValue = rangeSlider.querySelector('#input-with-keypress-2') || 0;
         var maxValue = rangeSlider.querySelector('#input-with-keypress-3') || 10000;
-        var startWmin;
-        var startWmax;
-
-        if (state) {
-          startWmin = +state.wmin;
-          startWmax = +state.wmax;
-        } else {
-          startWmin = +minValue.value;
-          startWmax = +maxValue.value;
-        }
-
+        window.weightSlider = activeBlock;
+        var startWmin = state && state.wmin ? +state.wmin : +minValue.value;
+        var startWmax = state && state.wmax ? +state.wmax : +maxValue.value;
         nouislider__WEBPACK_IMPORTED_MODULE_0___default.a.create(activeBlock, {
           start: [startWmin, startWmax],
           connect: true,
@@ -452,6 +469,22 @@ document.addEventListener('DOMContentLoaded', function () {
           setStatus(true);
           getRequest();
         });
+        var inputStart = rangeSlider.querySelector('#input-with-keypress-2');
+        var inputEnd = rangeSlider.querySelector('#input-with-keypress-3');
+        inputStart.addEventListener("keydown", function (event) {
+          if (event.key === "Enter") {
+            event.preventDefault();
+            window.weightSlider.noUiSlider.set([inputStart.value, null]);
+            getRequest();
+          }
+        });
+        inputEnd.addEventListener("keydown", function (event) {
+          if (event.key === "Enter") {
+            event.preventDefault();
+            window.weightSlider.noUiSlider.set([null, inputEnd.value]);
+            getRequest();
+          }
+        });
       }
     }
 
@@ -462,17 +495,9 @@ document.addEventListener('DOMContentLoaded', function () {
         var activeBlock = rangeSlider.querySelector('.filter__range');
         var minValue = rangeSlider.querySelector('#input-with-keypress-4') || 0;
         var maxValue = rangeSlider.querySelector('#input-with-keypress-5') || 10000;
-        var startHmin;
-        var startHmax;
-
-        if (state) {
-          startHmin = +state.hmin;
-          startHmax = +state.hmax;
-        } else {
-          startHmin = +minValue.value;
-          startHmax = +maxValue.value;
-        }
-
+        window.heightSlider = activeBlock;
+        var startHmin = state && state.hmin ? +state.hmin : +minValue.value;
+        var startHmax = state && state.hmax ? +state.hmax : +maxValue.value;
         nouislider__WEBPACK_IMPORTED_MODULE_0___default.a.create(activeBlock, {
           start: [startHmin, startHmax],
           connect: true,
@@ -489,6 +514,22 @@ document.addEventListener('DOMContentLoaded', function () {
         activeBlock.noUiSlider.on('change', function (values, handle) {
           setStatus(true);
           getRequest();
+        });
+        var inputStart = rangeSlider.querySelector('#input-with-keypress-4');
+        var inputEnd = rangeSlider.querySelector('#input-with-keypress-5');
+        inputStart.addEventListener("keydown", function (event) {
+          if (event.key === "Enter") {
+            event.preventDefault();
+            window.heightSlider.noUiSlider.set([inputStart.value, null]);
+            getRequest();
+          }
+        });
+        inputEnd.addEventListener("keydown", function (event) {
+          if (event.key === "Enter") {
+            event.preventDefault();
+            window.heightSlider.noUiSlider.set([null, inputEnd.value]);
+            getRequest();
+          }
         });
       }
     }
@@ -610,30 +651,18 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function getValues() {
-    var result;
-
-    if (sessionStorage.filterState == undefined) {
-      result = {
-        page: page || 1,
-        count: count,
-        type: getTypes(),
-        tag: getTag()
-      };
-    } else {
-      result = {
-        page: page || 1,
-        count: count,
-        tag: getTag(),
-        type: getTypes(),
-        min: getRange('min'),
-        max: getRange('max'),
-        hmin: getRange('hmin'),
-        hmax: getRange('hmax'),
-        wmin: getRange('wmin'),
-        wmax: getRange('wmax')
-      };
-    }
-
+    var result = {
+      page: page || 1,
+      count: count,
+      tag: getTag(),
+      type: getTypes(),
+      min: getRange('min'),
+      max: getRange('max'),
+      hmin: getRange('hmin'),
+      hmax: getRange('hmax'),
+      wmin: getRange('wmin'),
+      wmax: getRange('wmax')
+    };
     var array = filter.querySelectorAll('[data-block-type="checkbox"]');
 
     for (var i = 0; i < array.length; i++) {
@@ -671,10 +700,17 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function getRange(price) {
-    if (filter.elements[price].value == 0) {
-      return false;
+    var startValue = filter.elements[price];
+    var result;
+
+    if (startValue.dataset.startValue != startValue.value) {
+      result = filter.elements[price].value;
+
+      if (Number.isInteger(+result)) {
+        return result;
+      }
     } else {
-      return filter.elements[price].value;
+      return '';
     }
   }
 
@@ -700,7 +736,9 @@ document.addEventListener('DOMContentLoaded', function () {
       url: '/shop/ajax.php',
       success: function success(response) {
         console.log('Кастом-запрос:');
-        console.log(getValues());
+        console.log(this.url); // console.log(getValues());
+        // console.log(response);
+
         var responceArr = $.parseHTML(response);
 
         function gelEl(el) {
@@ -756,7 +794,9 @@ document.addEventListener('DOMContentLoaded', function () {
       url: '/shop/ajax.php',
       success: function success(response) {
         console.log('Первичный-запрос:');
-        console.log(getValues());
+        console.log(this.url); // console.log(getValues());
+        // console.log(response);
+
         var responceArr = $.parseHTML(response);
 
         function gelEl(el) {
@@ -793,12 +833,7 @@ document.addEventListener('DOMContentLoaded', function () {
           $('.shop__navigation').html(block);
         }
 
-        toggleCounter(); // if (filter.querySelectorAll('.filter-input__input:checked').length > 0) {
-        //     parent.innerHTML = sessionStorage.getItem('tags');
-        // } else {
-        //     delete sessionStorage.tags;
-        // }
-
+        toggleCounter();
         document.querySelector('.shop__items').classList.remove('m-load');
       },
       error: function error(response) {
@@ -818,10 +853,14 @@ document.addEventListener('DOMContentLoaded', function () {
         filter.reset();
         filter.elements['filter-type'].value = type;
         tags.innerHTML = '';
-        setStatus(false);
+        window.priceSlider.noUiSlider.set([0, +filter.querySelector('#input-with-keypress-1').dataset.startValue]);
+        window.weightSlider.noUiSlider.set([0, +filter.querySelector('#input-with-keypress-3').dataset.startValue]);
+        window.heightSlider.noUiSlider.set([0, +filter.querySelector('#input-with-keypress-5').dataset.startValue]); // console.log(window.priceSlider.noUiSlider.set([0, this.parentNode.querySelectorAll('input')[1].dataset.startValue]))
+
         delete sessionStorage.filterState;
         delete sessionStorage.tags;
         delete sessionStorage.filterCheckboxes;
+        setStatus(false);
         getRequest();
       });
     }
@@ -1040,39 +1079,16 @@ __webpack_require__.r(__webpack_exports__);
       },
       url: '/ajax/add2basket.php',
       success: function success(response) {
-        addCounter();
-        showMessage(form);
         console.log(response);
+
+        if (response == 'true') {
+          addCounter();
+        }
+
+        showMessage(form);
       },
       error: function error(response) {}
     });
-
-    function addCounter() {
-      var countMob = document.querySelector('.mob-toolbar__counter');
-      console.log(+countMob.innerText);
-
-      if (countMob) {
-        countMob.innerText = +countMob.innerText + 1;
-      }
-
-      var countDesktop = document.querySelector('.header__link-counter');
-      console.log(+countDesktop.innerText);
-
-      if (countDesktop) {
-        countDesktop.innerText = +countDesktop.innerText + 1;
-      }
-    }
-
-    function showMessage(form) {
-      var button = form.querySelector('.item-card__submit');
-
-      if (button) {
-        button.innerText = "Добавлено";
-        setTimeout(function () {
-          button.innerText = "В корзину";
-        }, 3000);
-      }
-    }
   });
   $("body").on("submit", ".product-form", function (e) {
     var form = this;
@@ -1086,39 +1102,44 @@ __webpack_require__.r(__webpack_exports__);
       },
       url: '/ajax/add2basket.php',
       success: function success(response) {
-        addCounter();
-        showMessage(form);
+        console.log(response);
+
+        if (response == 'true') {
+          addCounter();
+          console.log('Ответ да');
+        } else {
+          console.log('Ответ нет');
+        }
       },
       error: function error(response) {}
     });
-
-    function addCounter() {
-      var countMob = document.querySelector('.mob-toolbar__counter');
-      console.log(+countMob.innerText);
-
-      if (countMob) {
-        countMob.innerText = +countMob.innerText + +form.elements['product-form__value'].value;
-      }
-
-      var countDesktop = document.querySelector('.header__link-counter');
-      console.log(+countDesktop.innerText);
-
-      if (countDesktop) {
-        countDesktop.innerText = +countDesktop.innerText + +form.elements['product-form__value'].value;
-      }
-    }
-
-    function showMessage(form) {
-      var button = form.querySelector('#buy');
-
-      if (button) {
-        button.innerText = "Добавлено";
-        setTimeout(function () {
-          button.innerText = "В корзину";
-        }, 3000);
-      }
-    }
   });
+
+  function addCounter() {
+    console.log('Счетчик');
+    var countMob = document.querySelector('.mob-toolbar__counter');
+
+    if (countMob) {
+      countMob.innerText = +countMob.innerText + 1;
+    }
+
+    var countDesktop = document.querySelector('.header__link-counter');
+
+    if (countDesktop) {
+      countDesktop.innerText = +countDesktop.innerText + 1;
+    }
+  }
+
+  function showMessage(form) {
+    var button = form.querySelector('.item-card__submit');
+
+    if (button) {
+      button.innerText = "Добавлено";
+      setTimeout(function () {
+        button.innerText = "В корзину";
+      }, 3000);
+    }
+  }
 });
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")))
 
@@ -1862,7 +1883,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (type == 'quantity') {
         result = Math.ceil(result * count.value);
       } else if (type == 'packs') {
-        result = Math.ceil(result);
+        result = Math.ceil(result / count.value);
       } else {
         return false;
       }
