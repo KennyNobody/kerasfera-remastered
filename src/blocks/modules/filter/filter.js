@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function() {
             radios[i].addEventListener('change', function() {
                 resetCount();
                 resetPages();
-                // setStatus(true);
+                setStatus(true);
                 getRequest();
             });
         }
@@ -579,10 +579,6 @@ document.addEventListener('DOMContentLoaded', function() {
             data: getValues(),
             url: '/shop/ajax.php',
             success: function (response) {
-                console.log('Кастом-запрос:');
-                console.log(this.url);
-                // console.log(getValues());
-                // console.log(response);
 
                 let responceArr = $.parseHTML(response);
 
@@ -642,10 +638,6 @@ document.addEventListener('DOMContentLoaded', function() {
             data: JSON.parse(retrievedObject),
             url: '/shop/ajax.php',
             success: function (response) {
-                console.log('Первичный-запрос:');
-                console.log(this.url);
-                // console.log(getValues());
-                // console.log(response);
 
                 let responceArr = $.parseHTML(response);
 

@@ -1,29 +1,28 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-	$(".item-card__submit.fast-buy").on("click", function (e) {
+	// $(".item-card__submit.fast-buy").on("click", function (e) {
 
-		e.preventDefault();
+	// 	e.preventDefault();
 
-		var t = $(this);
-		if (t.hasClass("item-card__submit--added")) {
+	// 	var t = $(this);
+	// 	if (t.hasClass("item-card__submit--added")) {
 
-			window.location = "/personal/cart/";
+	// 		window.location = "/personal/cart/";
 
-		} else {
-			t.css("position", "relative");
-			t.addClass("item-card__submit--added");
-			t.text("Добавлено");
-			setTimeout(function () {
-				t.removeClass("item-card__submit--added");
-				t.text("В корзину");
-			}, 5000);
+	// 	} else {
+	// 		t.addClass("item-card__submit--added");
+	// 		t.text("Добавлено");
+	// 		setTimeout(function () {
+	// 			t.removeClass("item-card__submit--added");
+	// 			t.text("В корзину");
+	// 		}, 5000);
 
-			var n = $(t.attr("data-href")).find("form");
+	// 		var n = $(t.attr("data-href")).find("form");
 
-			n.find(".counter__input").val($(this).parents(".item-card").find(".item-card__input").val());
-			n.trigger("submit");
-		}
-	});
+	// 		n.find(".counter__input").val($(this).parents(".item-card").find(".item-card__input").val());
+	// 		n.trigger("submit");
+	// 	}
+	// });
 
 	$('body').on('click', '.cart__link', function (e) {
 		e.preventDefault();
@@ -41,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	// Для карточки товара
 
 	$("body").on("submit", ".item-card", function (e) {
+		console.log('Работает');
 
 		let form = this;
 
@@ -55,14 +55,14 @@ document.addEventListener('DOMContentLoaded', function() {
 			},
 			url: '/ajax/add2basket.php',
 			success: function (response) {
-				console.log(response);
+				console.log(this);
 				if (response == 'true') {
 					addCounter();
 				}
 				showMessage(form);
 			},
 			error: function (response) {
-
+				console.log(response);
 			}
 		});
 	});
@@ -97,8 +97,6 @@ document.addEventListener('DOMContentLoaded', function() {
 	});
 
 	function addCounter() {
-
-		console.log('Счетчик');
 
 		let countMob = document.querySelector('.mob-toolbar__counter');
 
