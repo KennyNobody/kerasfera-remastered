@@ -188,6 +188,9 @@
 		box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.3);
 		width: 38px;
 		height: 38px;
+		font-weight: 700;
+		font-size: 14px;
+		color: $light;
 		svg {
 			fill: #f78222;
 			width: 18px;
@@ -238,6 +241,21 @@
 		}
 		&:last-of-type {
 			margin-bottom: 0px;
+		}
+		&--discont-10 {
+			background-color: #6FCF97;
+		}
+		&--discont-12 {
+			background-color: #00B474;
+		}
+		&--discont-15 {
+			background-color: #009E66;
+		}
+		&--discont-18 {
+			background-color: #008354;
+		}
+		&--discont-20 {
+			background-color: #006A44;
 		}
 	}
 }

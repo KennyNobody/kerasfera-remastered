@@ -1,29 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-	// $(".item-card__submit.fast-buy").on("click", function (e) {
-
-	// 	e.preventDefault();
-
-	// 	var t = $(this);
-	// 	if (t.hasClass("item-card__submit--added")) {
-
-	// 		window.location = "/personal/cart/";
-
-	// 	} else {
-	// 		t.addClass("item-card__submit--added");
-	// 		t.text("Добавлено");
-	// 		setTimeout(function () {
-	// 			t.removeClass("item-card__submit--added");
-	// 			t.text("В корзину");
-	// 		}, 5000);
-
-	// 		var n = $(t.attr("data-href")).find("form");
-
-	// 		n.find(".counter__input").val($(this).parents(".item-card").find(".item-card__input").val());
-	// 		n.trigger("submit");
-	// 	}
-	// });
-
 	$('body').on('click', '.cart__link', function (e) {
 		e.preventDefault();
 

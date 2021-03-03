@@ -1062,23 +1062,6 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {document.addEventListener('DOMContentLoaded', function () {
-  // $(".item-card__submit.fast-buy").on("click", function (e) {
-  // 	e.preventDefault();
-  // 	var t = $(this);
-  // 	if (t.hasClass("item-card__submit--added")) {
-  // 		window.location = "/personal/cart/";
-  // 	} else {
-  // 		t.addClass("item-card__submit--added");
-  // 		t.text("Добавлено");
-  // 		setTimeout(function () {
-  // 			t.removeClass("item-card__submit--added");
-  // 			t.text("В корзину");
-  // 		}, 5000);
-  // 		var n = $(t.attr("data-href")).find("form");
-  // 		n.find(".counter__input").val($(this).parents(".item-card").find(".item-card__input").val());
-  // 		n.trigger("submit");
-  // 	}
-  // });
   $('body').on('click', '.cart__link', function (e) {
     e.preventDefault();
     $.get('/personal/cart/ajax.php?action=delete&id=' + $(this).parents('.cart__line').data('id'), function (data) {});
@@ -2346,7 +2329,53 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  checkAgreement();
+  checkAgreement(); // LoadMore for gallery
+
+  var loading = false;
+  var page = 1;
+
+  function loadMore() {
+    var el = document.querySelector('.gallery');
+
+    if (el && isVisible() && loading == false) {
+      loading = true;
+      load();
+    }
+
+    function isVisible() {
+      var windowOffset = window.scrollY;
+      var galleryOffset = el.getBoundingClientRect().top + document.body.scrollTop + el.offsetHeight - 900;
+
+      if (galleryOffset < 0) {
+        return true;
+      }
+    }
+
+    function load() {
+      $.ajax({
+        url: '/gallery/ajax.php',
+        type: "GET",
+        dataType: "html",
+        data: {
+          page: page
+        },
+        success: function success(response) {
+          el.querySelector('.gallery__container').innerHTML = el.querySelector('.gallery__container').innerHTML + response;
+          console.log(page);
+          loading = false;
+          page = page + 1;
+        },
+        error: function error(jqXHR, textStatus, errorThrown) {
+          console.log('Error: ' + errorThrown);
+          loading = false;
+        }
+      });
+    }
+  }
+
+  document.addEventListener('scroll', function () {
+    loadMore();
+  });
 });
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")))
 

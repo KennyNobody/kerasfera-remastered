@@ -561,7 +561,7 @@ a:hover {
     bottom: 0;
     position: fixed;
     z-index: 4;
-    right: 40px;
+    left: 40px;
     bottom: 100px;
     max-width: 100%;
     width: 490px;
@@ -576,12 +576,14 @@ a:hover {
     -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
-    height: 160px
+    height: 160px;
+    z-index: 10;
 }
 
 @media only screen and (max-width: 1160px) {
     .accent--bottom {
-        width: 420px
+        width: 420px;
+        bottom: 30;
     }
 
     .accent--bottom p {

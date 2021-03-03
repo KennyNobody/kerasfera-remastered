@@ -129,4 +129,54 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 
 	checkAgreement();
+
+	// LoadMore for gallery
+
+	let loading = false;
+	let page = 1;
+
+	function loadMore() {
+		let el = document.querySelector('.gallery');
+
+		if (el && isVisible() && loading == false) {
+			loading = true;
+			load();
+		}
+
+		function isVisible() {
+			let windowOffset = window.scrollY;
+			let galleryOffset = el.getBoundingClientRect().top + document.body.scrollTop + el.offsetHeight - 900;
+
+			if (galleryOffset < 0) {
+				return true;
+			}
+		}
+
+		function load() {
+			$.ajax({
+				url: '/gallery/ajax.php',
+				type: "GET",
+				dataType: "html",
+				data: {
+					page: page,
+				},
+				success: function (response) {
+					el.querySelector('.gallery__container').innerHTML = el.querySelector('.gallery__container').innerHTML + response;
+					console.log(page);
+					loading = false;
+					page = page + 1;
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					console.log('Error: ' + errorThrown);
+					loading = false;
+				}
+			});
+		}
+	}
+
+	
+
+	document.addEventListener('scroll', function() {
+		loadMore();
+	})
 });
