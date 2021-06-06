@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		let inputVisible = form.querySelector('.product-form__counter-input');
 		let inputHidden = form.querySelector('.product-form__input-hidden');
 
-
 		let tabs = form.querySelectorAll('.product-form__input');
 
 		let area = form.querySelector('#product-type-s');
@@ -62,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		function countResult() {
 			let type = getDataAttr(tabs);
 			
-			inputHidden.value = resultPack;
+			inputHidden.value = resultArea;
 
 			function getDataAttr(el) {
 				for (let i = 0; i < el.length; i++) {
@@ -73,13 +72,19 @@ document.addEventListener('DOMContentLoaded', function() {
 			}
 
 			if (type == 'square') {
-				inputVisible.value = Math.floor(resultArea * 1000) / 1000;
 				console.log(resultArea + ' площадь');
+				console.log(inputHidden.value + ' будет отправлено');
+				console.log('-------------');
+				inputVisible.value = Math.floor(resultArea * 1000) / 1000;
 			} else if (type == 'quantity') {
 				console.log(resultCount + ' штуки');
+				console.log(inputHidden.value + ' будет отправлено');
+				console.log('-------------')
 				inputVisible.value = resultCount;
 			} else if (type == 'packs') {
 				console.log(resultPack + ' упаковок');
+				console.log(inputHidden.value + ' будет отправлено');
+				console.log('-------------')
 				inputVisible.value = resultPack;
 			} else {
 				return false;

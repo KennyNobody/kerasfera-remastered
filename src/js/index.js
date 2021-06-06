@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	// LoadMore for gallery
 
 	let loading = false;
-	let page = 1;
+	let page = 2;
 
 	function loadMore() {
 		let el = document.querySelector('.gallery');

@@ -22,12 +22,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		e.preventDefault();
 
+		// console.log(+form.elements['q'].dataset.mode);
+
 		$.ajax({
 			type: 'POST',
 			data: {
 				item_id: form.dataset.id,
 				iblick_id:form.dataset.iblockId,
-				count: form.elements['q'].value,
+				count: +form.elements['q'].value * +form.elements['q'].dataset.mode,
 			},
 			url: '/ajax/add2basket.php',
 			success: function (response) {
@@ -62,6 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				if (response == 'true') {
 					addCounter();
 					console.log('Ответ да');
+					console.log(this.data);
 				} else {
 					console.log('Ответ нет');
 				}

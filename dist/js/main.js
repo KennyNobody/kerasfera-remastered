@@ -1074,13 +1074,14 @@ __webpack_require__.r(__webpack_exports__);
   $("body").on("submit", ".item-card", function (e) {
     console.log('Работает');
     var form = this;
-    e.preventDefault();
+    e.preventDefault(); // console.log(+form.elements['q'].dataset.mode);
+
     $.ajax({
       type: 'POST',
       data: {
         item_id: form.dataset.id,
         iblick_id: form.dataset.iblockId,
-        count: form.elements['q'].value
+        count: +form.elements['q'].value * +form.elements['q'].dataset.mode
       },
       url: '/ajax/add2basket.php',
       success: function success(response) {
@@ -1114,6 +1115,7 @@ __webpack_require__.r(__webpack_exports__);
         if (response == 'true') {
           addCounter();
           console.log('Ответ да');
+          console.log(this.data);
         } else {
           console.log('Ответ нет');
         }
@@ -1762,7 +1764,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function countResult() {
       var type = getDataAttr(tabs);
-      inputHidden.value = resultPack;
+      inputHidden.value = resultArea;
 
       function getDataAttr(el) {
         for (var _i = 0; _i < el.length; _i++) {
@@ -1773,13 +1775,19 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 
       if (type == 'square') {
-        inputVisible.value = Math.floor(resultArea * 1000) / 1000;
         console.log(resultArea + ' площадь');
+        console.log(inputHidden.value + ' будет отправлено');
+        console.log('-------------');
+        inputVisible.value = Math.floor(resultArea * 1000) / 1000;
       } else if (type == 'quantity') {
         console.log(resultCount + ' штуки');
+        console.log(inputHidden.value + ' будет отправлено');
+        console.log('-------------');
         inputVisible.value = resultCount;
       } else if (type == 'packs') {
         console.log(resultPack + ' упаковок');
+        console.log(inputHidden.value + ' будет отправлено');
+        console.log('-------------');
         inputVisible.value = resultPack;
       } else {
         return false;
@@ -2332,7 +2340,7 @@ document.addEventListener('DOMContentLoaded', function () {
   checkAgreement(); // LoadMore for gallery
 
   var loading = false;
-  var page = 1;
+  var page = 2;
 
   function loadMore() {
     var el = document.querySelector('.gallery');
